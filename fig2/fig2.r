@@ -22,7 +22,7 @@ source("../lib/subset_svs.r")
 ############################################################
 
 savefiles = T
-color_plots = F
+color_plots = T
 readcnvs = F
 # Run options
 
@@ -71,8 +71,9 @@ chr_p = ggplot(data.frame()) +
 if(color_plots){
   chr_p = chr_p + scale_color_manual(name="", labels=c("Deletions","Duplications"), values=c("#006ddb","#db6d00"))
 }else{
-  chr_p = chr_p + scale_color_grey(name="", labels=c("Deletions","Duplications"))
-  #chr_p = chr_p + scale_color_manual(name="", labels=c("Deletions","Duplications"), values=c("#000000","#333333"))
+  #chr_p = chr_p + scale_color_grey(name="", labels=c("Deletions","Duplications"))
+  chr_p = chr_p + scale_color_manual(name="", labels=c("Deletions","Duplications"), values=c("#000000","#000000")) +
+    theme(legend.position="none")
 }
 
 blah = data.frame("blah"=c(1))
