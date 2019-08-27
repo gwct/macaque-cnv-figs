@@ -1,0 +1,236 @@
+Family_ID,Sample_ID,Lot,Family_Type,Relationship,Phenotype,Gender,Chrono_Age,Mother_chrono_age,Father_chrono_age,Ethnicity,Race,Height / in,Weight / lbs,Head_circumference/ mm,Tissue_Source,Source,Mean_Coverage,pc_coverage_at_1x,pc_coverage_at_10x,median_fragment_length,median_fragment_length_sd,pc_bases_Q30,Sequencing_Location,SNP_Array_Data
+C9C2C-01,C9C2C_01,Illumina-1,trio,Proband,ASD,Male,33,466,364,0,5,36.5,27,482,blood,ACE,37.7,98,95.7,302,61,91.1,Illumina,Illumina Omni 2.5
+C9C2C-02,C9C2C_03,Illumina-1,trio,Mother,control,Female,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,39.1,98.4,96.4,305,62,90.7,Illumina,Illumina Omni 2.5
+C9C2C-03,C9C2C_04,Illumina-1,trio,Father,control,Male,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,38.5,98.1,95.7,305,60,88.1,Illumina,Illumina Omni 2.5
+E3F6Y-01,E3F6Y_01,Illumina-1,trio,Proband,ASD,Male,41,406,393,0,5,40,36,516,blood,ACE,36.3,98,95.6,305,60,88.7,Illumina,Illumina Omni 2.5
+E3F6Y-02,E3F6Y_03,Illumina-1,trio,Mother,control,Female,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,38.4,98.4,96.3,305,60,87.7,Illumina,Illumina Omni 2.5
+E3F6Y-03,E3F6Y_04,Illumina-1,trio,Father,control,Male,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,30.5,98,94.9,314,61,88.4,Illumina,Illumina Omni 2.5
+F0065-01,REACH000065,Illumina-1,trio,Proband,ASD,Male,77,378,413,4,5,49,80,552,blood,REACH,37.1,98,95.6,319,63,83.4,Illumina,Illumina Omni 2.5
+F0065-02,REACH000066,Illumina-1,trio,Mother,control,Female,378,NA,NA,NA,NA,NA,NA,NA,blood,REACH,37.3,98.4,96.3,309,62,82.6,Illumina,Illumina Omni 2.5
+F0065-03,REACH000067,Illumina-1,trio,Father,control,Male,413,NA,NA,NA,NA,NA,NA,NA,blood,REACH,36.9,98,95.6,315,63,83,Illumina,Illumina Omni 2.5
+F0071-01,REACH000073,Illumina-1,quad,Proband,ASD,Male,37,398,423,2,5,NA,NA,493,blood,REACH,31.7,98,95.1,319,65,89.3,Illumina,Illumina Omni 2.5
+F0071-02,REACH000074,Illumina-1,quad,Mother,control,Female,398,NA,NA,NA,NA,NA,NA,NA,blood,REACH,35.4,98.4,96.2,317,63,90,Illumina,Illumina Omni 2.5
+F0071-03,REACH000075,Illumina-1,quad,Father,control,Male,423,NA,NA,NA,NA,NA,NA,NA,blood,REACH,47.9,98.1,96.3,324,64,89,Illumina,Illumina Omni 2.5
+F0071-04,REACH000076,Illumina-1,quad,Sibling,control,Female,37,398,423,NA,NA,NA,NA,NA,blood,REACH,39.4,98.4,96.4,325,65,89.6,Illumina,Illumina Omni 2.5
+F0073-01,REACH000078,Illumina-1,quad,Proband,ASD,Female,49,304,303,2,5,NA,NA,498,blood,REACH,37.6,98.4,96.3,312,63,86.2,Illumina,Illumina Omni 2.5
+F0073-02,REACH000079,Illumina-1,quad,Mother,control,Female,304,NA,NA,NA,NA,NA,NA,NA,blood,REACH,36.7,98.4,96.2,326,65,79.9,Illumina,Illumina Omni 2.5
+F0073-03,REACH000080,Illumina-1,quad,Father,control,Male,303,NA,NA,NA,NA,NA,NA,NA,blood,REACH,33.7,98,95.3,318,65,81.2,Illumina,Illumina Omni 2.5
+F0073-04,REACH000081,Illumina-1,quad,Sibling,control,Male,29,304,303,NA,NA,NA,NA,NA,blood,REACH,36.2,98,95.5,317,66,86.7,Illumina,Illumina Omni 2.5
+F0078-01,REACH000086,Illumina-1,quad,Proband,ASD,Male,60,417,639,4,5,50,46,509,blood,REACH,39.5,98,95.8,312,63,88.7,Illumina,Illumina Omni 2.5
+F0078-02,REACH000087,Illumina-1,quad,Mother,control,Female,417,NA,NA,NA,NA,NA,NA,NA,blood,REACH,37,98.4,96.3,321,65,89.6,Illumina,Illumina Omni 2.5
+F0078-03,REACH000088,Illumina-1,quad,Father,control,Male,639,NA,NA,NA,NA,NA,NA,NA,blood,REACH,33.6,98,95.3,320,64,88.1,Illumina,Illumina Omni 2.5
+F0078-04,REACH000089,Illumina-1,quad,Proband,ASD,Female,43,417,639,NA,NA,NA,NA,NA,blood,REACH,34.5,98.3,96.1,313,63,88,Illumina,Illumina Omni 2.5
+F0081-01,REACH000092,Illumina-1,quad,Proband,ASD,Female,41,453,499,0,5,42,40,NA,blood,REACH,37.6,98.4,96.3,317,64,87.8,Illumina,Illumina Omni 2.5
+F0081-02,REACH000093,Illumina-1,quad,Mother,control,Female,453,NA,NA,NA,NA,NA,NA,NA,blood,REACH,40.7,98.4,96.5,322,62,88.9,Illumina,Illumina Omni 2.5
+F0081-04,REACH000094,Illumina-1,quad,Father,control,Male,499,NA,NA,NA,NA,NA,NA,NA,blood,REACH,39.3,98,95.8,319,64,89,Illumina,Illumina Omni 2.5
+F0081-04,REACH000095,Illumina-1,quad,Sibling,control,Female,18,453,499,NA,NA,NA,NA,NA,blood,REACH,36.1,98.4,96.2,324,64,88.3,Illumina,Illumina Omni 2.5
+F0083-01,REACH000097,Illumina-1,trio,Proband,ASD,Male,38,434,477,5,6,38,36,NA,blood,REACH,37.9,98.1,95.7,327,65,85.6,Illumina,Illumina Omni 2.5
+F0083-02,REACH000098,Illumina-1,trio,Mother,control,Female,434,NA,NA,NA,NA,NA,NA,NA,blood,REACH,39.3,98.4,96.4,324,64,85.5,Illumina,Illumina Omni 2.5
+F0083-03,REACH000099,Illumina-1,trio,Father,control,Male,477,NA,NA,NA,NA,NA,NA,NA,blood,REACH,36.1,98.1,95.5,321,63,84.1,Illumina,Illumina Omni 2.5
+F0085-01,REACH000101,Illumina-1,trio,Proband,ASD,Male,147,474,512,3,6,61,130,557,blood,REACH,32.7,98,95.1,322,65,85.8,Illumina,Illumina Omni 2.5
+F0085-02,REACH000102,Illumina-1,trio,Mother,control,Female,474,NA,NA,NA,NA,NA,NA,NA,blood,REACH,35.3,98.4,96.1,319,63,84.6,Illumina,Illumina Omni 2.5
+F0085-03,REACH000103,Illumina-1,trio,Father,control,Male,512,NA,NA,NA,NA,NA,NA,NA,blood,REACH,42.7,98.1,96,320,64,86.8,Illumina,Illumina Omni 2.5
+F0101-01,REACH000120,Illumina-1,trio,Proband,ASD,Male,170,540,496,0,5,NA,NA,NA,blood,REACH,38.5,98,95.8,320,64,88.5,Illumina,Illumina Omni 2.5
+F0101-02,REACH000121,Illumina-1,trio,Mother,control,Female,540,NA,NA,NA,NA,NA,NA,NA,blood,REACH,38.2,98.4,96.3,318,64,84.4,Illumina,Illumina Omni 2.5
+F0101-03,REACH000122,Illumina-1,trio,Father,control,Male,496,NA,NA,NA,NA,NA,NA,NA,blood,REACH,33.4,98,95.3,326,66,83.2,Illumina,Illumina Omni 2.5
+F0119-01,REACH000141,Illumina-1,trio,Proband,ASD,Male,112,357,337,0,3,53,61,539,blood,REACH,34.5,98.1,95.4,329,67,82.3,Illumina,Illumina Omni 2.5
+F0119-02,REACH000142,Illumina-1,trio,Mother,control,Female,357,NA,NA,NA,NA,NA,NA,NA,blood,REACH,36.8,98.4,96.3,322,65,88.5,Illumina,Illumina Omni 2.5
+F0119-03,REACH000143,Illumina-1,trio,Father,control,Male,337,NA,NA,NA,NA,NA,NA,NA,blood,REACH,34.9,98,95.5,322,65,88.6,Illumina,Illumina Omni 2.5
+F0122-01,REACH000145,Illumina-1,multiple,Proband,ASD,Male,49,492,559,0,5,44,39,506,blood,REACH,35.2,98,95.5,325,65,86,Illumina,Illumina Omni 2.5
+F0122-02,REACH000147,Illumina-1,multiple,Mother,control,Female,492,NA,NA,NA,NA,NA,NA,NA,blood,REACH,34,98.4,96,306,60,78.9,Illumina,Illumina Omni 2.5
+F0122-03,REACH000148,Illumina-1,multiple,Father,control,Male,559,NA,NA,NA,NA,NA,NA,NA,blood,REACH,34.2,98.1,95.3,320,64,78.3,Illumina,Illumina Omni 2.5
+F0123-01,REACH000150,Illumina-1,trio,Proband,ASD,Male,55,345,366,0,5,42,36,505,blood,REACH,33.8,98,95.3,320,63,81.7,Illumina,Illumina Omni 2.5
+F0123-02,REACH000151,Illumina-1,trio,Mother,control,Female,345,NA,NA,NA,NA,NA,NA,NA,blood,REACH,32.4,98.4,95.9,321,64,82.4,Illumina,Illumina Omni 2.5
+F0123-03,REACH000152,Illumina-1,trio,Father,control,Male,366,NA,NA,NA,NA,NA,NA,NA,blood,REACH,39.4,98.1,95.9,329,66,89.6,Illumina,Illumina Omni 2.5
+F0125-01,REACH000154,Illumina-1,trio,Proband,ASD,Male,65,565,787,0,5,48,47,577,blood,REACH,39.4,98.1,95.8,327,65,89.5,Illumina,Illumina Omni 2.5
+F0125-02,REACH000155,Illumina-1,trio,Mother,control,Female,565,NA,NA,NA,NA,NA,NA,NA,blood,REACH,37.5,98.4,96.3,326,65,88.6,Illumina,Illumina Omni 2.5
+F0125-03,REACH000156,Illumina-1,trio,Father,control,Male,787,NA,NA,NA,NA,NA,NA,NA,blood,REACH,31.5,98.1,94.9,424,95,87.7,Illumina,Illumina Omni 2.5
+F0128-01,REACH000159,Illumina-1,quad,Proband,ASD,Male,83,553,567,0,5,52,69,560,blood,REACH,38.2,98.1,95.7,334,68,87,Illumina,Illumina Omni 2.5
+F0128-02,REACH000160,Illumina-1,quad,Mother,control,Female,553,NA,NA,NA,NA,NA,NA,NA,blood,REACH,50.7,98.5,96.9,313,63,88.5,Illumina,Illumina Omni 2.5
+F0128-03,REACH000161,Illumina-1,quad,Father,control,Male,567,NA,NA,NA,NA,NA,NA,NA,blood,REACH,36.2,98,95.6,324,65,88,Illumina,Illumina Omni 2.5
+F0128-04,REACH000162,Illumina-1,quad,Sibling,control,Male,130,553,567,NA,NA,NA,NA,NA,blood,REACH,38.5,98.1,95.8,332,67,89.4,Illumina,Illumina Omni 2.5
+F0129-01,REACH000163,Illumina-1,multiple,Proband,ASD,Male,126,419,536,0,5,61,89,554,blood,REACH,36.2,98.1,95.6,327,67,86.4,Illumina,Illumina Omni 2.5
+F0129-02,REACH000164,Illumina-1,multiple,Mother,control,Female,419,NA,NA,NA,NA,NA,NA,NA,blood,REACH,30.6,98.3,95.8,345,71,87.3,Illumina,Illumina Omni 2.5
+F0129-03,REACH000165,Illumina-1,multiple,Father,control,Male,536,NA,NA,NA,NA,NA,NA,NA,blood,REACH,35.4,98,95.6,322,64,87.7,Illumina,Illumina Omni 2.5
+F0129-04,REACH000166,Illumina-1,multiple,Sibling,control,Female,152,419,536,NA,NA,NA,NA,NA,blood,REACH,34.5,98.3,96.1,305,61,90.9,Illumina,Illumina Omni 2.5
+F0129-05,REACH000167,Illumina-1,multiple,Sibling,control,Male,103,419,536,NA,NA,NA,NA,NA,blood,REACH,37.4,98,95.7,300,59,90.1,Illumina,Illumina Omni 2.5
+F0129-06,REACH000168,Illumina-1,multiple,Sibling,control,Male,74,419,536,NA,NA,NA,NA,NA,blood,REACH,34.9,98,95.5,302,61,89.6,Illumina,Illumina Omni 2.5
+F0129-07,REACH000169,Illumina-1,multiple,Sibling,ASD,Male,52,419,536,NA,NA,NA,NA,NA,blood,REACH,30.2,97.9,94.9,307,62,89.4,Illumina,Illumina Omni 2.5
+F0131-01,REACH000173,Illumina-1,quad,Proband,ASD,Male,69,478,520,0,5,NA,NA,NA,blood,REACH,36.1,98,95.5,300,61,87.1,Illumina,Illumina Omni 2.5
+F0131-02,REACH000174,Illumina-1,quad,Mother,control,Female,478,NA,NA,NA,NA,NA,NA,NA,blood,REACH,39.6,98.4,96.4,301,61,85.6,Illumina,Illumina Omni 2.5
+F0131-03,REACH000175,Illumina-1,quad,Father,control,Male,520,NA,NA,NA,NA,NA,NA,NA,blood,REACH,38.2,98,95.7,308,62,91,Illumina,Illumina Omni 2.5
+F0131-04,REACH000176,Illumina-1,quad,Sibling,control,Female,227,478,520,NA,NA,NA,NA,NA,blood,REACH,40.6,98.4,96.4,300,60,92.4,Illumina,Illumina Omni 2.5
+F0132-01,REACH000171,Illumina-1,quad,Proband,ASD,Male,158,510,630,0,5,NA,NA,NA,blood,REACH,35.9,98,95.6,298,59,87.5,Illumina,Illumina Omni 2.5
+F0132-02,REACH000172,Illumina-1,quad,Mother,control,Female,510,NA,NA,NA,NA,NA,NA,NA,blood,REACH,31.7,98.3,95.9,304,61,87,Illumina,Illumina Omni 2.5
+F0132-03,REACH000177,Illumina-1,quad,Father,control,Male,630,NA,NA,NA,NA,NA,NA,NA,blood,REACH,40.3,98,95.8,307,61,91.7,Illumina,Illumina Omni 2.5
+F0132-04,REACH000178,Illumina-1,quad,Sibling,control,Female,179,510,630,NA,NA,NA,NA,NA,blood,REACH,36.6,98.4,96.3,306,61,88.7,Illumina,Illumina Omni 2.5
+F0136-01,REACH000182,Illumina-1,quad,Proband,ASD,Male,65,543,515,2,6,NA,NA,NA,blood,REACH,36.2,98,95.6,308,61,89.5,Illumina,Illumina Omni 2.5
+F0136-02,REACH000183,Illumina-1,quad,Mother,control,Female,543,NA,NA,NA,NA,NA,NA,NA,blood,REACH,40.3,98.4,96.4,302,60,87.7,Illumina,Illumina Omni 2.5
+F0136-03,REACH000184,Illumina-1,quad,Father,control,Male,515,NA,NA,NA,NA,NA,NA,NA,blood,REACH,38.3,98,95.8,306,60,88.2,Illumina,Illumina Omni 2.5
+F0136-04,REACH000185,Illumina-1,quad,Sibling,control,Male,94,543,515,NA,NA,NA,NA,NA,blood,REACH,38.7,98,95.7,302,59,88.4,Illumina,Illumina Omni 2.5
+F0140-01,REACH000189,Illumina-1,trio,Proband,ASD,Male,165,527,580,0,5,NA,NA,NA,blood,REACH,38.9,98,95.8,304,61,87.2,Illumina,Illumina Omni 2.5
+F0140-02,REACH000190,Illumina-1,trio,Mother,control,Female,527,NA,NA,NA,NA,NA,NA,NA,blood,REACH,31.1,98.3,95.8,305,62,86.4,Illumina,Illumina Omni 2.5
+F0140-03,REACH000191,Illumina-1,trio,Father,control,Male,580,NA,NA,NA,NA,NA,NA,NA,blood,REACH,30.8,97.9,94.9,297,61,85.8,Illumina,Illumina Omni 2.5
+H3E8D-01,H3E8D_01,Illumina-1,trio,Proband,ASD,Male,40,470,527,4,5,40,39,510,blood,ACE,40,98,95.8,300,61,90.1,Illumina,Illumina Omni 2.5
+H3E8D-02,H3E8D_03,Illumina-1,trio,Mother,control,Female,NA,NA,NA,4,5,NA,NA,NA,blood,ACE,40,98.4,96.4,309,64,90.9,Illumina,Illumina Omni 2.5
+H3E8D-03,H3E8D_04,Illumina-1,trio,Father,control,Male,NA,NA,NA,4,5,NA,NA,NA,blood,ACE,43,98.1,96,298,60,89.7,Illumina,Illumina Omni 2.5
+J4K7A-01,J4K7A_01,Illumina-1,trio,Proband,ASD,Male,35,402,398,0,5,38.5,35,510,blood,ACE,44.8,98.1,96.1,305,62,88.4,Illumina,Illumina Omni 2.5
+J4K7A-02,J4K7A_03,Illumina-1,trio,Mother,control,Female,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,42.2,98.4,96.5,301,61,89.7,Illumina,Illumina Omni 2.5
+J4K7A-03,J4K7A_04,Illumina-1,trio,Father,control,Male,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,51.1,98.1,96.3,303,61,85.7,Illumina,Illumina Omni 2.5
+L7H6W-01,L7H6W_01,Illumina-1,trio,Proband,ASD,Male,34,428,428,0,5,38.5,37,502,blood,ACE,47.7,98.1,96.2,304,60,83.3,Illumina,Illumina Omni 2.5
+L7H6W-02,L7H6W_03,Illumina-1,trio,Mother,control,Female,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,37.8,98.4,96.3,318,64,88.8,Illumina,Illumina Omni 2.5
+L7H6W-03,L7H6W_04,Illumina-1,trio,Father,control,Male,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,37.3,98,95.7,309,61,89.5,Illumina,Illumina Omni 2.5
+L7T2M-01,L7T2M_01,Illumina-1,trio,Proband,ASD,Male,37,341,375,0,5,38.5,36,522,blood,ACE,43.8,98.1,96,309,61,86.5,Illumina,Illumina Omni 2.5
+L7T2M-02,L7T2M_03,Illumina-1,trio,Mother,control,Female,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,41.2,98.4,96.5,312,62,87.2,Illumina,Illumina Omni 2.5
+L7T2M-03,L7T2M_04,Illumina-1,trio,Father,control,Male,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,41.3,98.1,95.9,314,62,84.1,Illumina,Illumina Omni 2.5
+P2M7G-01,P2M7G_01,Illumina-1,trio,Proband,ASD,Male,37,410,415,0,5,38,30,493,blood,ACE,33.6,98,95.2,311,62,79.4,Illumina,Illumina Omni 2.5
+P2M7G-02,P2M7G_03,Illumina-1,trio,Mother,control,Female,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,43.3,98.4,96.5,305,62,82.7,Illumina,Illumina Omni 2.5
+P2M7G-03,P2M7G_04,Illumina-1,trio,Father,control,Male,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,39.3,98.1,95.7,313,62,86.1,Illumina,Illumina Omni 2.5
+P6Q4Z-01,P6Q4Z_01,Illumina-1,trio,Proband,ASD,Male,40,410,410,0,2,43,42,540,blood,ACE,43.6,98.1,96,311,62,89,Illumina,Illumina Omni 2.5
+P6Q4Z-02,P6Q4Z_03,Illumina-1,trio,Mother,control,Female,NA,NA,NA,0,2,NA,NA,NA,blood,ACE,46.8,98.4,96.7,309,61,87.1,Illumina,Illumina Omni 2.5
+P6Q4Z-03,P6Q4Z_04,Illumina-1,trio,Father,control,Male,NA,NA,NA,0,2,NA,NA,NA,blood,ACE,43.1,98.1,96,312,62,88.8,Illumina,Illumina Omni 2.5
+V5T5W-01,V5T5W_01,Illumina-1,trio,Proband,ASD,Female,32,410,385,0,5,36.5,39,503,blood,ACE,43.6,98.4,96.6,311,62,89.7,Illumina,Illumina Omni 2.5
+V5T5W-02,V5T5W_03,Illumina-1,trio,Mother,control,Female,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,60.8,98.5,97,291,56,87.7,Illumina,Illumina Omni 2.5
+V5T5W-03,V5T5W_04,Illumina-1,trio,Father,control,Male,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,38.8,98,95.7,302,60,87.8,Illumina,Illumina Omni 2.5
+X3N7Y-01,X3N7Y_01,Illumina-1,trio,Proband,ASD,Male,43,403,422,0,5,42,47,525,blood,ACE,48.7,98.1,96.2,312,62,86.8,Illumina,Illumina Omni 2.5
+X3N7Y-02,X3N7Y_03,Illumina-1,trio,Mother,control,Female,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,45.2,98.4,96.6,313,63,86.9,Illumina,Illumina Omni 2.5
+X3N7Y-03,X3N7Y_04,Illumina-1,trio,Father,control,Male,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,45.1,98.1,96.1,314,62,84.5,Illumina,Illumina Omni 2.5
+B5X9C-01,B5X9C-01,Illumina-2,trio,Proband,ASD,Female,26,382,404,0,2,33,26,470,blood,ACE,38.1,98.4,96.3,305,60,83.1,Illumina,Illumina Omni 2.5
+B5X9C-02,B5X9C-03,Illumina-2,trio,Mother,control,Female,NA,NA,NA,0,2,NA,NA,NA,blood,ACE,35.6,98.4,96.1,306,60,84.8,Illumina,Illumina Omni 2.5
+B5X9C-03,B5X9C-04,Illumina-2,trio,Father,control,Male,NA,NA,NA,0,2,NA,NA,NA,blood,ACE,43.6,98,96,303,59,89.5,Illumina,Illumina Omni 2.5
+D4S2Z-01,D4S2Z-01,Illumina-2,trio,Proband,ASD,Male,30,555,584,0,5,37,34,500,blood,ACE,42.5,98.1,96,306,60,89.7,Illumina,Illumina Omni 2.5
+D4S2Z-02,D4S2Z-03,Illumina-2,trio,Mother,control,Female,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,46.2,98.4,96.7,306,60,88.2,Illumina,Illumina Omni 2.5
+D4S2Z-03,D4S2Z-04,Illumina-2,trio,Father,control,Male,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,42,98.1,95.9,307,61,89.4,Illumina,Illumina Omni 2.5
+F0001-01,REACH000001,Illumina-2,trio,Proband,ASD,Male,46,475,523,0,5,43,34,533,blood,REACH,49.5,98.1,96.2,308,60,86.7,Illumina,Illumina Omni 2.5
+F0001-02,REACH000107,Illumina-2,trio,Mother,control,Female,475,NA,NA,NA,NA,NA,NA,NA,blood,REACH,46.3,98.4,96.6,311,60,82.8,Illumina,Illumina Omni 2.5
+F0001-03,REACH000226,Illumina-2,trio,Father,control,Male,523,NA,NA,1,NA,NA,NA,NA,blood,REACH,50.2,98.2,96.3,311,60,83.9,Illumina,Illumina Omni 2.5
+F0026-01,REACH000026,Illumina-2,trio,Proband,ASD,Male,38,334,498,0,6,40,37,495,blood,REACH,50.96,NA,99.2,321,124,89.41,Illumina,Illumina Omni 2.5
+F0026-02,REACH000269,Illumina-2,trio,Mother,control,Female,334,NA,NA,NA,NA,NA,NA,NA,blood,REACH,48.9,NA,99.17,317,137,88.95,Illumina,Illumina Omni 2.5
+F0026-03,REACH000270,Illumina-2,trio,Father,control,Male,498,NA,NA,NA,NA,NA,NA,NA,blood,REACH,52.68,NA,99.19,324,152,87.71,Illumina,Illumina Omni 2.5
+F0082-01,REACH000096,Illumina-2,trio,Proband,ASD,Female,80,463,491,0,5,48,54,505,blood,REACH,47.13,NA,99.17,324,113,88.97,Illumina,Illumina Omni 2.5
+F0082-02,REACH000261,Illumina-2,trio,Mother,control,Female,463,NA,NA,NA,NA,NA,NA,NA,blood,REACH,50.52,NA,99.2,320,133,88.08,Illumina,Illumina Omni 2.5
+F0082-03,REACH000262,Illumina-2,trio,Father,control,Male,491,NA,NA,NA,NA,NA,NA,NA,blood,REACH,51.29,NA,99.21,326,133,88.28,Illumina,Illumina Omni 2.5
+F0120-01,REACH000144,Illumina-2,trio,Proband,ASD,Female,88,532,523,2,6,54,64,520,blood,REACH,50.03,NA,99.15,316,101,89.05,Illumina,Illumina Omni 2.5
+F0120-02,REACH000263,Illumina-2,trio,Father,control,Male,532,NA,NA,NA,NA,NA,NA,NA,blood,REACH,51.2,NA,99.2,327,124,88.53,Illumina,Illumina Omni 2.5
+F0120-03,REACH000266,Illumina-2,trio,Mother,control,Female,523,NA,NA,NA,NA,NA,NA,NA,blood,REACH,52.03,NA,99.19,314,125,88.47,Illumina,Illumina Omni 2.5
+F0143-01,REACH000194,Illumina-2,quad,Proband,ASD,Male,75,446,522,0,5,NA,NA,NA,blood,REACH,45.5,98.1,96.1,315,62,88.2,Illumina,Illumina Omni 2.5
+F0143-02,REACH000195,Illumina-2,quad,Mother,control,Female,446,NA,NA,NA,NA,NA,NA,NA,blood,REACH,38.5,98.4,96.3,307,60,88.7,Illumina,Illumina Omni 2.5
+F0143-03,REACH000196,Illumina-2,quad,Father,control,Male,522,NA,NA,NA,NA,NA,NA,NA,blood,REACH,44.2,98.1,96,305,59,86.6,Illumina,Illumina Omni 2.5
+F0143-04,REACH000197,Illumina-2,quad,Sibling,control,Male,57,446,522,NA,NA,NA,NA,NA,blood,REACH,47.4,98.1,96.2,305,60,85.6,Illumina,Illumina Omni 2.5
+F0144-01,REACH000198,Illumina-2,trio,Proband,ASD,Male,57,492,519,2,5,NA,NA,492,blood,REACH,41.5,98.1,95.9,315,61,85.1,Illumina,Illumina Omni 2.5
+F0144-02,REACH000199,Illumina-2,trio,Mother,control,Female,492,NA,NA,NA,NA,NA,NA,NA,blood,REACH,48.1,98.4,96.7,308,60,86.7,Illumina,Illumina Omni 2.5
+F0144-03,REACH000200,Illumina-2,trio,Father,control,Male,519,NA,NA,NA,NA,NA,NA,NA,blood,REACH,45,98.1,96,313,61,85.9,Illumina,Illumina Omni 2.5
+F0147-01,REACH000202,Illumina-2,mutiple,Proband,ASD,Male,181,572,587,2,5,NA,NA,575,blood,REACH,46.6,98.1,96.1,303,59,81.8,Illumina,Illumina Omni 2.5
+F0147-02,REACH000203,Illumina-2,multiple,Mother,control,Female,572,NA,NA,NA,NA,NA,NA,NA,blood,REACH,33.9,98.3,96,305,59,91.8,Illumina,Illumina Omni 2.5
+F0147-03,REACH000204,Illumina-2,multiple,Father,control,Male,587,NA,NA,NA,NA,NA,NA,NA,blood,REACH,39.1,98.1,95.7,312,60,89.6,Illumina,Illumina Omni 2.5
+F0147-04,REACH000205,Illumina-2,multiple,Sibling,control,Female,213,572,587,NA,NA,NA,NA,NA,blood,REACH,41,98.4,96.5,308,60,88.8,Illumina,Illumina Omni 2.5
+F0147-05,REACH000206,Illumina-2,multiple,Sibling,control,Female,158,572,587,NA,NA,NA,NA,NA,blood,REACH,44.5,98.4,96.6,309,61,85.8,Illumina,Illumina Omni 2.5
+F0150-01,REACH000209,Illumina-2,quad,Proband,ASD,Male,55,419,375,0,5,NA,NA,NA,blood,REACH,86.6,98.3,97,307,61,82.5,Illumina,Illumina Omni 2.5
+F0150-02,REACH000210,Illumina-2,quad,Mother,control,Female,419,NA,NA,NA,NA,NA,NA,NA,blood,REACH,46.3,98.4,96.6,308,61,87.2,Illumina,Illumina Omni 2.5
+F0150-03,REACH000211,Illumina-2,quad,Father,control,Male,375,NA,NA,NA,NA,NA,NA,NA,blood,REACH,44.6,98.1,96,303,59,83.9,Illumina,Illumina Omni 2.5
+F0150-04,REACH000212,Illumina-2,quad,Sibling,control,Female,30,419,375,NA,NA,NA,NA,NA,blood,REACH,42.6,98.4,96.5,308,62,86,Illumina,Illumina Omni 2.5
+F0152-01,REACH000214,Illumina-2,quad,Proband,ASD,Male,63,365,425,NA,NA,NA,NA,534,blood,REACH,36.9,98,95.5,308,60,86.8,Illumina,Illumina Omni 2.5
+F0152-02,REACH000215,Illumina-2,quad,Mother,control,Female,365,NA,NA,NA,NA,NA,NA,NA,blood,REACH,51.6,98.5,96.8,306,60,81.7,Illumina,Illumina Omni 2.5
+F0152-03,REACH000216,Illumina-2,quad,Father,control,Male,425,NA,NA,NA,NA,NA,NA,NA,blood,REACH,37.2,98,95.6,321,61,89.8,Illumina,Illumina Omni 2.5
+F0152-04,REACH000217,Illumina-2,quad,Sibling,control,Female,29,365,425,NA,NA,NA,NA,NA,blood,REACH,49.3,98.5,96.7,299,59,83.1,Illumina,Illumina Omni 2.5
+F0154-01,REACH000219,Illumina-2,quad,Sibling,ASD,Female,49,365,375,1,6,NA,NA,527,blood,REACH,37.3,98.4,96.3,324,63,90,Illumina,Illumina Omni 2.5
+F0154-02,REACH000220,Illumina-2,quad,Mother,control,Female,365,NA,NA,NA,NA,NA,NA,NA,blood,REACH,32.8,98.3,96,316,61,91.9,Illumina,Illumina Omni 2.5
+F0154-03,REACH000221,Illumina-2,quad,Father,control,Male,375,NA,NA,NA,NA,NA,NA,NA,blood,REACH,42.5,98.1,95.9,304,59,82.4,Illumina,Illumina Omni 2.5
+F0154-04,REACH000222,Illumina-2,quad,Proband,ASD,Male,120,365,375,NA,NA,NA,NA,549,blood,REACH,48.3,98.1,96.2,299,58,87.7,Illumina,Illumina Omni 2.5
+F0156-01,REACH000224,Illumina-2,trio,Proband,ASD,Male,64,454,468,0,2,NA,NA,NA,blood,REACH,49.94,NA,99.18,320,132,88.83,Illumina,Illumina Omni 2.5
+F0156-02,REACH000267,Illumina-2,trio,Mother,control,Female,454,NA,NA,NA,NA,NA,NA,NA,blood,REACH,50.03,NA,99.18,321,124,88.78,Illumina,Illumina Omni 2.5
+F0156-03,REACH000268,Illumina-2,trio,Father,control,Male,468,NA,NA,NA,NA,NA,NA,NA,blood,REACH,53.65,NA,99.21,322,159,85.79,Illumina,Illumina Omni 2.5
+F0159-01,REACH000229,Illumina-2,quad,Proband,ASD,Male,38,431,421,0,5,NA,NA,501,blood,REACH,52.1,98.2,96.4,298,59,81.4,Illumina,Illumina Omni 2.5
+F0159-02,REACH000230,Illumina-2,quad,Mother,control,Female,431,NA,NA,NA,NA,NA,NA,NA,blood,REACH,49.6,98.5,96.8,307,60,85.6,Illumina,Illumina Omni 2.5
+F0159-03,REACH000231,Illumina-2,quad,Father,control,Male,421,NA,NA,NA,NA,NA,NA,NA,blood,REACH,39.1,98,95.8,300,58,89.1,Illumina,Illumina Omni 2.5
+F0159-04,REACH000232,Illumina-2,quad,Sibling,control,Female,11,431,421,NA,NA,NA,NA,NA,blood,REACH,47.5,98.5,96.8,356,71,84.5,Illumina,Illumina Omni 2.5
+F0160-01,REACH000228,Illumina-2,trio,Proband,ASD,Female,38,348,409,2,NA,NA,NA,484,blood,REACH,50.48,NA,99.18,317,122,86.8,Illumina,Illumina Omni 2.5
+F0160-02,REACH000256,Illumina-2,trio,Mother,control,Female,348,NA,NA,NA,NA,NA,NA,NA,blood,REACH,49.83,NA,99.16,318,116,84.44,Illumina,Illumina Omni 2.5
+F0160-03,REACH000257,Illumina-2,trio,Father,control,Male,409,NA,NA,NA,NA,NA,NA,NA,blood,REACH,42.34,NA,99.06,309,130,83.98,Illumina,Illumina Omni 2.5
+F0161-01,REACH000233,Illumina-2,trio,Proband,ASD,Male,81,325,376,5,NA,NA,NA,538,blood,REACH,47.3,98.1,96.2,303,59,88,Illumina,Illumina Omni 2.5
+F0161-02,REACH000234,Illumina-2,trio,Mother,control,Female,325,NA,NA,NA,NA,NA,NA,NA,blood,REACH,47.8,98.5,96.7,312,61,88.8,Illumina,Illumina Omni 2.5
+F0161-03,REACH000235,Illumina-2,trio,Father,control,Male,376,NA,NA,NA,NA,NA,NA,NA,blood,REACH,43.3,98.1,96,307,61,90.3,Illumina,Illumina Omni 2.5
+F0162-01,REACH000236,Illumina-2,trio,Proband,control,Male,483,775,793,0,5,NA,NA,NA,blood,REACH,38.5,98,95.7,321,64,90.4,Illumina,Illumina Omni 2.5
+F0162-02,REACH000237,Illumina-2,trio,Mother,control,Female,775,NA,NA,NA,NA,NA,NA,NA,blood,REACH,41.6,98.4,96.5,312,62,85.9,Illumina,Illumina Omni 2.5
+F0162-03,REACH000238,Illumina-2,trio,Father,control,Male,793,NA,NA,NA,NA,NA,NA,NA,blood,REACH,47,98.1,96.2,321,61,83.6,Illumina,Illumina Omni 2.5
+F0163-01,REACH000239,Illumina-2,trio,Proband,ASD,Male,36,441,473,0,5,NA,NA,509,blood,REACH,41.75,NA,99.06,312,105,82.43,Illumina,Illumina Omni 2.5
+F0163-02,REACH000240,Illumina-2,trio,Mother,control,Female,441,NA,NA,NA,NA,NA,NA,NA,blood,REACH,46.9,NA,99.15,314,112,87.68,Illumina,Illumina Omni 2.5
+F0163-03,REACH000241,Illumina-2,trio,Father,control,Male,473,NA,NA,NA,NA,NA,NA,NA,blood,REACH,52.34,NA,99.2,317,128,88.41,Illumina,Illumina Omni 2.5
+T2T9E-01,T2T9E-01,Illumina-3,trio,Proband,ASD,Male,37,501,437,0,5,37,35,505,blood,ACE,45.2,98.1,96.1,305,60,88,Illumina,Illumina Omni 2.5
+T2T9E-02,T2T9E-03,Illumina-3,trio,Mother,control,Female,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,45.7,98.4,96.6,301,59,88,Illumina,Illumina Omni 2.5
+T2T9E-03,T2T9E-04,Illumina-3,trio,Father,control,Male,NA,NA,NA,0,5,NA,NA,NA,blood,ACE,43.9,98.1,96,303,59,90.3,Illumina,Illumina Omni 2.5
+F0122-05,REACH000312,Illumina-3,multiple,Sibling,control,Male,212,NA,NA,5,0,NA,NA,NA,blood,REACH,37.33,NA,NA,463,118,NA,Illumina,Illumina Omni 2.5
+F0122-06,REACH000313,Illumina-3,multiple,Sibling,control,Male,172,NA,NA,5,0,NA,NA,NA,blood,REACH,36.96,NA,NA,503,121,NA,Illumina,Illumina Omni 2.5
+F0164-01,REACH000242,Illumina-3,trio,Proband,ASD,Male,135,449,563,5,2,NA,NA,561,blood,REACH,37.75,NA,NA,465,114,NA,Illumina,Illumina Omni 2.5
+F0164-02,REACH000243,Illumina-3,trio,Mother,control,Female,449,NA,NA,NA,NA,NA,NA,NA,blood,REACH,37.07,NA,NA,502,124,NA,Illumina,Illumina Omni 2.5
+F0164-03,REACH000244,Illumina-3,trio,Father,control,Male,563,NA,NA,NA,NA,NA,NA,NA,blood,REACH,40.65,NA,NA,479,115,NA,Illumina,Illumina Omni 2.5
+F0166-01,REACH000246,Illumina-3,trio,Proband,ASD,Male,280,641,694,2,0,67,185,592,blood,REACH,36.98,NA,NA,506,126,NA,Illumina,Illumina Omni 2.5
+F0166-02,REACH000247,Illumina-3,trio,Mother,control,Female,641,NA,NA,NA,NA,NA,NA,NA,blood,REACH,35.52,NA,NA,501,123,NA,Illumina,Illumina Omni 2.5
+F0166-03,REACH000248,Illumina-3,trio,Father,control,Male,694,NA,NA,NA,NA,NA,NA,NA,blood,REACH,38.7,NA,NA,508,124,NA,Illumina,Illumina Omni 2.5
+F0167-01,REACH000249,Illumina-3,trio,Proband,ASD,Male,38,458,473,5,2,NA,NA,506,blood,REACH,36.47,NA,NA,493,120,NA,Illumina,Illumina Omni 2.5
+F0167-02,REACH000250,Illumina-3,trio,Mother,control,Female,458,NA,NA,NA,NA,NA,NA,NA,blood,REACH,37.89,NA,NA,501,124,NA,Illumina,Illumina Omni 2.5
+F0167-03,REACH000251,Illumina-3,trio,Father,control,Male,473,NA,NA,NA,NA,NA,NA,NA,blood,REACH,38.59,NA,NA,488,120,NA,Illumina,Illumina Omni 2.5
+F0168-01,REACH000252,Illumina-3,trio,Proband,ASD,Male,55,449,472,5,2,38,36,506,blood,REACH,36.23,NA,NA,507,128,NA,Illumina,Illumina Omni 2.5
+F0168-02,REACH000253,Illumina-3,trio,Mother,control,Female,449,NA,NA,NA,NA,NA,NA,NA,blood,REACH,35.86,NA,NA,522,126,NA,Illumina,Illumina Omni 2.5
+F0168-03,REACH000254,Illumina-3,trio,Father,control,Male,472,NA,NA,NA,NA,NA,NA,NA,blood,REACH,37.93,NA,NA,510,131,NA,Illumina,Illumina Omni 2.5
+F0169-01,REACH000258,Illumina-3,trio,Proband,ASD,Male,89,528,NA,NA,4,NA,NA,NA,blood,REACH,36.87,NA,NA,480,124,NA,Illumina,Illumina Omni 2.5
+F0169-02,REACH000259,Illumina-3,trio,Mother,control,Female,528,NA,NA,NA,NA,NA,NA,NA,blood,REACH,36.96,NA,NA,477,121,NA,Illumina,Illumina Omni 2.5
+F0169-03,REACH000260,Illumina-3,trio,Father,control,Male,NA,NA,NA,NA,NA,NA,NA,NA,blood,REACH,44.34,NA,NA,499,119,NA,Illumina,Illumina Omni 2.5
+F0174-01,REACH000284,Illumina-3,quad,Proband,ASD,Female,66,368,416,5,0,NA,NA,499,blood,REACH,35.45,NA,NA,498,127,NA,Illumina,Illumina Omni 2.5
+F0174-02,REACH000285,Illumina-3,quad,Mother,Anxiety,Female,368,NA,NA,NA,NA,NA,NA,NA,blood,REACH,34.77,NA,NA,520,125,NA,Illumina,Illumina Omni 2.5
+F0174-03,REACH000286,Illumina-3,quad,Father,ADHD,Male,416,NA,NA,NA,NA,NA,NA,NA,blood,REACH,36.85,NA,NA,478,114,NA,Illumina,Illumina Omni 2.5
+F0174-04,REACH000287,Illumina-3,quad,Sibling,control,Male,66,368,416,NA,NA,NA,NA,NA,blood,REACH,38.11,NA,NA,516,126,NA,Illumina,Illumina Omni 2.5
+F0175-01,REACH000288,Illumina-3,multiple,Proband,ASD,Male,83,502,657,5,0,NA,NA,528,blood,REACH,37.25,NA,NA,498,119,NA,Illumina,Illumina Omni 2.5
+F0175-02,REACH000289,Illumina-3,multiple,Mother,control,Female,502,NA,NA,NA,NA,NA,NA,NA,blood,REACH,38.48,NA,NA,465,111,NA,Illumina,Illumina Omni 2.5
+F0175-03,REACH000290,Illumina-3,multiple,Father,ADHD,Male,657,NA,NA,NA,NA,NA,NA,NA,blood,REACH,37.09,NA,NA,492,120,NA,Illumina,Illumina Omni 2.5
+F0175-04,REACH000291,Illumina-3,multiple,Sibling,ASD,Male,83,502,657,NA,NA,NA,NA,531,blood,REACH,37.5,NA,NA,516,126,NA,Illumina,Illumina Omni 2.5
+F0175-05,REACH000292,Illumina-3,multiple,Sibling,ASD,Male,65,502,657,NA,NA,NA,NA,525,blood,REACH,35.78,NA,NA,522,125,NA,Illumina,Illumina Omni 2.5
+F0176-01,REACH000293,Illumina-3,trio,Proband,ASD,Male,65,410,387,5,0,NA,NA,NA,blood,REACH,32.47,NA,NA,516,125,NA,Illumina,Illumina Omni 2.5
+F0176-02,REACH000294,Illumina-3,trio,Mother,control,Female,410,NA,NA,NA,NA,NA,NA,NA,blood,REACH,35.52,NA,NA,486,116,NA,Illumina,Illumina Omni 2.5
+F0176-03,REACH000295,Illumina-3,trio,Father,control,Male,387,NA,NA,NA,NA,NA,NA,NA,blood,REACH,36.93,NA,NA,479,115,NA,Illumina,Illumina Omni 2.5
+F0179-01,REACH000300,Illumina-3,quad,Proband,control,Female,NA,NA,NA,5,0,NA,NA,NA,blood,REACH,48.31,NA,NA,473,114,NA,Illumina,Illumina Omni 2.5
+F0179-02,REACH000301,Illumina-3,quad,Mother,control,Female,NA,NA,NA,5,0,NA,NA,NA,blood,REACH,36.16,NA,NA,489,120,NA,Illumina,Illumina Omni 2.5
+F0179-03,REACH000302,Illumina-3,quad,Father,control,Male,NA,NA,NA,5,0,NA,NA,NA,blood,REACH,39.27,NA,NA,490,116,NA,Illumina,Illumina Omni 2.5
+F0179-04,REACH000303,Illumina-3,quad,Sibling,control,Male,NA,NA,NA,5,0,NA,NA,NA,blood,REACH,38.6,NA,NA,475,120,NA,Illumina,Illumina Omni 2.5
+F0180-01,REACH000304,Illumina-3,multiple,Proband,control,Female,NA,NA,NA,5,0,NA,NA,NA,blood,REACH,40.72,NA,NA,483,119,NA,Illumina,Illumina Omni 2.5
+F0180-02,REACH000305,Illumina-3,multiple,Mother,control,Female,NA,NA,NA,5,0,NA,NA,NA,blood,REACH,35.33,NA,NA,515,124,NA,Illumina,Illumina Omni 2.5
+F0180-03,REACH000306,Illumina-3,multiple,Father,control,Male,NA,NA,NA,5,0,NA,NA,NA,blood,REACH,34.89,NA,NA,493,118,NA,Illumina,Illumina Omni 2.5
+F0180-05,REACH000308,Illumina-3,multiple,Sibling,control,Male,NA,NA,NA,5,0,NA,NA,NA,blood,REACH,53.7,NA,NA,489,118,NA,Illumina,Illumina Omni 2.5
+F0180-06,REACH000309,Illumina-3,multiple,Sibling,control,Female,NA,NA,NA,5,0,NA,NA,NA,blood,REACH,32.92,NA,NA,496,120,NA,Illumina,Illumina Omni 2.5
+F0181-02,REACH000314,Illumina-3,trio,Mother,control,Female,461,NA,NA,NA,NA,NA,NA,NA,blood,REACH,36.04,NA,NA,489,118,NA,Illumina,Illumina Omni 2.5
+F0181-03,REACH000315,Illumina-3,trio,Father,control,Male,484,NA,NA,NA,NA,NA,NA,NA,blood,REACH,37.7,NA,NA,488,118,NA,Illumina,Illumina Omni 2.5
+F0181-01,REACH000316,Illumina-3,trio,Proband,ASD,Female,48,461,484,5,0,NA,NA,NA,blood,REACH,37.82,NA,NA,495,117,NA,Illumina,Illumina Omni 2.5
+F0182-01,REACH000319,Illumina-3,quad,Proband,ASD,Male,91,409,445,5,0,NA,NA,NA,blood,REACH,37.86,NA,NA,480,116,NA,Illumina,Illumina Omni 2.5
+F0182-02,REACH000320,Illumina-3,quad,Mother,control,Female,409,NA,NA,NA,NA,NA,NA,NA,blood,REACH,35.44,NA,NA,490,117,NA,Illumina,Illumina Omni 2.5
+F0182-03,REACH000321,Illumina-3,quad,Father,control,Male,445,NA,NA,NA,NA,NA,NA,NA,blood,REACH,37.31,NA,NA,494,119,NA,Illumina,Illumina Omni 2.5
+F0182-04,REACH000322,Illumina-3,quad,Sibling,ASD,Male,59,409,445,5,0,NA,NA,NA,blood,REACH,34.34,NA,NA,472,117,NA,Illumina,Illumina Omni 2.5
+60-2027-02,02C10017,BGI,MZ_twin,Mother,control,Female,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+60-2027-03,02C10230,BGI,MZ_twin,Father,control,Male,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+60-2027-01,01C05676,BGI,MZ_twin,Twin,ASD,Male,NA,420,468,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+63-343-01,01C08033,BGI,MZ_twin,Twin,ASD,Male,NA,420,348,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+63-343-02,01C08035,BGI,MZ_twin,Mother,control,Female,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+63-343-03,01C08034,BGI,MZ_twin,Father,control,Male,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+63-449-01,01C06311,BGI,MZ_twin,Twin,ASD,Female,NA,384,336,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+63-449-03,01C06309,BGI,MZ_twin,Father,control,Male,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+63-449-02,01C06310,BGI,MZ_twin,Mother,control,Female,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0075-02,03C16899,BGI,MZ_twin,Mother,control,Female,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0075-03,03C16900,BGI,MZ_twin,Father,control,Male,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0075-01,03C16902,BGI,MZ_twin,Twin,ASD,Male,NA,348,348,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0115-02,03C16009,BGI,MZ_twin,Mother,control,Female,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0115-03,03C16018,BGI,MZ_twin,Father,control,Male,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0115-01,03C14334,BGI,MZ_twin,Twin,ASD,Female,NA,372,492,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0117-02,03C16384,BGI,MZ_twin,Mother,control,Female,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0117-03,03C16383,BGI,MZ_twin,Father,control,Male,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0117-01,03C14380,BGI,MZ_twin,Twin,ASD,Female,NA,420,456,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0265-02,03C15857,BGI,MZ_twin,Mother,control,Female,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0265-03,03C15858,BGI,MZ_twin,Father,control,Male,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0265-01,03C15859,BGI,MZ_twin,Twin,ASD,Male,NA,288,312,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0352-02,03C16241,BGI,MZ_twin,Mother,control,Female,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0352-03,03C16242,BGI,MZ_twin,Father,control,Male,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0352-01,03C14438,BGI,MZ_twin,Twin,ASD,Male,NA,NA,456,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0355-02,03C16811,BGI,MZ_twin,Mother,control,Female,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0355-03,03C16812,BGI,MZ_twin,Father,control,Male,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0355-01,03C16813,BGI,MZ_twin,Twin,ASD,Female,NA,456,480,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0688-02,03C16689,BGI,MZ_twin,Mother,control,Female,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0688-03,03C16687,BGI,MZ_twin,Father,control,Male,NA,NA,NA,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
+74-0688-01,03C16686,BGI,MZ_twin,Twin,ASD,Male,NA,312,336,0,NA,NA,NA,NA,cell line,NIMH,NA,NA,NA,NA,NA,NA,BGI,NA
