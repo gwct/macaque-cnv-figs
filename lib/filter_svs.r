@@ -104,7 +104,6 @@ filterSVs <- function(sv_list, minlen, maxlen, human_full=F, macaque_filter=T){
   }
   # Length filter
   
-
   cat(" -> Removing macaque SVs present at frequency >", as.character(freq_filter), "\n")
   events_before = length(mq_events$SV.key)
   alleles_before = length(unique(mq_events$SV.key))

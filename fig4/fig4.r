@@ -21,7 +21,7 @@ cat("----------\n")
 
 ############################################################
 
-savefiles = T
+savefiles = F
 color_plots = T
 supp = T
 # Run options
@@ -81,7 +81,7 @@ mq_denovo_counts$Species = factor(mq_denovo_counts$Species, levels=c("Macaque", 
 cat(" -> Plotting denovos...\n")
 fig4a = ggplot(mq_denovo_counts, aes(Paternal.age, Num.dsv, color=Species)) +
   geom_point(size=3, alpha=0.5) +
-  geom_smooth(method="lm", fullrange=T, size=0.75, linetype="dashed", alpha=0) +
+  geom_smooth(method="glm", method.args=list(family='poisson'), fullrange=T, size=0.75, linetype="dashed", alpha=0) +
   ggtitle("") +
   scale_y_continuous(limits=c(0, 5)) +
   labs(x="Paternal age (years)", y="# de novo CNVs") +
@@ -135,6 +135,7 @@ brandler_info = subset(brandler_info, Relationship=="Proband" | Relationship=="S
 
 brandler_svs = subset(brandler_svs, SVTYPE %in% c("DEL","DUP"))
 if(supp){
+  print("HIHI")
   brandler_svs = subset(brandler_svs, VALIDATION == 1)
 }
   
@@ -165,7 +166,7 @@ mat_fit_h = lm(brandler_counts$Num.dsv ~ brandler_counts$Mother_chrono_age)
 cat(" -> Plotting human denovos...\n")
 fig4b = ggplot(brandler_counts, aes(Father_chrono_age, Num.dsv, color="Human")) +
   geom_point(size=3, alpha=0.5) +
-  geom_smooth(method="lm", fullrange=T, size=0.75, linetype="dashed", alpha=0) +
+  geom_smooth(method="glm", method.args=list(family='poisson'), fullrange=T, size=0.75, linetype="dashed", alpha=0) +
   ggtitle("") +
   scale_y_continuous(limits=c(0, 5)) +
   labs(x="Paternal age (years)", y="") +

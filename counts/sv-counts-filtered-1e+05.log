@@ -36,16 +36,16 @@ Duplicated bases:                       15432455 (0.1331)
 Avg. length:                            2496.31276233937 
 Avg. deletion length:                   2339.36168182982 
 Avg. duplication length:                4434.61350574713 
-SVs overlapping genes:                  1667 
-Genes overlapped:                       2386 
-Deleted genes:                          1832 (0.7678) 
-Duplicated genes:                       554 (0.2322) 
-Avg. genes per SV:                      0.0513593215231289 
-Avg. genes per deletion:                0.0426274518928729 
-Avg. genes per duplication:             0.159195402298851 
-Avg. genes per overlap SV:              1.43131373725255 
-Avg. genes per overlap deletion:        1.44822134387352 
-Avg. genes per overlap duplication:     1.37810945273632 
+SVs overlapping genes:                  3071 
+Genes overlapped:                       3989 
+Deleted genes:                          3175 (0.7959) 
+Duplicated genes:                       814 (0.2041) 
+Avg. genes per SV:                      0.0858643476763459 
+Avg. genes per deletion:                0.0738767247597552 
+Avg. genes per duplication:             0.233908045977011 
+Avg. genes per overlap SV:              1.29892543145555 
+Avg. genes per overlap deletion:        1.28075837031061 
+Avg. genes per overlap duplication:     1.375 
 
 ALL MACAQUE ALLELES:
 Total:                                  3754 
@@ -57,16 +57,16 @@ Duplicated bases:                       3022565 (0.2287)
 Avg. length:                            3519.92621204049 
 Avg. deletion length:                   3076.13582855418 
 Avg. duplication length:                6853.88888888889 
-SVs overlapping genes:                  203 
-Genes overlapped:                       338 
-Deleted genes:                          244 (0.7219) 
-Duplicated genes:                       94 (0.2781) 
-Avg. genes per SV:                      0.0900372935535429 
-Avg. genes per deletion:                0.0736492604889828 
-Avg. genes per duplication:             0.213151927437642 
-Avg. genes per overlap SV:              1.66502463054187 
-Avg. genes per overlap deletion:        1.69444444444444 
-Avg. genes per overlap duplication:     1.59322033898305 
+SVs overlapping genes:                  342 
+Genes overlapped:                       522 
+Deleted genes:                          389 (0.7452) 
+Duplicated genes:                       133 (0.2548) 
+Avg. genes per SV:                      0.139051678209909 
+Avg. genes per deletion:                0.117416239058255 
+Avg. genes per duplication:             0.301587301587302 
+Avg. genes per overlap SV:              1.52631578947368 
+Avg. genes per overlap deletion:        1.49615384615385 
+Avg. genes per overlap duplication:     1.6219512195122 
 
 DE NOVO MACAQUE ALLELES:
 Total:                                  9 
@@ -79,15 +79,15 @@ Avg. length:                            7194.11111111111
 Avg. deletion length:                   5022.28571428571 
 Avg. duplication length:                14795.5 
 SVs overlapping genes:                  1 
-Genes overlapped:                       1 
+Genes overlapped:                       2 
 Deleted genes:                          0 (0) 
-Duplicated genes:                       1 (1) 
-Avg. genes per SV:                      0.111111111111111 
+Duplicated genes:                       2 (1) 
+Avg. genes per SV:                      0.222222222222222 
 Avg. genes per deletion:                0 
-Avg. genes per duplication:             0.5 
-Avg. genes per overlap SV:              1 
+Avg. genes per duplication:             1 
+Avg. genes per overlap SV:              2 
 Avg. genes per overlap deletion:        NaN 
-Avg. genes per overlap duplication:     1 
+Avg. genes per overlap duplication:     2 
 
 ----------
 
@@ -139,7 +139,7 @@ Avg. genes per overlap duplication:     1.35074626865672
 	Pearson's Chi-squared test with Yates' continuity correction
 
 data:  gene_counts_t
-X-squared = 12.547, df = 1, p-value = 0.0003968
+X-squared = 23.351, df = 1, p-value = 1.35e-06
 
 
 ----------
@@ -183,14 +183,14 @@ Gains:                                  3157 (0.782597917699554)
 	Pearson's Chi-squared test with Yates' continuity correction
 
 data:  mq_hu_all_counts_t
-X-squared = 12.547, df = 1, p-value = 0.0003968
+X-squared = 23.351, df = 1, p-value = 1.35e-06
 
  -> Chi-squared test for macaque SV genes (ALL) vs macaque CAFE genes...
 
 	Pearson's Chi-squared test with Yates' continuity correction
 
 data:  mq_sv_all_counts_t
-X-squared = 38.527, df = 1, p-value = 5.401e-10
+X-squared = 71.277, df = 1, p-value < 2.2e-16
 
  -> Chi-squared test for macaque SV genes (CAFE) vs macaque CAFE genes...
 Reading macaque CAFE genes

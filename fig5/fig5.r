@@ -24,34 +24,40 @@ cat("----------\n")
 ############################################################
 
 savefiles = T
-color_plots = T
+color_plots = F
+read_data = F
 # Run options
 
 minlen = F
 maxlen = 100000
 # CNV length cutoffs
 
-sv_list = readSVs()
-sv_list = filterSVs(sv_list, minlen, maxlen)
-mq_events = sv_list[[1]]; hu_events = sv_list[[2]];
-# Read and filter data
-
-cat("----------\nSubsetting macaque data...\n")
-mqr = subsetSVs(mq_events)
-mq_svs = mqr[[4]]
-
-cat("----------\nSubsetting human data...\n")
-hur = subsetSVs(hu_events)
-hu_svs = hur[[4]]
-# Subset data
+if(read_data){
+  sv_list = readSVs()
+  sv_list = filterSVs(sv_list, minlen, maxlen)
+  mq_events = sv_list[[1]]; hu_events = sv_list[[2]];
+  # Read and filter data
+  
+  cat("----------\nSubsetting macaque data...\n")
+  mqr = subsetSVs(mq_events)
+  mq_svs = mqr[[4]]
+  
+  cat("----------\nSubsetting human data...\n")
+  hur = subsetSVs(hu_events)
+  hu_svs = hur[[4]]
+  # Subset data
+}
 
 ######################
 cat("Reading CAFE data...\n")
 cafe_data = read.csv("../data/cafe-traits.csv", header=TRUE)
+cafe_data = cafe_data[order(cafe_data$node),]
 #cafe_data = subset(cafe_data, Node.type=="Tip")
 cafe_data$genes.changed = cafe_data$Genes.gained + cafe_data$Genes.lost
 cafe_data$perc.genes.gained = cafe_data$Genes.gained / cafe_data$genes.changed
 cafe_data$perc.genes.lost = cafe_data$Genes.lost / cafe_data$genes.changed
+
+cafe_data$branch.str = paste(cafe_data$Genes.gained, "/", cafe_data$Genes.lost)
 
 cat("Plotting tree\n")
 tree = read.tree("../data/cafe-tree.tre")
@@ -59,8 +65,10 @@ tree = read.tree("../data/cafe-tree.tre")
 fig5a = ggtree(tree, size=1, ladderize=F) +
   scale_color_manual(values=c("black","#db6d00")) +
   geom_tiplab(color="#333333", fontface='italic', size=5) +
-  ggplot2::xlim(0, 115) +
+  ggplot2::xlim(0, 135) +
   theme(plot.title=element_text(size=16, face="bold"))
+  #geom_text(aes(x=branch, label=cafe_data$branch.str), size=3.5, 
+  #          vjust=-.5, color="#333333")
 print(fig5a)
 
 ######################
@@ -243,9 +251,9 @@ print(fig5)
 
 if(savefiles){
   if(color_plots){
-    outfile = "fig5.pdf"
+    outfile = "fig5-temp.pdf"
   }else{
-    outfile = "fig5-grey.pdf"
+    outfile = "fig5-grey-temp.pdf"
   }
   cat(" -> ", outfile, "\n")
   ggsave(filename=outfile, fig5, width=6, height=8, units="in")
