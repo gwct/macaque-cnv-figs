@@ -41,7 +41,6 @@ hur = subsetSVs(hu_events)
 hu_svs = hur[[4]]
 # Subset data
 
-
 ######################
 # SV type proportion plot -- Fig 1B
 cat("Geting SV type counts...\n")
@@ -112,6 +111,7 @@ sv_types_counts = subset(sv_types, select=c("Species","num.del","num.dup"))
 sv_types_counts_t = t(sv_types_counts[,2:ncol(sv_types_counts)])
 colnames(sv_types_counts_t) <- sv_types_counts[,1]
 type_chi = chisq.test(sv_types_counts_t)
+print(sv_types_counts_t)
 print(type_chi)
 # SV type chi-squared test.
 # SV type proportion plot -- Fig 1B
@@ -186,6 +186,7 @@ sv_bases_counts = subset(sv_bases, select=c("Species","num.del","num.dup"))
 sv_bases_counts_t = t(sv_bases_counts[,2:ncol(sv_bases_counts)])
 colnames(sv_bases_counts_t) <- sv_bases_counts[,1]
 base_chi = chisq.test(sv_bases_counts_t)
+print(sv_bases_counts_t)
 print(base_chi)
 # SV bases chi-squared test.
 # SV bases plot

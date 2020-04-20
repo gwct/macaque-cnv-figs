@@ -1,202 +1,284 @@
-Reading human data...
-Reading macaque data...
-Filtering data:
- -> Removing human SVs present at frequency > 0.95 
- -> For human gtCNV male sex chromosome SVs, QUAL >= 8 
- -> For human gtCNV non-duplication QUAL >= 12 
- -> For human gtCNV duplications QUAL >= 8 
- -> For human SVtyper QUAL >= 100 
- -> Maximum SV length:  1e+05 
- --> Human events over max len: 908 
- --> Human alleles over max len: 97 
- -> Removing human inversions...
- -->  6774  human inversions removed
- -> Maximum SV length:  1e+05 
- --> 8880 SVs removed at 588 sites.
- -> Removing macaque SVs present at frequency > 0.95 
- --> 79425 SVs removed at 2491 sites.
- -> Minimum SV Qual >= 100 
- --> 435 SVs removed at 244 sites.
- -> For macaque DELS, DHFFC < 0.7 
- --> 12763 SVs removed at 870 sites.
- -> For macaque Dups, DHBFC > 1.3 
- --> 9954 SVs removed at 568 sites.
-----------
-Subsetting macaque data...
-----------
-Subsetting human data...
 
 ALL MACAQUE EVENTS:
-Total:                                  46457 
-Deletions:                              42977 (0.9251) 
-Duplications:                           3480 (0.07491) 
-Bases:                                  115971202 
-Deleted bases:                          100538747 (0.8669) 
-Duplicated bases:                       15432455 (0.1331) 
-Avg. length:                            2496.31276233937 
-Avg. deletion length:                   2339.36168182982 
-Avg. duplication length:                4434.61350574713 
-SVs overlapping genes:                  3071 
-Genes overlapped:                       3989 
-Deleted genes:                          3175 (0.7959) 
-Duplicated genes:                       814 (0.2041) 
-Avg. genes per SV:                      0.0858643476763459 
-Avg. genes per deletion:                0.0738767247597552 
-Avg. genes per duplication:             0.233908045977011 
-Avg. genes per overlap SV:              1.29892543145555 
-Avg. genes per overlap deletion:        1.28075837031061 
-Avg. genes per overlap duplication:     1.375 
+Average CNVs per individual:                           1451.78125 
+Average bases deleted per individual:                  3141835.84375 
+Average bases duplicated per individual:               482264.21875 
+Number of CNVs present in all individuals:             1755 
+Total:                                                 46457 
+Deletions:                                             42977 (0.9251) 
+Duplications:                                          3480 (0.07491) 
+Bases:                                                 115971202 
+Deleted bases:                                         100538747 (0.8669) 
+Duplicated bases:                                      15432455 (0.1331) 
+Avg. length:                                           2496.31276233937 
+Min. length:                                           40 
+Max. length:                                           98035 
+Avg. deletion length:                                  2339.36168182982 
+Min. deletion length:                                  40 
+Max. deletion length:                                  98035 
+Avg. duplication length:                               4434.61350574713 
+Min. duplication length:                               138 
+Max. duplication length:                               97301 
 
 ALL MACAQUE ALLELES:
-Total:                                  3754 
-Deletions:                              3313 (0.8825) 
-Duplications:                           441 (0.1175) 
-Bases:                                  13213803 
-Deleted bases:                          10191238 (0.7713) 
-Duplicated bases:                       3022565 (0.2287) 
-Avg. length:                            3519.92621204049 
-Avg. deletion length:                   3076.13582855418 
-Avg. duplication length:                6853.88888888889 
-SVs overlapping genes:                  342 
-Genes overlapped:                       522 
-Deleted genes:                          389 (0.7452) 
-Duplicated genes:                       133 (0.2548) 
-Avg. genes per SV:                      0.139051678209909 
-Avg. genes per deletion:                0.117416239058255 
-Avg. genes per duplication:             0.301587301587302 
-Avg. genes per overlap SV:              1.52631578947368 
-Avg. genes per overlap deletion:        1.49615384615385 
-Avg. genes per overlap duplication:     1.6219512195122 
+Total:                                                 3754 
+Deletions:                                             3313 (0.8825) 
+Duplications:                                          441 (0.1175) 
+Bases:                                                 13213803 
+Deleted bases:                                         10191238 (0.7713) 
+Duplicated bases:                                      3022565 (0.2287) 
+Avg. length:                                           3519.92621204049 
+Min. length:                                           40 
+Max. length:                                           98035 
+Avg. deletion length:                                  3076.13582855418 
+Min. deletion length:                                  40 
+Max. deletion length:                                  98035 
+Avg. duplication length:                               6853.88888888889 
+Min. duplication length:                               138 
+Max. duplication length:                               97301 
+
+CNVs that overlap at least 1 gene:                    1667 
+Avg. genes per CNV:                                    0.502663825253063 
+Avg. genes per CNV, given it overlaps 1:               1.13197360527894 
+CNVs that delete at least 1 gene:                      1446 
+Avg. genes per deletion:                               0.428609483217901 
+Avg. genes per deletion, given it overlaps 1:          1.11272475795297 
+CNVs that duplicate at least 1 gene:                   221 
+Avg. genes per duplication:                            0.0740543420351625 
+Avg. genes per duplication, given it overlaps 1:       1.2579185520362 
+Total genes overlapped:                                1887 
+Genes overlapped by at least one CNV:                  1355 
+Total genes deleted:                                   1609 
+Genes deleted by at least one CNV:                     1238 
+Total genes duplicated:                                278 
+Genes duplicated by at least one CNV:                  228 
+Genes deleted / genes duplicated:                      5.78776978417266 
+
+CNVs that overlap at least 1 transcript:              1667 
+Avg. transcripts per CNV:                              1.08763985082579 
+Avg. transcripts per CNV, given it overlaps 1:         2.44931013797241 
+CNVs that delete at least 1 transcript:                1446 
+Avg. transcripts per deletion:                         0.935269046350559 
+Avg. transcripts per deletion, given it overlaps 1:    2.42807745504841 
+CNVs that duplicate at least 1 transcript:             221 
+Avg. transcripts per duplication:                      0.152370804475226 
+Avg. transcripts per duplication, given it overlaps 1: 2.58823529411765 
+Total transcripts overlapped:                          4083 
+Transcripts overlapped by at least one CNV:            2984 
+Total transcripts deleted:                             3511 
+Transcripts deleted by at least one CNV:               2734 
+Total transcripts duplicated:                          572 
+Transcripts duplicated by at least one CNV:            482 
+Transcripts deleted / transcripts duplicated:          6.13811188811189 
+
+CNVs that overlap at least 1 exon:                    339 
+Avg. exons per CNV:                                    0.457645178476292 
+Avg. exons per CNV, given it overlaps 1:               5.06784660766962 
+CNVs that delete at least 1 exon:                      257 
+Avg. exons per deletion:                               0.317794352690464 
+Avg. exons per deletion, given it overlaps 1:          4.6420233463035 
+CNVs that duplicate at least 1 exon:                   82 
+Avg. exons per duplication:                            0.139850825785828 
+Avg. exons per duplication, given it overlaps 1:       6.40243902439024 
+Total exons overlapped:                                1718 
+Exons overlapped by at least one CNV:                  1189 
+Total exons deleted:                                   1193 
+Exons deleted by at least one CNV:                     936 
+Total exons duplicated:                                525 
+Exons duplicated by at least one CNV:                  424 
+Exons deleted / exons duplicated:                      2.27238095238095 
+
+MACAQUE ALLELE GENE OVERLAPS FOR CNVs UNDER 25kb
+CNVs under 25kb that overlap at least 1 exon:         248 
+Avg. exons per CNV under 25kb:                         2.27016129032258 
 
 DE NOVO MACAQUE ALLELES:
-Total:                                  9 
-Deletions:                              7 (0.7778) 
-Duplications:                           2 (0.2222) 
-Bases:                                  64747 
-Deleted bases:                          35156 (0.543) 
-Duplicated bases:                       29591 (0.457) 
-Avg. length:                            7194.11111111111 
-Avg. deletion length:                   5022.28571428571 
-Avg. duplication length:                14795.5 
-SVs overlapping genes:                  1 
-Genes overlapped:                       2 
-Deleted genes:                          0 (0) 
-Duplicated genes:                       2 (1) 
-Avg. genes per SV:                      0.222222222222222 
-Avg. genes per deletion:                0 
-Avg. genes per duplication:             1 
-Avg. genes per overlap SV:              2 
-Avg. genes per overlap deletion:        NaN 
-Avg. genes per overlap duplication:     2 
+Total:                                                 9 
+Deletions:                                             7 (0.7778) 
+Duplications:                                          2 (0.2222) 
+Bases:                                                 64747 
+Deleted bases:                                         35156 (0.543) 
+Duplicated bases:                                      29591 (0.457) 
+Avg. length:                                           7194.11111111111 
+Min. length:                                           325 
+Max. length:                                           29266 
+Avg. deletion length:                                  5022.28571428571 
+Min. deletion length:                                  493 
+Max. deletion length:                                  27189 
+Avg. duplication length:                               14795.5 
+Min. duplication length:                               325 
+Max. duplication length:                               29266 
 
 ----------
 
 ALL HUMAN EVENTS:
-Total:                                  548716 
-Deletions:                              508939 (0.9275) 
-Duplications:                           39777 (0.07249) 
-Bases:                                  669198785 
-Deleted bases:                          578596192 (0.8646) 
-Duplicated bases:                       90602593 (0.1354) 
-Avg. length:                            1219.57221039664 
-Avg. deletion length:                   1136.86746741751 
-Avg. duplication length:                2277.76335570807 
-SVs overlapping genes:                  4368 
-Genes overlapped:                       5175 
-Deleted genes:                          2833 (0.5474) 
-Duplicated genes:                       2342 (0.4526) 
-Avg. genes per SV:                      0.00943110826001064 
-Avg. genes per deletion:                0.00556648242716711 
-Avg. genes per duplication:             0.0588782462226915 
-Avg. genes per overlap SV:              1.18475274725275 
-Avg. genes per overlap deletion:        1.05042639970337 
-Avg. genes per overlap duplication:     1.40155595451825 
+Total:                                                 548716 
+Deletions:                                             508939 (0.9275) 
+Duplications:                                          39777 (0.07249) 
+Bases:                                                 669198785 
+Deleted bases:                                         578596192 (0.8646) 
+Duplicated bases:                                      90602593 (0.1354) 
+Avg. length:                                           1219.57221039664 
+Min. length:                                           0 
+Max. length:                                           97415 
+Avg. deletion length:                                  1136.86746741751 
+Min. deletion length:                                  3 
+Max. deletion length:                                  97415 
+Avg. duplication length:                               2277.76335570807 
+Min. duplication length:                               0 
+Max. duplication length:                               97228 
 
 ALL HUMAN ALLELES:
-Total:                                  17613 
-Deletions:                              15746 (0.894) 
-Duplications:                           1867 (0.106) 
-Bases:                                  38812365 
-Deleted bases:                          28809026 (0.7423) 
-Duplicated bases:                       10003339 (0.2577) 
-Avg. length:                            2203.62033725089 
-Avg. deletion length:                   1829.60917058301 
-Avg. duplication length:                5357.97482592394 
-SVs overlapping genes:                  382 
-Genes overlapped:                       450 
-Deleted genes:                          269 (0.5978) 
-Duplicated genes:                       181 (0.4022) 
-Avg. genes per SV:                      0.0255493101686254 
-Avg. genes per deletion:                0.0170837037977899 
-Avg. genes per duplication:             0.0969469737546867 
-Avg. genes per overlap SV:              1.17801047120419 
-Avg. genes per overlap deletion:        1.08467741935484 
-Avg. genes per overlap duplication:     1.35074626865672 
+Total:                                                 17613 
+Deletions:                                             15746 (0.894) 
+Duplications:                                          1867 (0.106) 
+Bases:                                                 38812365 
+Deleted bases:                                         28809026 (0.7423) 
+Duplicated bases:                                      10003339 (0.2577) 
+Avg. length:                                           2203.62033725089 
+Min. length:                                           0 
+Max. length:                                           97415 
+Avg. deletion length:                                  1829.60917058301 
+Min. deletion length:                                  3 
+Max. deletion length:                                  97415 
+Avg. duplication length:                               5357.97482592394 
+Min. duplication length:                               0 
+Max. duplication length:                               97228 
+
+CNVs that overlap at least 1 gene:                    10077 
+Avg. genes per CNV:                                    0.661897462101857 
+Avg. genes per CNV, given it overlaps 1:               1.15689193212266 
+CNVs that delete at least 1 gene:                      8974 
+Avg. genes per deletion:                               0.583830125475501 
+Avg. genes per deletion, given it overlaps 1:          1.14586583463339 
+CNVs that duplicate at least 1 gene:                   1103 
+Avg. genes per duplication:                            0.0780673366263555 
+Avg. genes per duplication, given it overlaps 1:       1.24660018132366 
+Total genes overlapped:                                11658 
+Genes overlapped by at least one CNV:                  6512 
+Total genes deleted:                                   10283 
+Genes deleted by at least one CNV:                     5869 
+Total genes duplicated:                                1375 
+Genes duplicated by at least one CNV:                  1165 
+Genes deleted / genes duplicated:                      7.47854545454545 
+
+CNVs that overlap at least 1 transcript:              10077 
+Avg. transcripts per CNV:                              2.53046045534548 
+Avg. transcripts per CNV, given it overlaps 1:         4.42284410042671 
+CNVs that delete at least 1 transcript:                8974 
+Avg. transcripts per deletion:                         2.24345653778459 
+Avg. transcripts per deletion, given it overlaps 1:    4.40316469801649 
+CNVs that duplicate at least 1 transcript:             1103 
+Avg. transcripts per duplication:                      0.287003917560892 
+Avg. transcripts per duplication, given it overlaps 1: 4.58295557570263 
+Total transcripts overlapped:                          44569 
+Transcripts overlapped by at least one CNV:            26307 
+Total transcripts deleted:                             39514 
+Transcripts deleted by at least one CNV:               23827 
+Total transcripts duplicated:                          5055 
+Transcripts duplicated by at least one CNV:            4338 
+Transcripts deleted / transcripts duplicated:          7.81681503461919 
+
+CNVs that overlap at least 1 exon:                    2479 
+Avg. exons per CNV:                                    0.62822914892409 
+Avg. exons per CNV, given it overlaps 1:               4.46349334409036 
+CNVs that delete at least 1 exon:                      2089 
+Avg. exons per deletion:                               0.470391188326804 
+Avg. exons per deletion, given it overlaps 1:          3.96601244614648 
+CNVs that duplicate at least 1 exon:                   390 
+Avg. exons per duplication:                            0.157837960597286 
+Avg. exons per duplication, given it overlaps 1:       7.12820512820513 
+Total exons overlapped:                                11065 
+Exons overlapped by at least one CNV:                  10237 
+Total exons deleted:                                   8285 
+Exons deleted by at least one CNV:                     7752 
+Total exons duplicated:                                2780 
+Exons duplicated by at least one CNV:                  2589 
+Exons deleted / exons duplicated:                      2.98021582733813 
+
+HUMAN ALLELE GENE OVERLAPS FOR CNVs UNDER 25kb
+CNVs under 25kb that overlap at least 1 exon:         2304 
+Avg. exons per CNV under 25kb:                         3.53385416666667 
 
 ----------
- -> Chi-squared test for macaque genes in SVs vs human genes in SVs...
+ -> Chi-squared test for macaque exons in SVs vs human exons in SVs...
+        Macaque Human
+num.del    1193  8285
+num.dup     525  2780
 
 	Pearson's Chi-squared test with Yates' continuity correction
 
-data:  gene_counts_t
-X-squared = 23.351, df = 1, p-value = 1.35e-06
+data:  exon_counts_t
+X-squared = 22.628, df = 1, p-value = 1.966e-06
 
 
 ----------
 Counting Brandler de novos...
 
 DE NOVO BRANDLER ALLELES:
-Total:                                  19 
-Deletions:                              15 (0.7895) 
-Duplications:                           4 (0.2105) 
-Bases:                                  1428508819 
-Deleted bases:                          1298528069 (0.909) 
-Duplicated bases:                       129980750 (0.09099) 
-Avg. length:                            75184674.6842105 
-Avg. deletion length:                   86568537.9333333 
-Avg. duplication length:                32495187.5 
-SVs overlapping genes:                  8 
-Genes overlapped:                       58 
-Deleted genes:                          17 (0.2931) 
-Duplicated genes:                       41 (0.7069) 
-Avg. genes per SV:                      3.05263157894737 
-Avg. genes per deletion:                1.13333333333333 
-Avg. genes per duplication:             10.25 
-Avg. genes per overlap SV:              7.25 
-Avg. genes per overlap deletion:        2.42857142857143 
-Avg. genes per overlap duplication:     41 
+Total:                                                 19 
+Deletions:                                             15 (0.7895) 
+Duplications:                                          4 (0.2105) 
+Bases:                                                 1428508819 
+Deleted bases:                                         1298528069 (0.909) 
+Duplicated bases:                                      129980750 (0.09099) 
+Avg. length:                                           75184674.6842105 
+Min. length:                                           19293891 
+Max. length:                                           206751301 
+Avg. deletion length:                                  86568537.9333333 
+Min. deletion length:                                  19293891 
+Max. deletion length:                                  206751301 
+Avg. duplication length:                               32495187.5 
+Min. duplication length:                               28574000 
+Max. duplication length:                               36198550 
 
 ----------
 CAFE DATA
 
-MACAQUE GENES:
-Total changes:                          1972 
-Losses:                                 1063 (0.539046653144016) 
-Gains:                                  909 (0.460953346855984) 
+MACAQUE CAFE GENES:Total changes:                                         1972 
+Losses:                                                1063 (0.539046653144016) 
+Gains:                                                 909 (0.460953346855984) 
 
-HUMAN GENES:
-Total changes:                          4034 
-Losses:                                 877 (0.217402082300446) 
-Gains:                                  3157 (0.782597917699554) 
+----------
+
+HUMAN CAFE GENES:
+Total changes:                                         4034 
+Losses:                                                877 (0.217402082300446) 
+Gains:                                                 3157 (0.782597917699554) 
+
+----------
  -> Chi-squared test for macaque SV genes (ALL) vs human SV genes (ALL)...
+        Macaque SV all Human SV all
+num.del           1609        10283
+num.dup            278         1375
 
 	Pearson's Chi-squared test with Yates' continuity correction
 
 data:  mq_hu_all_counts_t
-X-squared = 23.351, df = 1, p-value = 1.35e-06
+X-squared = 12.811, df = 1, p-value = 0.0003446
 
- -> Chi-squared test for macaque SV genes (ALL) vs macaque CAFE genes...
+
+----------
+ -> Chi-squared test for macaque SV transcripts (ALL) vs macaque CAFE genes...
+        Macaque SV all Macaque CAFE
+num.del           3511         1063
+num.dup            572          909
 
 	Pearson's Chi-squared test with Yates' continuity correction
 
 data:  mq_sv_all_counts_t
-X-squared = 71.277, df = 1, p-value < 2.2e-16
+X-squared = 739.2, df = 1, p-value < 2.2e-16
 
- -> Chi-squared test for macaque SV genes (CAFE) vs macaque CAFE genes...
+
+----------
+ -> Chi-squared test for macaque SV transcripts (CAFE) vs macaque CAFE genes...
 Reading macaque CAFE genes
+        Macaque SV CAFE Macaque CAFE
+num.del            1421         1063
+num.dup             228          909
 
 	Pearson's Chi-squared test with Yates' continuity correction
 
 data:  mq_sv_cafe_counts_t
-X-squared = 26.33, df = 1, p-value = 2.878e-07
+X-squared = 432.62, df = 1, p-value < 2.2e-16
 

@@ -23,7 +23,7 @@ cat("----------\n")
 
 savefiles = F
 color_plots = T
-supp = T
+supp = F
 # Run options
 
 minlen = F
@@ -81,7 +81,8 @@ mq_denovo_counts$Species = factor(mq_denovo_counts$Species, levels=c("Macaque", 
 cat(" -> Plotting denovos...\n")
 fig4a = ggplot(mq_denovo_counts, aes(Paternal.age, Num.dsv, color=Species)) +
   geom_point(size=3, alpha=0.5) +
-  geom_smooth(method="glm", method.args=list(family='poisson'), fullrange=T, size=0.75, linetype="dashed", alpha=0) +
+  #geom_smooth(method="glm", method.args=list(family='poisson'), fullrange=T, size=0.75, linetype="dashed", alpha=0) +
+  geom_smooth(method="glm", fullrange=T, size=0.75, linetype="dashed", alpha=0) +
   ggtitle("") +
   scale_y_continuous(limits=c(0, 5)) +
   labs(x="Paternal age (years)", y="# de novo CNVs") +
@@ -135,7 +136,6 @@ brandler_info = subset(brandler_info, Relationship=="Proband" | Relationship=="S
 
 brandler_svs = subset(brandler_svs, SVTYPE %in% c("DEL","DUP"))
 if(supp){
-  print("HIHI")
   brandler_svs = subset(brandler_svs, VALIDATION == 1)
 }
   
@@ -166,7 +166,8 @@ mat_fit_h = lm(brandler_counts$Num.dsv ~ brandler_counts$Mother_chrono_age)
 cat(" -> Plotting human denovos...\n")
 fig4b = ggplot(brandler_counts, aes(Father_chrono_age, Num.dsv, color="Human")) +
   geom_point(size=3, alpha=0.5) +
-  geom_smooth(method="glm", method.args=list(family='poisson'), fullrange=T, size=0.75, linetype="dashed", alpha=0) +
+  #geom_smooth(method="glm", method.args=list(family='poisson'), fullrange=T, size=0.75, linetype="dashed", alpha=0) +
+  geom_smooth(method="glm", fullrange=T, size=0.75, linetype="dashed", alpha=0) +
   ggtitle("") +
   scale_y_continuous(limits=c(0, 5)) +
   labs(x="Paternal age (years)", y="") +
@@ -197,7 +198,14 @@ if(color_plots){
 
 print(fig4b)
 
+hu_rate = mean(brandler_counts$Num.dsv / 2)
+hu_se = ((sd(brandler_counts$Num.dsv) / 2) / sqrt(length(brandler_counts$ID))) * 1.96
+cat(" -> Human CNV rate per haploid generation: ", hu_rate, " (95% CI +/-", hu_se, ")\n", sep="")
+# Macaque rate per haploid generation
+
 cat(" -> Human CNV paternal age correlation: r2 = ", summary(pat_fit_h)$r.squared, ", df = ", summary(pat_fit_h)$df[2], ", p = ", summary(pat_fit_h)$coefficients[2,4], "\n", sep="")
+# Paternal age regression
+
 # Human de novos (Brandler's count)
 ######################
 
@@ -229,7 +237,7 @@ print(p)
 if(savefiles){
   outfile = "fig4"
   if(supp){
-    outfile = paste(outfile, "_S4", sep="")
+    outfile = paste(outfile, "_S5", sep="")
   }
   if(!color_plots){
     outfile = paste(outfile, "-grey", sep="")

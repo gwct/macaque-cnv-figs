@@ -43,7 +43,7 @@ if(readcnvs){
   mqr = subsetSVs(mq_events)
   mq_svs = mqr[[4]]
 }
-stop()
+
 ######################
 
 plots = list()

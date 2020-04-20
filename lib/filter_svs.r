@@ -21,7 +21,7 @@ filterSVs <- function(sv_list, minlen, maxlen, human_full=F, macaque_filter=T){
   cat("Filtering data:\n")
   
   cat(" -> Removing human SVs present at frequency >", as.character(freq_filter), "\n")
-  hu_events = subset(hu_events, SV.freq <= 0.95)
+  hu_events = subset(hu_events, SV.freq <= freq_filter)
   
   cat(" -> For human gtCNV male sex chromosome SVs, QUAL >=", as.character(gtcnv_malesex_filter), "\n")
   cat(" -> For human gtCNV non-duplication QUAL >=", as.character(gtcnv_nodup_filter), "\n")
@@ -108,7 +108,7 @@ filterSVs <- function(sv_list, minlen, maxlen, human_full=F, macaque_filter=T){
   events_before = length(mq_events$SV.key)
   alleles_before = length(unique(mq_events$SV.key))
   
-  mq_events = subset(mq_events, SV.freq <= 0.95)
+  mq_events = subset(mq_events, SV.freq <= freq_filter)
   
   events_after = length(mq_events$SV.key)
   alleles_after = length(unique(mq_events$SV.key))

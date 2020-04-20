@@ -23,9 +23,9 @@ cat("----------\n")
 
 ############################################################
 
-savefiles = T
+savefiles = F
 color_plots = F
-read_data = F
+read_data = T
 # Run options
 
 minlen = F
@@ -73,23 +73,31 @@ print(fig5a)
 
 ######################
 cat("Reading macaque CAFE genes\n")
-mq_cafe = read.csv("../data/macaque-cafe-genes-filtered.csv")
-mq_cafe_genes = subset(mq_cafe, SV.key %in% mq_svs$SV.key)
-mq_cafe_genes = subset(mq_cafe_genes, SV.type=="<DEL>" | SV.type=="<DUP>")
+mq_cafe = read.csv("../data/macaque-cafe-genes.csv")
+mq_cafe_dels = sum(mq_cafe$Num.del)
+mq_cafe_dups = sum(mq_cafe$Num.dup)
 
-mq_cafe_dels = length(mq_cafe_genes$SV.type[mq_cafe_genes$SV.type=="<DEL>"])
-mq_cafe_dups = length(mq_cafe_genes$SV.type[mq_cafe_genes$SV.type=="<DUP>"])
+#mq_cafe_genes = subset(mq_cafe, SV.key %in% mq_svs$SV.key)
+#mq_cafe_genes = subset(mq_cafe_genes, SV.type=="<DEL>" | SV.type=="<DUP>")
+
+#mq_cafe_dels = length(mq_cafe_genes$SV.type[mq_cafe_genes$SV.type=="<DEL>"])
+#mq_cafe_dups = length(mq_cafe_genes$SV.type[mq_cafe_genes$SV.type=="<DUP>"])
+
 mq_cafe_total = mq_cafe_dels + mq_cafe_dups
 mq_cafe_del_p = mq_cafe_dels / mq_cafe_total
 mq_cafe_dup_p = mq_cafe_dups / mq_cafe_total
 
 cat("Reading human CAFE genes\n")
 hu_cafe = read.csv("../data/brandler-cafe-genes.csv")
-hu_cafe_genes = subset(hu_cafe, SV.key %in% hu_svs$SV.key)
-hu_cafe_genes = subset(hu_cafe_genes, SV.type=="<DEL>" | SV.type=="<DUP>")
+hu_cafe_dels = sum(hu_cafe$Num.del)
+hu_cafe_dups = sum(hu_cafe$Num.dup)
 
-hu_cafe_dels = length(hu_cafe_genes$SV.type[hu_cafe_genes$SV.type=="<DEL>"])
-hu_cafe_dups = length(hu_cafe_genes$SV.type[hu_cafe_genes$SV.type=="<DUP>"])
+#hu_cafe_genes = subset(hu_cafe, SV.key %in% hu_svs$SV.key)
+#hu_cafe_genes = subset(hu_cafe_genes, SV.type=="<DEL>" | SV.type=="<DUP>")
+
+#hu_cafe_dels = length(hu_cafe_genes$SV.type[hu_cafe_genes$SV.type=="<DEL>"])
+#hu_cafe_dups = length(hu_cafe_genes$SV.type[hu_cafe_genes$SV.type=="<DUP>"])
+
 hu_cafe_total = hu_cafe_dels + hu_cafe_dups
 hu_cafe_del_p = hu_cafe_dels / hu_cafe_total
 hu_cafe_dup_p = hu_cafe_dups / hu_cafe_total
