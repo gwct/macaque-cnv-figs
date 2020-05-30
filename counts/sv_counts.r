@@ -32,15 +32,28 @@ avgInds <- function(df){
   cnv_sums = c()
   del_len_sums = c()
   dup_len_sums = c()
+  max_cnvs = 0
+  min_cnvs = 99999
   for(i in levels(as.factor(df$Individual))){
     tmp = subset(df, Individual == i)
+    num_cnvs = length(tmp[,1])
     tmp_dels = subset(tmp, Type == "<DEL>")
     tmp_dups = subset(tmp, Type == "<DUP>")
-    cnv_sums = c(cnv_sums, length(tmp[,1]))
+    cnv_sums = c(cnv_sums, num_cnvs)
+    if(num_cnvs > max_cnvs){
+      max_cnvs = num_cnvs
+    }
+    
+    if(num_cnvs < min_cnvs){
+      min_cnvs = num_cnvs
+    }
+    
     del_len_sums = c(del_len_sums, sum(tmp_dels$Length))
     dup_len_sums = c(dup_len_sums, sum(tmp_dups$Length))
   }
   means = data.frame("num.cnvs"=mean(cnv_sums),
+                     "max.cnvs"=max_cnvs,
+                     "min.cnvs"=min_cnvs,
                      "num.del.bases"=mean(del_len_sums),
                      "num.dup.bases"=mean(dup_len_sums))
   return(means)
@@ -55,9 +68,25 @@ svCount <- function(df, pad){
   dups = length(df$Type[df$Type=="<DUP>"])
   dups_p = signif(dups / total, digits=4)
   
+  del_sens = 0.88
+  del_corrected = round(dels / del_sens)
+  del_missed = del_corrected - dels
+  
+  dup_sens = 0.65
+  dup_corrected = round(dups / dup_sens)
+  dup_missed = dup_corrected - dups
+  # Sensitivity estimates from Sudmant et al.
+  
   cat(spacedOut("Total:",                   pad, total), "\n")
   cat(spacedOut("Deletions:",               pad, paste(dels, " (", dels_p, ")", sep="")), "\n")
+  cat(spacedOut("Deletion sensitivity:",    pad, del_sens), "\n")
+  cat(spacedOut("Deletions missed:",        pad, del_missed), "\n")
+  cat(spacedOut("Deletions corrected:",     pad, del_corrected), "\n")
+  
   cat(spacedOut("Duplications:",            pad, paste(dups, " (", dups_p, ")", sep="")), "\n")
+  cat(spacedOut("Duplication sensitivity:", pad, dup_sens), "\n")
+  cat(spacedOut("Duplication missed:",      pad, dup_missed), "\n")
+  cat(spacedOut("Duplication corrected:",   pad, dup_corrected), "\n")
   
   bases = sum(df$Length)
   avg_bases = mean(df$Length)
@@ -91,35 +120,6 @@ svCount <- function(df, pad){
   cat(spacedOut("Avg. duplication length:", pad, paste(avg_dup_bases, "\n")))
   cat(spacedOut("Min. duplication length:", pad, paste(min_dup_bases, "\n")))
   cat(spacedOut("Max. duplication length:", pad, paste(max_dup_bases, "\n")))
-  
-  #overlap = length(df$Num.genes[df$Num.genes!=0])
-  #genes = sum(df$Num.genes)
-  #avg_genes = mean(df$Num.genes)
-  #del_genes = sum(df$Num.genes[df$Type=="<DEL>"])
-  #avg_del_genes = mean(df$Num.genes[df$Type=="<DEL>"])
-  #del_genes_p = signif(del_genes / genes, digits=4)
-  #dup_genes = sum(df$Num.genes[df$Type=="<DUP>"])
-  #dup_genes_p = signif(dup_genes / genes, digits=4)
-  #avg_dup_genes = mean(df$Num.genes[df$Type=="<DUP>"])
-  
-  #avg_genes_overlap = mean(df$Num.genes[df$Num.genes!=0])
-  #avg_genes_overlap_del = mean(df$Num.genes[df$Num.genes!=0 & df$Type=="<DEL>"])
-  #avg_genes_overlap_dup = mean(df$Num.genes[df$Num.genes!=0 & df$Type=="<DUP>"])
-  
-  
-  #cat(spacedOut("SVs overlapping genes:", pad, overlap), "\n")
-  #cat(spacedOut("Genes overlapped:", pad, genes), "\n")
-  #cat(spacedOut("Genes string:", pad, genesstr), "\n")
-  #cat(spacedOut("Deleted genes:", pad, paste(del_genes, " (", del_genes_p, ")", sep="")), "\n")
-  #cat(spacedOut("Duplicated genes:", pad, paste(dup_genes, " (", dup_genes_p, ")", sep="")), "\n")
-  
-  #cat(spacedOut("Avg. genes per SV:", pad, avg_genes), "\n")
-  #cat(spacedOut("Avg. genes per deletion:", pad, paste(avg_del_genes, "\n")))
-  #cat(spacedOut("Avg. genes per duplication:", pad, paste(avg_dup_genes, "\n")))
-  
-  #cat(spacedOut("Avg. genes per overlap SV:", pad, avg_genes_overlap), "\n")
-  #cat(spacedOut("Avg. genes per overlap deletion:", pad, paste(avg_genes_overlap_del, "\n")))
-  #cat(spacedOut("Avg. genes per overlap duplication:", pad, paste(avg_genes_overlap_dup, "\n")))
 }
 # Counts stuff for a CNV data frame
 
@@ -202,17 +202,15 @@ geneCount <- function(cnv_df, gene_df){
   cat(spacedOut("Exons duplicated by at least one CNV:",            pad, length(subset(exons, At.least.one.dup == TRUE)[,1])), "\n")
   
   cat(spacedOut("Exons deleted / exons duplicated:",                pad, sum(exons$Num.del) / sum(exons$Num.dup)), "\n")
-  
-  
-  
 }
+# Reports gene overlaps
 
 ############################################################
 # Input info
 
 readdata = T
-readonly = T
-savelog = F
+readonly = F
+savelog = T
 filterdata = T
 # Run options
 
@@ -282,7 +280,7 @@ if(readdata){
   mq_denovo = subset(mq_events, Denovo=="Y")
   # Get macaque de novos
   
-  genes = readGenes()
+  genes = readGenes(maxlen=maxlen)
   hu_cnv_genes = genes[[1]]; hu_genes = genes[[2]]; mq_cnv_genes = genes[[3]]; mq_genes = genes[[4]];
   # Read the gene data from filtered CNVs for both species.
 }
@@ -298,14 +296,15 @@ if(readonly){
 # The counts for various subsets of data. 
 # EVENT = all CNVs in all individuals (ie a deletion at the same position in two individuals is counted as 2 events)
 # ALLELE = all CNVs across individuals (ie a deletion at the same position in two individuals is counted as 1 allele)
+
 cat("\nALL MACAQUE EVENTS:\n")
 ind_means = avgInds(mq_events)
-
-cat(spacedOut("Average CNVs per individual:",               pad, ind_means$num.cnvs), "\n")
+cat(spacedOut("Average CNVs per individual:",               pad, ind_means$num.cnvs), "(", ind_means$min.cnvs, "-", ind_means$max.cnvs, ")", "\n")
 cat(spacedOut("Average bases deleted per individual:",      pad, ind_means$num.del.bases), "\n")
 cat(spacedOut("Average bases duplicated per individual:",   pad, ind_means$num.dup.bases), "\n")
 cat(spacedOut("Number of CNVs present in all individuals:", pad, 1755), "\n")
-# Change filter to check
+# Report average SVs per individual and number in all individuals.
+# 1755 is hard coded because they are filtered out. Change lib/filter_svs.r to get.
 
 svCount(mq_events, pad)
 
@@ -321,6 +320,7 @@ mq_genes_25kb = read.csv("../data/macaque-cnv-gene-overlaps-25kb.csv", header=TR
 mq_genes_25kb = parseCNVDF(mq_genes_25kb)
 cat(spacedOut("\nCNVs under 25kb that overlap at least 1 exon:",  pad, length(subset(mq_genes_25kb, Exons.total > 0)[,1])), "\n")
 cat(spacedOut("Avg. exons per CNV under 25kb:",                   pad, mean(subset(mq_genes_25kb, Exons.total > 0)$Exons.total)), "\n")
+# Report gene overlaps
 
 #cat("\nFOCAL MACAQUE ALLELES:\n")
 #svCount(mq_alleles_focal, pad)
@@ -355,10 +355,6 @@ cat("\n----------\n")
 ######################
 # Chi-squared test for exons overlapping CNVs between macaques and humans
 cat(" -> Chi-squared test for macaque exons in SVs vs human exons in SVs...\n")
-#mq_del_genes = sum(mq_alleles$Num.genes[mq_alleles$Type=="<DEL>"])
-#mq_dup_genes = sum(mq_alleles$Num.genes[mq_alleles$Type=="<DUP>"])
-#hu_del_genes = sum(hu_alleles$Num.genes[hu_alleles$Type=="<DEL>"])
-#hu_dup_genes = sum(hu_alleles$Num.genes[hu_alleles$Type=="<DUP>"])
 mq_exons = subset(mq_genes, Feature.type == "exon")
 hu_exons = subset(hu_genes, Feature.type == "exon")
 
@@ -482,11 +478,6 @@ mq_cafe = read.csv("../data/macaque-cafe-genes.csv")
 mq_cafe_dels = sum(mq_cafe$Num.del)
 mq_cafe_dups = sum(mq_cafe$Num.dup)
 
-#mq_cafe_genes = subset(mq_cafe, SV.key %in% mq_svs$SV.key)
-#mq_cafe_genes = subset(mq_cafe_genes, SV.type=="<DEL>" | SV.type=="<DUP>")
-
-#mq_cafe_dels = length(mq_cafe_genes$SV.type[mq_cafe_genes$SV.type=="<DEL>"])
-#mq_cafe_dups = length(mq_cafe_genes$SV.type[mq_cafe_genes$SV.type=="<DUP>"])
 
 mq_cafe_total = mq_cafe_dels + mq_cafe_dups
 mq_cafe_del_p = mq_cafe_dels / mq_cafe_total

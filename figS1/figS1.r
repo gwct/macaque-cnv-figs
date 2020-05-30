@@ -20,7 +20,7 @@ source("../lib/subset_svs.r")
 
 ############################################################
 
-savefiles = T
+savefiles = F
 in_data = read.csv("../data/macaque-cnv-chrome-counts.csv")
 
 ######################

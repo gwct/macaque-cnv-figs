@@ -24,7 +24,7 @@ cat("----------\n")
 ############################################################
 
 savefiles = F
-color_plots = F
+color_plots = T
 read_data = T
 # Run options
 

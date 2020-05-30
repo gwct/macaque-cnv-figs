@@ -1,6 +1,6 @@
 ############################################################
-# For macaque paper, 08.19
-# Compares gene family gains/losses to SVs
+# For macaque paper revisions, 04.20
+# Checks distributions of genes overlapping CNVs
 # Gregg Thomas
 ############################################################
 
@@ -8,110 +8,124 @@ this.dir <- dirname(parent.frame(2)$ofile)
 setwd(this.dir)
 
 library(ggplot2)
-library(reshape2)
-library(plyr)
-library(grid)
-library(ggpubr)
 library(cowplot)
+source("../lib/design.r")
 
-source("../lib/read_svs.r")
-source("../lib/filter_svs.r")
-source("../lib/subset_svs.r")
+cat("----------\n")
 
 ############################################################
 
-savefiles = T
-
-in_data = read.csv("macaque-cafe-vs-sv-genes-filtered.csv")
-in_data$net.sv = in_data$SV.dups + in_data$SV.dels
-
-######################
-# Duplications
-figX2a = ggplot(in_data, aes(CAFE.change, SV.dups)) +
-  geom_point(size=3, alpha=0.25) +
-  geom_smooth(method="lm", fullrange=T, size=0.75, linetype="dashed", alpha=0, color="#333333") +
-  labs(x="Gene family change", y="# SV duplications") +
-  theme_classic() +
-  theme(axis.text=element_text(size=12), 
-        axis.title=element_text(size=16), 
-        axis.title.y=element_text(margin=margin(t=0,r=10,b=0,l=0),color="black"), 
-        axis.title.x=element_text(margin=margin(t=0,r=0,b=0,l=0),color="black"),
-        axis.line=element_line(colour='#595959',size=0.75),
-        axis.ticks=element_line(colour="#595959",size = 1),
-        axis.ticks.length=unit(0.2,"cm"),
-        legend.position="right",
-        legend.key.width = unit(0.75,  unit = "cm"),
-        legend.spacing.x = unit(0.25, 'cm'),
-        legend.title = element_blank(),
-        legend.text=element_text(size=12),
-        plot.title = element_text(hjust=0.5, size=16),
-        plot.margin = unit(c(1,1,0,1), "cm")
-  )
-print(figX2a)
-######################
-
-######################
-# Deletions
-in_data$SV.dels = abs(in_data$SV.dels)
-figX2b = ggplot(in_data, aes(CAFE.change, SV.dels)) +
-  geom_point(size=3, alpha=0.25) +
-  geom_smooth(method="lm", fullrange=T, size=0.75, linetype="dashed", alpha=0, color="#333333") +
-  labs(x="Gene family change", y="# SV deletions") +
-  theme_classic() +
-  theme(axis.text=element_text(size=12), 
-        axis.title=element_text(size=16), 
-        axis.title.y=element_text(margin=margin(t=0,r=10,b=0,l=0),color="black"), 
-        axis.title.x=element_text(margin=margin(t=0,r=0,b=0,l=0),color="black"),
-        axis.line=element_line(colour='#595959',size=0.75),
-        axis.ticks=element_line(colour="#595959",size = 1),
-        axis.ticks.length=unit(0.2,"cm"),
-        legend.position="right",
-        legend.key.width = unit(0.75,  unit = "cm"),
-        legend.spacing.x = unit(0.25, 'cm'),
-        legend.title = element_blank(),
-        legend.text=element_text(size=12),
-        plot.title = element_text(hjust=0.5, size=16),
-        plot.margin = unit(c(1,1,0,1), "cm")
-  )
-print(figX2b)
-######################
-
-######################
-# Net SVs
-figX2c = ggplot(in_data, aes(CAFE.change, net.sv)) +
-  geom_point(size=3, alpha=0.25) +
-  geom_smooth(method="lm", fullrange=T, size=0.75, linetype="dashed", alpha=0, color="#333333") +
-  labs(x="Gene family change", y="Net SV change") +
-  theme_classic() +
-  theme(axis.text=element_text(size=12), 
-        axis.title=element_text(size=16), 
-        axis.title.y=element_text(margin=margin(t=0,r=10,b=0,l=0),color="black"), 
-        axis.title.x=element_text(margin=margin(t=0,r=0,b=0,l=0),color="black"),
-        axis.line=element_line(colour='#595959',size=0.75),
-        axis.ticks=element_line(colour="#595959",size = 1),
-        axis.ticks.length=unit(0.2,"cm"),
-        legend.position="right",
-        legend.key.width = unit(0.75,  unit = "cm"),
-        legend.spacing.x = unit(0.25, 'cm'),
-        legend.title = element_blank(),
-        legend.text=element_text(size=12),
-        plot.title = element_text(hjust=0.5, size=16),
-        plot.margin = unit(c(1,1,0,1), "cm")
-  )
-print(figX2c)
-######################
-
-######################
-# Making figure
-
-p = plot_grid(figX2a, figX2b, figX2c, nrow=1, labels=c("A","B","C"), label_size=24)
-
-print(p)
-
-if(savefiles){
-  outfile = "figX2.pdf"
-  cat(" -> ", outfile, "\n")
-  ggsave(filename=outfile, p, width=14, height=4, units="in")
+genHist <- function(df, mode, type) {
+  
+  if(type=="del"){
+    type = "deleted"
+    fcol = "#006ddb"
+    df$xvar = df$Num.del
+    fillstr = "Deletions"
+  }else if(type=="dup"){
+    type = "duplicated"
+    fcol = "#db6d00"
+    df$xvar = df$Num.dup
+    fillstr = "Duplications"
+  }else{
+    type = "deleted or duplicated"
+    fcol = "#999999"
+    df$xvar = df$total
+    fillstr = "All"
+  }
+  
+  df = subset(df, xvar > 0)
+  xmax = max(df$xvar)
+  
+  xtitle = paste("# of times ", mode, " ", type, sep="")
+  ytitle = paste("# of ", mode, "s", sep="")
+  
+  p = ggplot(df, aes(x=xvar)) +
+    geom_histogram(aes(fill=fillstr), bins=xmax, color="black") +
+    xlab(xtitle) +
+    ylab(ytitle) +
+    scale_x_continuous(breaks=1:xmax) +
+    scale_y_continuous(expand = c(0, 0)) +
+    scale_fill_manual(name="", values=c("All"='#999999',"Deletions"='#006ddb',"Duplications"='#db6d00')) +
+    bartheme() +
+    theme(legend.position="none")
+  return(p)
 }
 
-######################
+parseDF <- function(df, mode) {
+  df = subset(df, Feature.type == mode)
+  df$total = df$Num.del.full + df$Num.del.partial + df$Num.dup.full + df$Num.dup.partial
+  df$Num.del = df$Num.del.full + df$Num.del.partial
+  df$Num.dup = df$Num.dup.full + df$Num.dup.partial
+  return(df)
+}
+
+############################################################
+
+mq_gene_counts = read.csv("../data/macaque-cnv-gene-counts.csv", header=T)
+
+mq_genes = parseDF(mq_gene_counts, "gene")
+genes_p = genHist(mq_genes, "gene", "all")
+print(genes_p)
+genes_del_p = genHist(mq_genes, "gene", "del")
+print(genes_del_p)
+genes_dup_p = genHist(mq_genes, "gene", "dup")
+print(genes_dup_p)
+
+
+cat("Combining gene plots...\n")
+prow = plot_grid(genes_del_p, genes_dup_p, align = 'vh', hjust = -1, nrow = 1)
+genes_pcombo = plot_grid(genes_p, prow, nrow=2)
+print(genes_pcombo)
+## Genes
+
+
+mq_trans = parseDF(mq_gene_counts, "transcript")
+trans_p = genHist(mq_trans, "transcript", "all")
+print(trans_p)
+trans_del_p = genHist(mq_trans, "transcript", "del")
+print(trans_del_p)
+trans_dup_p = genHist(mq_trans, "transcript", "dup")
+print(trans_dup_p)
+
+cat("Combining trancsript plots...\n")
+prow = plot_grid(trans_del_p, trans_dup_p, align = 'vh', hjust = -1, nrow = 1)
+trans_pcombo = plot_grid(trans_p, prow, nrow=2)
+print(trans_pcombo)
+## Transcripts
+
+
+mq_exons = parseDF(mq_gene_counts, "exon")
+exons_p = genHist(mq_exons, "exon", "all")
+print(exons_p)
+exons_del_p = genHist(mq_exons, "exon", "del")
+print(exons_del_p)
+exons_dup_p = genHist(mq_exons, "exon", "dup")
+print(exons_dup_p)
+
+
+cat("Combining exon plots...\n")
+prow = plot_grid(trans_del_p, exons_dup_p, align = 'vh', hjust = -1, nrow = 1)
+exons_pcombo = plot_grid(exons_p, prow, nrow=2)
+print(exons_pcombo)
+## Exons
+
+cat("Combining ALL plots...\n")
+full_combo = plot_grid(genes_pcombo, trans_pcombo, exons_pcombo, nrow=3, labels=c("Genes","Transcripts","Exons"), label_size=24, vjust=0.1)
+print(full_combo)
+
+cat("Saving...\n")
+ggsave(filename="figX2.png", full_combo, width=10, height=20, units="in")
+
+
+############################################################
+
+# The Chi-square test for ratios of deletions and duplications
+cat("\n-------------\n")
+cat("Gene overlap Chi-square test:\n")
+gene_overlaps = data.frame("Species"=c("Macaque", "Human"), "num.del"=c(952,7804), "num.dup"=c(425,2597))
+gene_overlaps_t = t(gene_overlaps[,2:ncol(gene_overlaps)])
+colnames(gene_overlaps_t) <- gene_overlaps[,1]
+gene_overlaps_chi = chisq.test(gene_overlaps_t)
+print(gene_overlaps_chi)
+cat("-------------\n")

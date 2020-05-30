@@ -4,7 +4,7 @@
 # Gregg Thomas
 ############################################################
 
-filterSVs <- function(sv_list, minlen, maxlen, human_full=F, macaque_filter=T){
+filterSVs <- function(sv_list, minlen, maxlen, human_full=F, macaque_filter=T, freq_filter=0.95){
   mq_events = sv_list[[1]]; hu_events = sv_list[[2]];
   # Unpack the data list
   
@@ -15,7 +15,7 @@ filterSVs <- function(sv_list, minlen, maxlen, human_full=F, macaque_filter=T){
   dhffc_filter = 0.7
   dhbfc_filter = 1.3
   qual_filter = 100
-  freq_filter = 0.95
+  #freq_filter = 0.95
   # The filter thresholds
   
   cat("Filtering data:\n")

@@ -35,7 +35,7 @@ readSVs <- function() {
   return(list(sv_all_mq, sv_all_hu))
 }
 
-readGenes <- function() {
+readGenes <- function(maxlen=100000) {
   cat("Reading (filtered) human gene data...\n")
   hu_cnv_genes = read.csv("../data/brandler-cnv-gene-overlaps.csv", header = TRUE, sep = ",")
   hu_cnv_genes = parseCNVDF(hu_cnv_genes)
@@ -45,6 +45,11 @@ readGenes <- function() {
   mq_cnv_genes = read.csv("../data/macaque-cnv-gene-overlaps.csv", header = TRUE, sep = ",")
   mq_cnv_genes = parseCNVDF(mq_cnv_genes)
   mq_genes = read.csv("../data/macaque-cnv-gene-counts.csv", header = TRUE, sep = ",")
+
+  hu_cnv_genes = subset(hu_cnv_genes, length < maxlen)
+  hu_genes = subset(hu_genes, length < maxlen)
+  mq_cnv_genes = subset(mq_cnv_genes, length < maxlen)
+  mq_genes = subset(mq_genes, length < maxlen)
 
   return(list(hu_cnv_genes, hu_genes, mq_cnv_genes, mq_genes))
 }

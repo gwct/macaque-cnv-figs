@@ -36,7 +36,7 @@ cat("----------\n")
 ############################################################
 
 savefiles = F
-color_plots = F
+color_plots = T
 rm_alus = F
 # Run options
 

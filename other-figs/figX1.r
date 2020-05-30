@@ -25,34 +25,32 @@ cat("----------\n")
 savefiles = T
 # Run options
 
-minlen = F
 maxlen = 100000
 # CNV length cutoffs
 
-sv_list = readSVs()
-sv_list = filterSVs(sv_list, minlen, maxlen)
-mq_events = sv_list[[1]]; hu_events = sv_list[[2]];
+mq_svs = read.csv("../data/macaque-cnv-gene-overlaps.csv", header=T)
+mq_svs = subset(mq_svs, length<=maxlen)
+mq_svs$Species = "Macaque"
+hu_svs = read.csv("../data/brandler-cnv-gene-overlaps.csv", header=T)
+huvs = subset(hu_svs, length<=maxlen)
+hu_svs$Species = "Human"
 # Read and filter data
 
-cat("----------\nSubsetting macaque data...\n")
-mqr = subsetSVs(mq_events)
-mq_svs = mqr[[4]]
-
-cat("----------\nSubsetting human data...\n")
-hur = subsetSVs(hu_events)
-hu_svs = hur[[4]]
-# Subset data
+mq_svs$exons = mq_svs$exon.del.full.count + mq_svs$exon.del.partial.count + mq_svs$exon.dup.full.count + mq_svs$exon.dup.partial.count
+hu_svs$exons = hu_svs$exon.del.full.count + hu_svs$exon.del.partial.count + hu_svs$exon.dup.full.count + hu_svs$exon.dup.partial.count
+# Count exons per SV
 
 ######################
 # Macaque
-mq_reg = lm(mq_svs$Num.genes ~ mq_svs$Length)
+mq_reg = lm(mq_svs$exons ~ mq_svs$length)
 
 mq_svs$Species = factor(mq_svs$Species, levels=c("Macaque", "Human"))
 
-figX1a = ggplot(mq_svs, aes(Length, Num.genes, color=Species)) +
+figX1a = ggplot(mq_svs, aes(length, exons, color=Species)) +
+  #geom_smooth(method="loess", color="#999999", linetype="dashed", size=2, se=FALSE) +
   geom_point(size=3, alpha=0.2) +
   ggtitle("") +
-  labs(x="CNV length (bp)", y="# Genes overlapping CNV") +
+  labs(x="CNV length (bp)", y="# Exons overlapping CNV") +
   scale_color_manual(name="", values=c("Macaque"='#490092',"Human"='#920000'), drop=FALSE) +
   theme_classic() +
   theme(axis.text=element_text(size=12), 
@@ -75,9 +73,10 @@ print(figX1a)
 
 ######################
 # Human
-hu_reg = lm(hu_svs$Num.genes ~ hu_svs$Length)
+hu_reg = lm(hu_svs$exons ~ hu_svs$length)
 
-figX1b = ggplot(hu_svs, aes(Length, Num.genes, color=Species)) +
+figX1b = ggplot(hu_svs, aes(length, exons, color=Species)) +
+  #geom_smooth(method="loess", color="#999999", linetype="dashed", size=2, se=FALSE) +
   geom_point(size=3, alpha=0.2) +
   ggtitle("") +
   labs(x="CNV length (bp)", y="") +
@@ -103,7 +102,7 @@ print(figX1b)
 ######################
 # Combine plots for figure
 
-cat("Combining proportion plots...\n")
+cat("Combining plots...\n")
 prow = plot_grid(figX1a + theme(legend.position="none"),
                  figX1b + theme(legend.position="none"),
                  align = 'vh',
@@ -121,7 +120,7 @@ p = plot_grid(prow, legend_b, ncol=1, rel_heights=c(1, 0.1))
 print(p)
 
 if(savefiles){
-  outfile = "figX1.pdf"
+  outfile = "figX1.png"
   cat(" -> ", outfile, "\n")
   ggsave(filename=outfile, p, width=10, height=5, units="in")
 }
