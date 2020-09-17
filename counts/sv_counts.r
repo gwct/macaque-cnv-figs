@@ -210,7 +210,7 @@ geneCount <- function(cnv_df, gene_df){
 
 readdata = T
 readonly = F
-savelog = T
+savelog = F
 filterdata = T
 # Run options
 
