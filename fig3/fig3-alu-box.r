@@ -38,7 +38,7 @@ cat("----------\n")
 
 savefiles = F
 color_plots = T
-rm_alus = T
+rm_alus = F
 # Run options
 
 minlen = F
@@ -86,10 +86,14 @@ hu_svs = subset(hu_svs, Length <= maxlen)
 
 #mq_svs$Length = -mq_svs$Length
 
-if(rm_alus){
-  hu_svs = subset(hu_svs, Length < 275 | Length > 325)
-  mq_svs = subset(mq_svs, Length < 275 | Length > 325)
-}
+
+hu_svs_noalu = subset(hu_svs, Length < 275 | Length > 325)
+mq_svs_noalu = subset(mq_svs, Length < 275 | Length > 325)
+
+hu_svs$Label = "Human"
+mq_svs$Label = "Macaque"
+hu_svs_noalu$Label = "Human no Alu"
+mq_svs_noalu$Label = "Macaque no Alu"
 # For Alu stuff
 
 #cat("----------\nPre-binning macaque data...\n")
@@ -102,7 +106,7 @@ if(rm_alus){
 #hu_bins$Species = "Human"
 
 #hu_svs = subset(hu_svs, Length > 200)
-sv_alleles = rbind(hu_svs, mq_svs)
+sv_alleles = rbind(hu_svs, hu_svs_noalu, mq_svs, mq_svs_noalu)
 #sv_bins = rbind(hu_bins, mq_bins)
 #test_count = mq_events %>% group_by(Individual) %>% count(Individual)
 # Count number of events per individual
@@ -113,39 +117,26 @@ sv_alleles = rbind(hu_svs, mq_svs)
 # SV length histogram -- Fig 2A
 cat("SV length distribution...\n")
 
-fig3a = ggplot(sv_alleles, aes(x=Length, fill=Species, color=Species)) + 
-  geom_histogram(alpha=0.8, position="identity", bins=50) +
-  #geom_density(alpha=0.3) +
-  scale_y_continuous(expand = c(0, 0)) +
-  labs(x="CNV length", y="Count") +
-  theme_classic() +
-  theme(axis.text=element_text(size=12), 
-        axis.title=element_text(size=16), 
-        axis.title.y=element_text(margin=margin(t=0,r=10,b=0,l=0),color="black"), 
-        axis.title.x=element_text(margin=margin(t=10,r=0,b=0,l=0),color="black"),
-        axis.line=element_line(colour='#595959',size=0.75),
-        axis.ticks=element_line(colour="#595959",size = 1),
-        axis.ticks.length=unit(0.2,"cm"),
-        legend.position="right",
-        legend.key.width = unit(0.75,  unit = "cm"),
-        legend.spacing.x = unit(0.25, 'cm'),
-        legend.title = element_blank(),
-        legend.text=element_text(size=12),
-        plot.title = element_text(hjust=0.5, size=20),
-        plot.margin = unit(c(1,1,1,1), "cm")
-  )
+
+fig3a = ggplot(sv_alleles, aes(x=Label, y=Length, fill=Label)) + 
+  geom_quasirandom(size=2, alpha=0.7, width=0.25, color="#d3d3d3") +
+  geom_boxplot(outlier.shape=NA, alpha=0.3, width=0.5, color="#000000") +
+  labs(y="CNV Length") +
+  bartheme() +
+  theme(legend.position="none")
 
 if(color_plots){
-  fig3a = fig3a + scale_fill_manual(name="", values=c("Macaque"='#490092',"Human"='#920000'))
+  fig3a = fig3a + scale_fill_manual(name="", values=c("Macaque"='#490092', "Macaque no Alu"='#490092',"Human"='#920000', "Human no Alu"="#920000"))
 }else{
   #fig3a = fig3a + scale_fill_grey(name="", labels=c("Human","Macaque"))
   #fig3a = fig3a + scale_fill_manual(name="", values=c("Macaque"='#d6d6d6',"Human"='#5c5c5c'))
-  fig3a = fig3a + scale_fill_manual(name="", values=c("Macaque"='#5c5c5c',"Human"=NA))
-  }
-fig3a = fig3a + scale_color_manual(name="", values=c("Macaque"=NA,"Human"='#000000'))
+  fig3a = fig3a + scale_fill_manual(name="", values=c("Macaque"='#5c5c5c', "Macaque no Alu"="5c5c5c", "Human"=NA, "Human no Alu"=NA))
+}
 
 print(fig3a)
+ggsave(filename="fig3a-alu-box.png", fig3a, width=6, height=4, units="in")
 
+stop()
 #if(savefiles){
 #  outfile = "fig3a.pdf"
 #  cat(" -> ", outfile, "\n")
