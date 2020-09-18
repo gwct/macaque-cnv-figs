@@ -26,6 +26,7 @@ library(cowplot)
 library(ggridges)
 library(OneR)
 library(ggforce)
+library(ggbeeswarm)
 
 source("../lib/read_svs.r")
 source("../lib/filter_svs.r")
@@ -144,12 +145,31 @@ fig3a = fig3a + scale_color_manual(name="", values=c("Macaque"=NA,"Human"='#0000
 
 print(fig3a)
 
+
 fig3a = ggplot(sv_alleles, aes(x=Species, y=Length, fill=Species, color=Species)) + 
-  geom_boxplot(alpha=0.8) +
-  #geom_density(alpha=0.3) +
-  scale_y_continuous(expand = c(0, 0)) +
-  labs(x="CNV length", y="Count") +
-  bartheme()
+  geom_quasirandom(size=2, alpha=0.7, width=0.25, color="#d3d3d3") +
+  geom_boxplot(outlier.shape=NA, alpha=0.7, width=0.5) +
+  labs(y="CNV Length") +
+  scale_fill_manual(limits=c("Assembly", "Mouse targets"), values=cols) +
+  bartheme() +
+  theme(legend.position="none")
+
+if(color_plots){
+  fig3a = fig3a + scale_fill_manual(name="", values=c("Macaque"='#490092',"Human"='#920000'))
+}else{
+  #fig3a = fig3a + scale_fill_grey(name="", labels=c("Human","Macaque"))
+  #fig3a = fig3a + scale_fill_manual(name="", values=c("Macaque"='#d6d6d6',"Human"='#5c5c5c'))
+  fig3a = fig3a + scale_fill_manual(name="", values=c("Macaque"='#5c5c5c',"Human"=NA))
+}
+fig3a = fig3a + scale_color_manual(name="", values=c("Macaque"=NA,"Human"='#000000'))
+
+print(fig3a)
+
+
+
+
+
+
 print(fig3a)
 stop()
 #if(savefiles){
