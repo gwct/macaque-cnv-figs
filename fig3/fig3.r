@@ -84,7 +84,6 @@ hu_svs = subset(hu_svs, Length <= maxlen)
 # Subset data
 
 #mq_svs$Length = -mq_svs$Length
-
 if(rm_alus){
   hu_svs = subset(hu_svs, Length < 275 | Length > 325)
   mq_svs = subset(mq_svs, Length < 275 | Length > 325)
@@ -100,6 +99,7 @@ if(rm_alus){
 #hu_bins = binSVs(hu_svs)
 #hu_bins$Species = "Human"
 
+#hu_svs = subset(hu_svs, Length > 200)
 sv_alleles = rbind(hu_svs, mq_svs)
 #sv_bins = rbind(hu_bins, mq_bins)
 #test_count = mq_events %>% group_by(Individual) %>% count(Individual)
@@ -144,6 +144,14 @@ fig3a = fig3a + scale_color_manual(name="", values=c("Macaque"=NA,"Human"='#0000
 
 print(fig3a)
 
+fig3a = ggplot(sv_alleles, aes(x=Species, y=Length, fill=Species, color=Species)) + 
+  geom_boxplot(alpha=0.8) +
+  #geom_density(alpha=0.3) +
+  scale_y_continuous(expand = c(0, 0)) +
+  labs(x="CNV length", y="Count") +
+  bartheme()
+print(fig3a)
+stop()
 #if(savefiles){
 #  outfile = "fig3a.pdf"
 #  cat(" -> ", outfile, "\n")
@@ -152,7 +160,7 @@ print(fig3a)
 # SV length plot
 
 cat(" -> SV length KS test...\n")
-length_ks = ks.test(hu_svs$Length, mq_svs$Length)
+length_ks = wilcox.test(hu_svs$Length, mq_svs$Length)
 print(length_ks)
 # SV length KS test
 # SV length histogram
