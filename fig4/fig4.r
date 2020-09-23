@@ -1,6 +1,6 @@
 ############################################################
 # For macaque paper, 08.19
-# Makes de novo SV vs. paternal age plots
+# Makes gene proportion plots with SV and CAFE data
 # Gregg Thomas
 ############################################################
 
@@ -10,8 +10,10 @@ setwd(this.dir)
 library(ggplot2)
 library(reshape2)
 library(plyr)
+library(grid)
 library(ggpubr)
 library(cowplot)
+library("ggtree")
 
 source("../lib/read_svs.r")
 source("../lib/filter_svs.r")
@@ -21,235 +23,259 @@ cat("----------\n")
 
 ############################################################
 
-savefiles = F
-color_plots = T
-supp = F
+savefiles = T
+color_plots = F
+read_data = T
+rm_alus = T
 # Run options
 
 minlen = F
 maxlen = 100000
 # CNV length cutoffs
 
-sv_list = readSVs()
-sv_list = filterSVs(sv_list, minlen, maxlen)
-mq_events = sv_list[[1]]; hu_events = sv_list[[2]];
-# Read and filter data
-
-cat("----------\nSubsetting macaque data...\n")
-mqr = subsetSVs(mq_events)
-mq_events = mqr[[1]];
-
-cat("----------\nSubsetting human data...\n")
-hur = subsetSVs(hu_events)
-hu_events = hur[[1]];
-# Subset data
-
-######################
-# Macaque de novos
-
-cat("Counting denovos in macaques...\n")
-f1s = c(39243,39317,39313,39242,39226,39230,39234,39316,39227,39231,39318,39314,39229,39319)
-# A vector of the focal individuals
-
-mq_denovo = subset(mq_events, Denovo=="Y")
-mq_denovo_counts = count(mq_denovo, vars="Individual")
-mq_denovo = merge(mq_denovo, mq_denovo_counts, by="Individual")
-mq_denovo_counts = ddply(mq_denovo, .(Individual), summarize,
-                  Num.dsv=mean(freq),
-                  Maternal.age=mean(Maternal.age),
-                  Paternal.age=mean(Paternal.age))
-# Get the de novos.
-
-cat(" -> Adding F1s with no denovos...\n")
-for(ind in f1s){
-  if(!ind %in% mq_denovo_counts$Individual){
-    cur_mat = mq_events$Maternal.age[mq_events$Individual==ind][1]
-    cur_pat = mq_events$Paternal.age[mq_events$Individual==ind][1]
-    cur_row = data.frame("Individual"=ind, "Num.dsv"=0, "Maternal.age"=cur_mat, "Paternal.age"=cur_pat)
-    mq_denovo_counts = rbind(mq_denovo_counts,cur_row)
-  }
-}
-# Adding the trios with 0 counts back into the frame
-
-cat(" -> Correlating age with denovos...\n")
-pat_fit = lm(mq_denovo_counts$Num.dsv ~ mq_denovo_counts$Paternal.age)
-mat_fit = lm(mq_denovo_counts$Num.dsv ~ mq_denovo_counts$Maternal.age)
-
-mq_denovo_counts$Species = "Macaque"
-mq_denovo_counts$Species = factor(mq_denovo_counts$Species, levels=c("Macaque", "Human"))
-
-cat(" -> Plotting denovos...\n")
-fig4a = ggplot(mq_denovo_counts, aes(Paternal.age, Num.dsv, color=Species)) +
-  geom_point(size=3, alpha=0.5) +
-  #geom_smooth(method="glm", method.args=list(family='poisson'), fullrange=T, size=0.75, linetype="dashed", alpha=0) +
-  geom_smooth(method="glm", fullrange=T, size=0.75, linetype="dashed", alpha=0) +
-  ggtitle("") +
-  scale_y_continuous(limits=c(0, 5)) +
-  labs(x="Paternal age (years)", y="# de novo CNVs") +
-  theme_classic() +
-  theme(axis.text=element_text(size=12), 
-        axis.title=element_text(size=16), 
-        axis.title.y=element_text(margin=margin(t=0,r=10,b=0,l=0),color="black"), 
-        axis.title.x=element_text(margin=margin(t=0,r=0,b=0,l=0),color="black"),
-        axis.line=element_line(colour='#595959',size=0.75),
-        axis.ticks=element_line(colour="#595959",size = 1),
-        axis.ticks.length=unit(0.2,"cm"),
-        legend.position="right",
-        legend.key.width = unit(0.75,  unit = "cm"),
-        legend.spacing.x = unit(0.25, 'cm'),
-        legend.title = element_blank(),
-        legend.text=element_text(size=12),
-        plot.title = element_text(hjust=0.5, size=20),
-        plot.margin = unit(c(1,1,0,1), "cm")
-  )
-
-if(color_plots){
-  fig4a = fig4a + scale_color_manual(name="", values=c('#490092','#920000'), labels=c("Macaque","Human"), drop=FALSE)
-}else{
-  fig4a = fig4a + scale_color_grey(name="", labels=c("Macaque","Human"), drop=FALSE) +
-    ggtitle("Macaque") +
-    theme(plot.margin = unit(c(1,1,1,1), "cm"))
-}
-
-print(fig4a)
-# Macaque de novo plot
-
-mq_rate = mean(mq_denovo_counts$Num.dsv / 2)
-mq_se = ((sd(mq_denovo_counts$Num.dsv) / 2) / sqrt(length(mq_denovo_counts$Individual))) * 1.96
-cat(" -> Macaque CNV rate per haploid generation: ", mq_rate, " (95% CI +/-", mq_se, ")\n", sep="")
-# Macaque rate per haploid generation
-
-cat(" -> Macaque CNV paternal age correlation: r2 = ", summary(pat_fit)$r.squared, ", df = ", summary(pat_fit)$df[2], ", p = ", summary(pat_fit)$coefficients[2,4], "\n", sep="")
-# Paternal age regression
-
-# Macaque de novos
-######################
-
-######################
-# Human de novos (Brandler's count)
-cat("Reading Brandler data...\n")
-brandler_svs = read.csv("../data/brandler-denovo.csv", header=TRUE)
-brandler_info = read.csv("../data/brandler-samples.csv", header=TRUE)
-names(brandler_info)[2] = "ID"
-brandler_info = subset(brandler_info, Relationship=="Proband" | Relationship=="Sibling")
-# Have to read the Brandler files
-
-brandler_svs = subset(brandler_svs, SVTYPE %in% c("DEL","DUP"))
-if(supp){
-  brandler_svs = subset(brandler_svs, VALIDATION == 1)
-}
+if(read_data){
+  sv_list = readSVs()
+  sv_list = filterSVs(sv_list, minlen, maxlen)
+  mq_events = sv_list[[1]]; hu_events = sv_list[[2]];
+  # Read and filter data
   
-brandler_counts = count(brandler_svs, vars="ID")
-brandler_svs = merge(brandler_svs, brandler_counts, by="ID")
-
-brandler_counts = merge(brandler_counts, brandler_info[, c("ID", "Mother_chrono_age")], by="ID")
-brandler_counts = merge(brandler_counts, brandler_info[, c("ID", "Father_chrono_age")], by="ID")
-names(brandler_counts)[2] = "Num.dsv"
-
-for(ind in brandler_info$ID){
-  if(!ind %in% brandler_counts$ID){
-    cur_mat = brandler_info$Mother_chrono_age[brandler_info$ID==ind][1]
-    cur_pat = brandler_info$Father_chrono_age[brandler_info$ID==ind][1]
-    cur_row = data.frame("ID"=ind, "Num.dsv"=0, "Mother_chrono_age"=cur_mat, "Father_chrono_age"=cur_pat)
-    brandler_counts = rbind(brandler_counts,cur_row)
+  if(rm_alus){
+    hu_events = subset(hu_events, Length < 275 | Length > 325)
+    mq_events = subset(mq_events, Length < 275 | Length > 325)
   }
+  # For Alu stuff
+  
+  cat("----------\nSubsetting macaque data...\n")
+  mqr = subsetSVs(mq_events)
+  mq_svs = mqr[[4]]
+  
+  cat("----------\nSubsetting human data...\n")
+  hur = subsetSVs(hu_events)
+  hu_svs = hur[[4]]
+  # Subset data
 }
-# Adding the trios with 0 counts back into the frame
 
-brandler_counts$Mother_chrono_age = brandler_counts$Mother_chrono_age / 12
-brandler_counts$Father_chrono_age = brandler_counts$Father_chrono_age / 12
+######################
+cat("Reading CAFE data...\n")
+cafe_data = read.csv("../data/cafe-traits.csv", header=TRUE)
+cafe_data = cafe_data[order(cafe_data$node),]
+#cafe_data = subset(cafe_data, Node.type=="Tip")
+cafe_data$genes.changed = cafe_data$Genes.gained + cafe_data$Genes.lost
+cafe_data$perc.genes.gained = cafe_data$Genes.gained / cafe_data$genes.changed
+cafe_data$perc.genes.lost = cafe_data$Genes.lost / cafe_data$genes.changed
 
-cat(" -> Correlating age with denovos...\n")
-pat_fit_h = lm(brandler_counts$Num.dsv ~ brandler_counts$Father_chrono_age)
-mat_fit_h = lm(brandler_counts$Num.dsv ~ brandler_counts$Mother_chrono_age)
+cafe_data$branch.str = paste(cafe_data$Genes.gained, "/", cafe_data$Genes.lost)
 
-cat(" -> Plotting human denovos...\n")
-fig4b = ggplot(brandler_counts, aes(Father_chrono_age, Num.dsv, color="Human")) +
-  geom_point(size=3, alpha=0.5) +
-  #geom_smooth(method="glm", method.args=list(family='poisson'), fullrange=T, size=0.75, linetype="dashed", alpha=0) +
-  geom_smooth(method="glm", fullrange=T, size=0.75, linetype="dashed", alpha=0) +
-  ggtitle("") +
-  scale_y_continuous(limits=c(0, 5)) +
-  labs(x="Paternal age (years)", y="") +
-  theme_classic() +
-  theme(axis.text=element_text(size=12), 
-        axis.title=element_text(size=16), 
-        axis.title.y=element_text(margin=margin(t=0,r=10,b=0,l=0),color="black"), 
-        axis.title.x=element_text(margin=margin(t=0,r=0,b=0,l=0),color="black"),
-        axis.line=element_line(colour='#595959',size=0.75),
-        axis.ticks=element_line(colour="#595959",size = 1),
-        axis.ticks.length=unit(0.2,"cm"),
-        legend.position="right",
-        legend.key.width = unit(0.75,  unit = "cm"),
-        legend.spacing.x = unit(0.25, 'cm'),
-        legend.title = element_blank(),
-        legend.text=element_text(size=12),
-        plot.title = element_text(hjust=0.5, size=20),
-        plot.margin = unit(c(1,1,0,1), "cm")
-  )
+cat("Plotting tree\n")
+tree = read.tree("../data/cafe-tree.tre")
+
+fig4a = ggtree(tree, size=1, ladderize=F) +
+  scale_color_manual(values=c("black","#db6d00")) +
+  geom_tiplab(color="#333333", fontface='italic', size=5) +
+  ggplot2::xlim(0, 135) +
+  theme(plot.title=element_text(size=16, face="bold"))
+  #geom_text(aes(x=branch, label=cafe_data$branch.str), size=3.5, 
+  #          vjust=-.5, color="#333333")
+print(fig4a)
+
+######################
+cat("Reading macaque CAFE genes\n")
+mq_cafe = read.csv("../data/macaque-cafe-genes.csv")
+mq_cafe_dels = sum(mq_cafe$Num.del)
+mq_cafe_dups = sum(mq_cafe$Num.dup)
+
+#mq_cafe_genes = subset(mq_cafe, SV.key %in% mq_svs$SV.key)
+#mq_cafe_genes = subset(mq_cafe_genes, SV.type=="<DEL>" | SV.type=="<DUP>")
+
+#mq_cafe_dels = length(mq_cafe_genes$SV.type[mq_cafe_genes$SV.type=="<DEL>"])
+#mq_cafe_dups = length(mq_cafe_genes$SV.type[mq_cafe_genes$SV.type=="<DUP>"])
+
+mq_cafe_total = mq_cafe_dels + mq_cafe_dups
+mq_cafe_del_p = mq_cafe_dels / mq_cafe_total
+mq_cafe_dup_p = mq_cafe_dups / mq_cafe_total
+
+cat("Reading human CAFE genes\n")
+hu_cafe = read.csv("../data/brandler-cafe-genes.csv")
+hu_cafe_dels = sum(hu_cafe$Num.del)
+hu_cafe_dups = sum(hu_cafe$Num.dup)
+
+#hu_cafe_genes = subset(hu_cafe, SV.key %in% hu_svs$SV.key)
+#hu_cafe_genes = subset(hu_cafe_genes, SV.type=="<DEL>" | SV.type=="<DUP>")
+
+#hu_cafe_dels = length(hu_cafe_genes$SV.type[hu_cafe_genes$SV.type=="<DEL>"])
+#hu_cafe_dups = length(hu_cafe_genes$SV.type[hu_cafe_genes$SV.type=="<DUP>"])
+
+hu_cafe_total = hu_cafe_dels + hu_cafe_dups
+hu_cafe_del_p = hu_cafe_dels / hu_cafe_total
+hu_cafe_dup_p = hu_cafe_dups / hu_cafe_total
+
+######################
+# CAFE counts
+mq_changes = cafe_data$genes.changed[cafe_data$Node.ID=="Mmula"]
+mq_gains = cafe_data$Genes.gained[cafe_data$Node.ID=="Mmula"]
+mq_losses = cafe_data$Genes.lost[cafe_data$Node.ID=="Mmula"]
+mq_gains_p = cafe_data$perc.genes.gained[cafe_data$Node.ID=="Mmula"]
+mq_losses_p = cafe_data$perc.genes.lost[cafe_data$Node.ID=="Mmula"]
+
+hu_changes = cafe_data$genes.changed[cafe_data$Node.ID=="Hsapi"]
+hu_gains = cafe_data$Genes.gained[cafe_data$Node.ID=="Hsapi"]
+hu_losses = cafe_data$Genes.lost[cafe_data$Node.ID=="Hsapi"]
+hu_gains_p = cafe_data$perc.genes.gained[cafe_data$Node.ID=="Hsapi"]
+hu_losses_p = cafe_data$perc.genes.lost[cafe_data$Node.ID=="Hsapi"]
+
+cafe_genes = data.frame("Label"=c("Macaque gene deletions/duplications","Macaque gene gains/losses",
+                                  "Human gene deletions/duplications", "Human gene gains/losses"),
+                        "total.svs"=c(mq_cafe_total, mq_changes, hu_cafe_total, hu_changes),
+                        "num.del"=c(mq_cafe_dels, mq_losses, hu_cafe_dels, hu_losses),
+                        "num.dup"=c(mq_cafe_dups, mq_gains, hu_cafe_dups, hu_gains),
+                        "prop.del"=c(mq_cafe_del_p, mq_losses_p, hu_cafe_del_p, hu_losses_p),
+                        "prop.dup"=c(mq_cafe_dup_p, mq_gains_p, hu_cafe_dup_p, hu_gains_p))
+
+cafe_prop = subset(cafe_genes, select=c("Label","prop.del","prop.dup"))
+cafe_prop_melt = melt(cafe_prop, id.vars="Label")
+
+######################
+# Macaque counts
+mq_cafe_genes = data.frame("Label"=c("Polymorphic","Fixed",
+                                     "Polymorphic","Fixed"),
+                           "Type"=c("Deletions","Deletions","Duplications","Duplications"),
+                           "prop"=c(mq_cafe_del_p,mq_losses_p,mq_cafe_dup_p,mq_gains_p),
+                           "count"=c(mq_cafe_dels,mq_losses,mq_cafe_dups,mq_gains))
+
+######################
+# Human counts
+hu_cafe_genes = data.frame("Label"=c("Polymorphic","Fixed",
+                                     "Polymorphic","Fixed"),
+                           "Type"=c("Deletions","Deletions","Duplications","Duplications"),
+                           "prop"=c(hu_cafe_del_p,hu_losses_p,hu_cafe_dup_p,hu_gains_p),
+                           "count"=c(hu_cafe_dels,hu_losses,hu_cafe_dups,hu_gains))
+
+######################
+# Gene proportions plot (Macaque)
+fig4b = ggplot(mq_cafe_genes, aes(x=Label, y=prop, fill=Type, label=count)) +
+  geom_bar(stat='identity') +
+  geom_text(size=6, position=position_stack(vjust=0.5), color="#f2f2f2") +
+  scale_x_discrete(limits=c("Polymorphic", "Fixed")) +
+  scale_y_continuous(expand=c(0,0)) +
+  labs(x="", y="Proportion of changes") +
+  coord_flip() + 
+  bartheme() +
+  theme(legend.position="bottom")
+  # theme_classic() +
+  # theme(axis.text.x=element_text(size=10),
+  #       axis.text.y=element_text(size=16),
+  #       axis.title=element_text(size=12), 
+  #       axis.title.y=element_text(margin=margin(t=0,r=10,b=0,l=0),color="black"), 
+  #       axis.title.x=element_text(margin=margin(t=10,r=0,b=0,l=0),color="black"),
+  #       axis.line=element_line(colour='#595959',size=0.75),
+  #       axis.ticks=element_line(colour="#595959",size = 1),
+  #       axis.ticks.length=unit(0.2,"cm"),
+  #       axis.ticks.y=element_blank(),
+  #       legend.position="bottom",
+  #       plot.margin = unit(c(1,1,0,0), "cm"),
+  #       plot.title = element_text(size=16, hjust=0.5, color="#333333")
+  # )
 
 if(color_plots){
-  fig4b = fig4b + scale_color_manual(name="", breaks=c("Macaque","Human"), values=c("Macaque"='#490092',"Human"='#920000'), drop=FALSE)
+  fig4b = fig4b + scale_fill_manual(name="", labels=c("Deletions", "Duplications"), values=c("#009292","#b585e5"))
 }else{
-  fig4b = fig4b + scale_color_grey(name="", labels=c("Macaque","Human"), drop=FALSE) +
-    ggtitle("Human") +
-    theme(plot.margin = unit(c(1,1,1,1), "cm"))
+  fig4b = fig4b + scale_fill_grey(name="", labels=c("Deletions","Duplications"))
 }
 
 print(fig4b)
-
-hu_rate = mean(brandler_counts$Num.dsv / 2)
-hu_se = ((sd(brandler_counts$Num.dsv) / 2) / sqrt(length(brandler_counts$ID))) * 1.96
-cat(" -> Human CNV rate per haploid generation: ", hu_rate, " (95% CI +/-", hu_se, ")\n", sep="")
-# Macaque rate per haploid generation
-
-cat(" -> Human CNV paternal age correlation: r2 = ", summary(pat_fit_h)$r.squared, ", df = ", summary(pat_fit_h)$df[2], ", p = ", summary(pat_fit_h)$coefficients[2,4], "\n", sep="")
-# Paternal age regression
-
-# Human de novos (Brandler's count)
+# Gene proportions plot (Macaque)
 ######################
+# Gene proportions plot (Human)
+fig4c = ggplot(hu_cafe_genes, aes(x=Label, y=prop, fill=Type, label=count)) +
+  geom_bar(stat='identity') +
+  geom_text(size=4, position=position_stack(vjust=0.5), color="#f2f2f2") +
+  scale_fill_manual(name="", labels=c("Deletions", "Duplications"), values=c("#009292","#b585e5")) +
+  scale_x_discrete(limits=c("Polymorphic", "Fixed")) +
+  scale_y_continuous(expand=c(0,0)) +
+  ggtitle("Human") +
+  labs(x="", y="Proportion of changes") +
+  coord_flip() + 
+  bartheme() +
+  theme(legend.position="bottom")
+  # theme_classic() +
+  # theme(axis.text.x=element_text(size=10),
+  #       axis.text.y=element_text(size=12),
+  #       axis.title=element_text(size=12), 
+  #       axis.title.y=element_text(margin=margin(t=0,r=10,b=0,l=0),color="black"), 
+  #       axis.title.x=element_text(margin=margin(t=0,r=0,b=0,l=0),color="black"),
+  #       axis.line=element_line(colour='#595959',size=0.75),
+  #       axis.ticks=element_line(colour="#595959",size = 1),
+  #       axis.ticks.length=unit(0.2,"cm"),
+  #       axis.ticks.y=element_blank(),
+  #       legend.position="bottom",
+  #       plot.margin = unit(c(1,1,0,0), "cm"),
+  #       plot.title = element_text(size=16, hjust=0.5, color="#333333")
+  # )
+print(fig4c)
+# Gene proportions plot (Human)
+######################
+
+cat(" -> Chi-squared test for macaque SVs vs human SVs...\n")
+sv_comp_counts = subset(cafe_genes, select=c("Label","num.del","num.dup"))
+sv_comp_counts = subset(sv_comp_counts, !Label %in% c("Macaque gene gains/losses", "Human gene gains/losses"))
+sv_comp_counts_t = t(sv_comp_counts[,2:ncol(sv_comp_counts)])
+colnames(sv_comp_counts_t) <- sv_comp_counts[,1]
+sv_comp_chi = chisq.test(sv_comp_counts_t)
+print(sv_comp_chi)
+# Macaque CAFE vs SV genes test
+
+cat(" -> Chi-squared test for macaque SV vs CAFE genes...\n")
+mq_comp_counts = subset(cafe_genes, select=c("Label","num.del","num.dup"))
+mq_comp_counts = subset(mq_comp_counts, !Label %in% c("Human gene deletions/duplications", "Human gene gains/losses"))
+mq_comp_counts_t = t(mq_comp_counts[,2:ncol(mq_comp_counts)])
+colnames(mq_comp_counts_t) <- mq_comp_counts[,1]
+mq_comp_chi = chisq.test(mq_comp_counts_t)
+print(mq_comp_chi)
+# Macaque CAFE vs SV genes test
+
+cat(" -> Chi-squared test for human SV vs CAFE genes...\n")
+hu_comp_counts = subset(cafe_genes, select=c("Label","num.del","num.dup"))
+hu_comp_counts = subset(hu_comp_counts, !Label %in% c("Macaque gene deletions/duplications", "Macaque gene gains/losses"))
+hu_comp_counts_t = t(hu_comp_counts[,2:ncol(hu_comp_counts)])
+colnames(hu_comp_counts_t) <- hu_comp_counts[,1]
+hu_comp_chi = chisq.test(hu_comp_counts_t)
+print(hu_comp_chi)
+# Human CAFE vs SV genes test
+# Gene proportions plot
+######################
+
 
 ######################
 # Combine plots for figure
-cat("Combining plots...\n")
-prow = plot_grid(fig4a + theme(legend.position="none"),
-                 fig4b + theme(legend.position="none"),
-                 align = 'vh',
-                 labels = c("A", "B"),
-                 label_size = 24,
-                 hjust = -1,
-                 nrow = 1)
+cat("Combining proportion plots...\n")
 
+#prow = plot_grid(fig4b + theme(legend.position="none"),
+#                 fig4c + theme(legend.position="none"),
+#                 align = 'vh',
+#                 labels = c("B", "C"),
+#                 label_size = 24,
+#                 hjust = -1,
+#                 nrow = 1)
+#legend_b = get_legend(fig4b + theme(legend.direction="horizontal", legend.justification="center", legend.box.just="bottom"))
+#ptop = plot_grid(nullGrob(), fig4a, nullGrob(), nrow=1, rel_widths=c(0.1,0.6,0.1))
+#
+#pcombo = plot_grid(ptop, prow, nrow=2, labels=c("A",""), label_size=24, rel_heights=c(1,0.8))
+#fig4 = plot_grid(pcombo, legend_b, ncol=1, rel_heights=c(1, 0.1))
+# For macaque and human proportion plots
 
-legend_b = get_legend(fig4a + theme(legend.direction="horizontal", legend.justification="center", legend.box.just="bottom"))
-# Extract the legend from one of the plots
+fig4 = plot_grid(fig4a, fig4b, nrow=2, labels=c("A","B"), label_size=24)
+# For macaque proportion plot only
 
-if(color_plots){
-  p = plot_grid(prow, legend_b, ncol=1, rel_heights=c(1, 0.1))
-}else{
-  p = prow
-}
-# For color plots: Add the legend underneath the row we made earlier with 10% of the height of the row
-# Otherwise, don't add
-
-print(p)
+print(fig4)
 
 if(savefiles){
-  outfile = "fig4"
-  if(supp){
-    outfile = paste(outfile, "_S5", sep="")
+  if(color_plots){
+    outfile = "fig4-temp.pdf"
+  }else{
+    outfile = "fig4-grey-temp.pdf"
   }
-  if(!color_plots){
-    outfile = paste(outfile, "-grey", sep="")
-  }
-  outfile = paste(outfile, ".pdf", sep="")
-  cat(" -> Outfile: ", outfile, "\n")
-  ggsave(filename=outfile, p, width=10, height=5, units="in")
+  cat(" -> ", outfile, "\n")
+  ggsave(filename=outfile, fig4, width=6, height=8, units="in")
 }
 # Save the figure
 ######################
-
-
-
-
-

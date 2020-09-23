@@ -209,9 +209,10 @@ geneCount <- function(cnv_df, gene_df){
 # Input info
 
 readdata = T
-readonly = T
-savelog = F
-filterdata = F
+readonly = F
+savelog = T
+filterdata = T
+rm_alus = T
 # Run options
 
 minlen = F
@@ -222,6 +223,7 @@ cat("Input info:\n")
 cat("readdata   = ", readdata, "\n")
 cat("readonly   = ", readonly, "\n")
 cat("filterdata = ", filterdata, "\n")
+cat("rm_alus    = ", rm_alus, "\n")
 cat("minlen     = ", minlen, "\n")
 cat("maxlen     = ", maxlen, "\n")
 cat("savelog    = ", savelog, "\n")
@@ -232,6 +234,9 @@ if(filterdata){
   logfile = paste(logfile, "-filtered", sep="")
 }else{
   logfile = paste(logfile, "-unfiltered", sep="")
+}
+if(rm_alus){
+  logfile = paste(logfile, "-rmalus", sep="")
 }
 if(maxlen){
   logfile = paste(logfile, "-", maxlen, ".log", sep="")
@@ -266,6 +271,12 @@ if(readdata){
   mq_events = sv_list[[1]]; hu_events = sv_list[[2]];
   # Read and filter data
   
+  if(rm_alus){
+    mq_events = subset(mq_events, Length < 275 | Length > 325)
+    hu_events = subset(hu_events, Length < 275 | Length > 325)
+  }
+  # For Alu stuff
+  
   cat("----------\nSubsetting macaque data...\n")
   mqr = subsetSVs(mq_events)
   mq_events_focal = mqr[[2]];
@@ -279,6 +290,20 @@ if(readdata){
   
   mq_denovo = subset(mq_events, Denovo=="Y")
   # Get macaque de novos
+  
+  # if(rm_alus){
+  #   mq_events = subset(mq_events, Length < 275 | Length > 325)
+  #   mq_events_focal = subset(mq_events_focal, Length < 275 | Length > 325)
+  #   mq_alleles = subset(mq_alleles, Length < 275 | Length > 325)
+  #   mq_alleles_focal = subset(mq_alleles_focal, Length < 275 | Length > 325)
+  #   mq_denovo = subset(mq_denovo, Length < 275 | Length > 325)
+  #   
+  #   hu_events = subset(hu_events, Length < 275 | Length > 325)
+  #   hu_events_focal = subset(hu_events_focal, Length < 275 | Length > 325)
+  #   hu_alleles = subset(hu_alleles, Length < 275 | Length > 325)
+  #   hu_alleles_focal = subset(hu_alleles_focal, Length < 275 | Length > 325)
+  # }
+  # # For Alu stuff
   
   genes = readGenes(maxlen=maxlen)
   hu_cnv_genes = genes[[1]]; hu_genes = genes[[2]]; mq_cnv_genes = genes[[3]]; mq_genes = genes[[4]];

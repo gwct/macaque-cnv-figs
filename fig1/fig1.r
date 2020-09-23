@@ -19,8 +19,9 @@ cat("----------\n")
 
 ############################################################
 
-savefiles = F
-color_plots = T
+savefiles = T
+color_plots = F
+rm_alus = T
 # Run options
 
 maxlen = 100000
@@ -31,6 +32,12 @@ sv_list = readSVs()
 sv_list = filterSVs(sv_list, minlen, maxlen)
 mq_events = sv_list[[1]]; hu_events = sv_list[[2]];
 # Read and filter data
+
+if(rm_alus){
+  hu_svs = subset(hu_svs, Length < 275 | Length > 325)
+  mq_svs = subset(mq_svs, Length < 275 | Length > 325)
+}
+# For Alu stuff
 
 cat("----------\nSubsetting macaque data...\n")
 mqr = subsetSVs(mq_events)
