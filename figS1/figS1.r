@@ -64,12 +64,15 @@ chr_p = ggplot(data.frame()) +
         axis.title=element_blank(),
         axis.line=element_blank(),
         axis.ticks=element_blank(),
-        legend.position="bottom",
-        legend.key.width = unit(0.75,  unit = "cm"),
-        legend.spacing.x = unit(0.25, 'cm'),
-        legend.title = element_blank(),
+        legend.position="none",
+        #legend.key.width = unit(0.75,  unit = "cm"),
+        #legend.spacing.x = unit(0.25, 'cm'),
+        #legend.title = element_blank(),
         legend.text=element_text(size=12),
-        plot.title = element_text(hjust=0.5, size=16),
+        plot.title=element_blank(),
+        panel.border=element_blank(),
+        panel.grid=element_blank(),
+        #plot.title = element_text(hjust=0.5, size=16),
         plot.margin = unit(c(0,0,0,0), "cm")
   ) +
   guides(color = guide_legend(override.aes = list(size=8)))
