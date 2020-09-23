@@ -31,13 +31,14 @@ library(ggbeeswarm)
 source("../lib/read_svs.r")
 source("../lib/filter_svs.r")
 source("../lib/subset_svs.r")
+source("../lib/design.r")
 
 cat("----------\n")
 
 ############################################################
 
-savefiles = F
-color_plots = T
+savefiles = T
+color_plots = F
 rm_alus = T
 # Run options
 
@@ -48,20 +49,20 @@ maxlen = 5000
 baseout = "fig3"
 human_full = F
 macaque_filter = T
-figs2_opt = F
 figs3_opt = F
-if(figs2_opt){
+figs4_opt = F
+if(figs3_opt){
   human_full = T
-  baseout = paste(baseout, "_S2", sep="")
-}else if(figs3_opt){
-  macaque_filter = F
   baseout = paste(baseout, "_S3", sep="")
+}else if(figs4_opt){
+  macaque_filter = F
+  baseout = paste(baseout, "_S4", sep="")
 }
 
 if(rm_alus){
   human_full = F
   macaque_filter = T
-  baseout = paste(baseout, "_S4", sep="")
+  baseout = paste(baseout, "_noalu", sep="")
 }
 # Supplemental figure options
 
@@ -84,29 +85,17 @@ hu_svs = hur[[4]]
 hu_svs = subset(hu_svs, Length <= maxlen)
 # Subset data
 
-#mq_svs$Length = -mq_svs$Length
-
 if(rm_alus){
   hu_svs = subset(hu_svs, Length < 275 | Length > 325)
   mq_svs = subset(mq_svs, Length < 275 | Length > 325)
 }
 # For Alu stuff
 
-#cat("----------\nPre-binning macaque data...\n")
-#mq_bins = binSVs(mq_svs)
-#mq_bins$Species = "Macaque"
-#mq_bins$count = -mq_bins$count
-
-#cat("----------\nPre-binning human data...\n")
-#hu_bins = binSVs(hu_svs)
-#hu_bins$Species = "Human"
-
-#hu_svs = subset(hu_svs, Length > 200)
 sv_alleles = rbind(hu_svs, mq_svs)
-#sv_bins = rbind(hu_bins, mq_bins)
+# Combine the two datasets
+
 #test_count = mq_events %>% group_by(Individual) %>% count(Individual)
 # Count number of events per individual
-# Combine the two datasets
 ######################
 
 ######################
@@ -118,48 +107,42 @@ fig3a = ggplot(sv_alleles, aes(x=Length, fill=Species, color=Species)) +
   #geom_density(alpha=0.3) +
   scale_y_continuous(expand = c(0, 0)) +
   labs(x="CNV length", y="Count") +
-  theme_classic() +
-  theme(axis.text=element_text(size=12), 
-        axis.title=element_text(size=16), 
-        axis.title.y=element_text(margin=margin(t=0,r=10,b=0,l=0),color="black"), 
-        axis.title.x=element_text(margin=margin(t=10,r=0,b=0,l=0),color="black"),
-        axis.line=element_line(colour='#595959',size=0.75),
-        axis.ticks=element_line(colour="#595959",size = 1),
-        axis.ticks.length=unit(0.2,"cm"),
-        legend.position="right",
-        legend.key.width = unit(0.75,  unit = "cm"),
-        legend.spacing.x = unit(0.25, 'cm'),
-        legend.title = element_blank(),
-        legend.text=element_text(size=12),
-        plot.title = element_text(hjust=0.5, size=20),
-        plot.margin = unit(c(1,1,1,1), "cm")
-  )
-
+  bartheme()
 if(color_plots){
   fig3a = fig3a + scale_fill_manual(name="", values=c("Macaque"='#490092',"Human"='#920000'))
 }else{
-  #fig3a = fig3a + scale_fill_grey(name="", labels=c("Human","Macaque"))
-  #fig3a = fig3a + scale_fill_manual(name="", values=c("Macaque"='#d6d6d6',"Human"='#5c5c5c'))
   fig3a = fig3a + scale_fill_manual(name="", values=c("Macaque"='#5c5c5c',"Human"=NA))
   }
 fig3a = fig3a + scale_color_manual(name="", values=c("Macaque"=NA,"Human"='#000000'))
-
 print(fig3a)
+# Full length histogram
 
 #if(savefiles){
 #  outfile = "fig3a.pdf"
 #  cat(" -> ", outfile, "\n")
 #  ggsave(filename=outfile, fig3a, width=6, height=4, units="in")
 #}
-# SV length plot
+
+fig3a_box = ggplot(sv_alleles, aes(x=Species, y=Length, fill=Species)) + 
+  geom_quasirandom(size=2, alpha=0.7, width=0.25, color="#d3d3d3") +
+  geom_boxplot(outlier.shape=NA, alpha=0.3, width=0.5, color="#000000") +
+  labs(y="CNV Length", x="All CNVs") +
+  bartheme() +
+  theme(legend.position="none")
+if(color_plots){
+  fig3a_box = fig3a_box + scale_fill_manual(name="", values=c("Macaque"='#490092', "Human"='#920000'))
+}else{
+  fig3a_box = fig3a_box + scale_fill_manual(name="", values=c("Macaque"='#5c5c5c', "Human"=NA))
+}
+print(fig3a_box)
+# Full lenght boxplot
+#ggsave(filename="figS3.png", fig3a, width=6, height=4, units="in")
 
 cat(" -> SV length KS test...\n")
-length_ks = wilcox.test(hu_svs$Length, mq_svs$Length)
+length_ks = ks.test(hu_svs$Length, mq_svs$Length)
 print(length_ks)
-# SV length KS test
-# SV length histogram
+# Full length KS test
 ######################
-
 
 ######################
 # SV deletion length histogram
@@ -172,23 +155,7 @@ fig3b = ggplot(sv_dels, aes(x=Length, fill=Species, color=Species)) +
   geom_histogram(alpha=0.8, position="identity", bins=50) +
   scale_y_continuous(expand = c(0, 0)) +
   labs(x="Deletion length", y="Count") +
-  theme_classic() +
-  theme(axis.text=element_text(size=12), 
-        axis.title=element_text(size=16), 
-        axis.title.y=element_text(margin=margin(t=0,r=10,b=0,l=0),color="black"), 
-        axis.title.x=element_text(margin=margin(t=10,r=0,b=0,l=0),color="black"),
-        axis.line=element_line(colour='#595959',size=0.75),
-        axis.ticks=element_line(colour="#595959",size = 1),
-        axis.ticks.length=unit(0.2,"cm"),
-        legend.position="right",
-        legend.key.width = unit(0.75,  unit = "cm"),
-        legend.spacing.x = unit(0.25, 'cm'),
-        legend.title = element_blank(),
-        legend.text=element_text(size=12),
-        plot.title = element_text(hjust=0.5, size=20),
-        plot.margin = unit(c(1,1,0,1), "cm")
-  )
-
+  bartheme()
 if(color_plots){
   fig3b = fig3b + scale_fill_manual(name="", values=c("Macaque"='#490092',"Human"='#920000'))
 }else{
@@ -196,22 +163,33 @@ if(color_plots){
   fig3b = fig3b + scale_fill_manual(name="", values=c("Macaque"='#5c5c5c',"Human"=NA))
 }
 fig3b = fig3b + scale_color_manual(name="", values=c("Macaque"=NA,"Human"='#000000'))
-
 print(fig3b)
+# Deletion length histogram
 
 #if(savefiles){
 #  outfile = "fig3b.pdf"
 #  ggsave(filename=outfile, fig3b, width=6, height=4, units="in")
 #}
-# SV del length plot
+
+fig3b_box = ggplot(sv_dels, aes(x=Species, y=Length, fill=Species)) + 
+  geom_quasirandom(size=2, alpha=0.7, width=0.25, color="#d3d3d3") +
+  geom_boxplot(outlier.shape=NA, alpha=0.3, width=0.5, color="#000000") +
+  labs(y="CNV Length", x="Deletions") +
+  bartheme() +
+  theme(legend.position="none")
+if(color_plots){
+  fig3b_box = fig3b_box + scale_fill_manual(name="", values=c("Macaque"='#490092', "Human"='#920000'))
+}else{
+  fig3b_box = fig3b_box + scale_fill_manual(name="", values=c("Macaque"='#5c5c5c', "Human"=NA))
+}
+print(fig3b_box)
+# Deletion length boxplot
 
 cat(" -> SV deletion length KS test...\n")
 del_ks = ks.test(mq_dels$Length, hu_dels$Length)
 print(del_ks)
-# SV del length KS test
-# SV deletion length histogram
+# Deletion length KS test
 ######################
-
 
 ######################
 # SV duplication length histogram
@@ -225,32 +203,15 @@ fig3c = ggplot(sv_dups, aes(x=Length, fill=Species, color=Species)) +
   #scale_fill_manual(name="", labels=c("Macaque","Human"), values=c("#006ddb","#db6d00")) +
   scale_y_continuous(expand = c(0, 0)) +
   labs(x="Duplication length", y="Count") +
-  theme_classic() +
-  theme(axis.text=element_text(size=12), 
-        axis.title=element_text(size=16), 
-        axis.title.y=element_text(margin=margin(t=0,r=10,b=0,l=0),color="black"), 
-        axis.title.x=element_text(margin=margin(t=10,r=0,b=0,l=0),color="black"),
-        axis.line=element_line(colour='#595959',size=0.75),
-        axis.ticks=element_line(colour="#595959",size = 1),
-        axis.ticks.length=unit(0.2,"cm"),
-        legend.position="right",
-        legend.key.width = unit(0.75,  unit = "cm"),
-        legend.spacing.x = unit(0.25, 'cm'),
-        legend.title = element_blank(),
-        legend.text=element_text(size=12),
-        plot.title = element_text(hjust=0.5, size=20),
-        plot.margin = unit(c(1,1,0,1), "cm")
-  )
-
+  bartheme()
 if(color_plots){
   fig3c = fig3c + scale_fill_manual(name="", values=c("Macaque"='#490092',"Human"='#920000'))
 }else{
-  #fig3c = fig3c + scale_fill_grey(name="", labels=c("Human","Macaque"))
   fig3c = fig3c + scale_fill_manual(name="", values=c("Macaque"='#5c5c5c',"Human"=NA))
 }
 fig3c = fig3c + scale_color_manual(name="", values=c("Macaque"=NA,"Human"='#000000'))
-
 print(fig3c)
+# Duplication length histogram
 
 #if(savefiles){
 #  outfile = "fig3c.pdf"
@@ -258,18 +219,30 @@ print(fig3c)
 #}
 # SV del length plot
 
+fig3c_box = ggplot(sv_dups, aes(x=Species, y=Length, fill=Species)) + 
+  geom_quasirandom(size=2, alpha=0.7, width=0.25, color="#d3d3d3") +
+  geom_boxplot(outlier.shape=NA, alpha=0.3, width=0.5, color="#000000") +
+  labs(y="CNV Length", x="Duplications") +
+  bartheme() +
+  theme(legend.position="none")
+if(color_plots){
+  fig3c_box = fig3c_box + scale_fill_manual(name="", values=c("Macaque"='#490092', "Human"='#920000'))
+}else{
+  fig3c_box = fig3c_box + scale_fill_manual(name="", values=c("Macaque"='#5c5c5c', "Human"=NA))
+}
+print(fig3c_box)
+# Duplication length boxplot
+
 cat(" -> SV duplication length KS test...\n")
 dup_ks = ks.test(mq_dups$Length, hu_dups$Length)
 print(dup_ks)
-# SV del length KS test
-# SV deletion length histogram
+# Duplication length KS test
 ######################
-
 
 ######################
 # Combine plots for figure
 
-cat("Combining proportion plots...\n")
+cat("Combining histograms...\n")
 prow = plot_grid(fig3b + theme(legend.position="none"),
                  fig3c + theme(legend.position="none"),
                  align = 'vh',
@@ -289,14 +262,25 @@ p = plot_grid(pcombo, legend_b, ncol=1, rel_heights=c(1, 0.1))
 # Add the legend underneath the row we made earlier with 10% of the height of the row.
 print(p)
 
+cat("Combining boxplots...\n")
+p_box = plot_grid(fig3a_box, fig3b_box, fig3c_box, nrow=1, 
+                 align = 'vh',
+                 labels = c("A", "B", "C"),
+                 label_size = 24,
+                 hjust = -1)
+# Combine boxplots
+
 if(savefiles){
   if(color_plots){
     outfile = paste(baseout, ".pdf", sep="")
+    outfile_box = paste(baseout, "-box.pdf", sep="")
   }else{
     outfile = paste(baseout, "-grey.png", sep="")
+    outfile_box = paste(baseout, "-box-grey.png", sep="")
   }
   cat(" -> ", outfile, "\n")
   ggsave(filename=outfile, p, width=10, height=10, units="in")
+  ggsave(filename=outfile_box, p_box, width=10, height=4, units="in")
 }
 # Save the figure
 ######################
@@ -387,6 +371,16 @@ fig3a = ggplot(sv_alleles, aes(x=Species, y=Length)) +
 
 print(fig3a)
 ## Violin plot
+
+#cat("----------\nPre-binning macaque data...\n")
+#mq_bins = binSVs(mq_svs)
+#mq_bins$Species = "Macaque"
+#mq_bins$count = -mq_bins$count
+
+#cat("----------\nPre-binning human data...\n")
+#hu_bins = binSVs(hu_svs)
+#hu_bins$Species = "Human"
+#sv_bins = rbind(hu_bins, mq_bins)
 
 #fig3a = ggplot(sv_bins, aes(x=bin, y=count, fill=Species)) + 
 fig3a = ggplot(sv_bins, aes(x = bin, y = ifelse(Species == "Macaque",-1, 1)*count, fill = Species)) + 

@@ -209,9 +209,9 @@ geneCount <- function(cnv_df, gene_df){
 # Input info
 
 readdata = T
-readonly = F
+readonly = T
 savelog = F
-filterdata = T
+filterdata = F
 # Run options
 
 minlen = F
@@ -500,3 +500,12 @@ if(savelog){
 }
 
 cat("Done!")
+
+
+mq_exon_ratio = matrix(c(441,90,3313,301), nrow=2, dimnames=list(c("total", "exon"), c("dup","del")))
+mq_exon_chi = chisq.test(mq_exon_ratio)
+print(mq_exon_chi)
+
+hu_exon_ratio = matrix(c(1867,451,15746,2419), nrow=2, dimnames=list(c("total", "exon"), c("dup","del")))
+hu_exon_chi = chisq.test(hu_exon_ratio)
+print(hu_exon_chi)
