@@ -5,8 +5,10 @@
 # bedtools intersect files.
 ############################################################
 
-import sys, datetime, lib.mqcore as MQ
+import sys, datetime
 from collections import defaultdict
+sys.path.append("../lib/");
+import mqcore as MQ
 
 ############################################################
 # Functions

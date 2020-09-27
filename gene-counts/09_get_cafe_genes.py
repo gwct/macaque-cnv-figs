@@ -5,8 +5,10 @@
 # are overlapped by CNVs.
 ############################################################
 
-import sys, re, lib.mqcore as MQ
+import sys, re
 from collections import defaultdict
+sys.path.append("../lib/");
+import mqcore as MQ
 
 ############################################################
 

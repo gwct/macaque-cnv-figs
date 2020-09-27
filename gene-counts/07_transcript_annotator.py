@@ -8,7 +8,9 @@
 # to another file as the background file for a Fisher's test.
 ############################################################
 
-import sys, lib.mqcore as MQ
+import sys, gzip
+sys.path.append("../lib/");
+import mqcore as MQ
 
 ############################################################
 
@@ -43,12 +45,12 @@ MQ.PWS( "# " + MQ.getDateTime() + " Getting annotation info...");
 transcript_go = {};
 go_accs = {};
 first = True;
-for line in open(gofile):
+for line in gzip.open(gofile):
     if first:
         first = False;
         continue;
     
-    line = line.strip().split("\t");
+    line = line.decode().strip().split("\t");
     #print(line);
 
     chrome = line[4];

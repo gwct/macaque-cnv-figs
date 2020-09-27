@@ -16,6 +16,7 @@ library(cowplot)
 source("../lib/read_svs.r")
 source("../lib/filter_svs.r")
 source("../lib/subset_svs.r")
+source("../lib/design.r")
 
 cat("----------\n")
 
@@ -23,7 +24,7 @@ cat("----------\n")
 
 savefiles = T
 color_plots = F
-supp = T
+supp = F
 rm_alus = T
 # Run options
 
@@ -118,8 +119,8 @@ cat(" -> Macaque CNV paternal age correlation: r2 = ", summary(pat_fit)$r.square
 ######################
 # Human de novos (Brandler's count)
 cat("Reading Brandler data...\n")
-brandler_svs = read.csv("../data/brandler-denovo.csv", header=TRUE)
-brandler_info = read.csv("../data/brandler-samples.csv", header=TRUE)
+brandler_svs = read.csv("../cnv-calls/brandler-denovo.csv", header=TRUE)
+brandler_info = read.csv("../sample-info/brandler-samples-raw.csv", header=TRUE)
 names(brandler_info)[2] = "ID"
 brandler_info = subset(brandler_info, Relationship=="Proband" | Relationship=="Sibling")
 brandler_svs$SVLEN = as.numeric(brandler_svs$SVLEN)
@@ -221,7 +222,7 @@ if(savefiles){
   if(!color_plots){
     outfile = paste(outfile, "-grey", sep="")
   }
-  outfile = paste(outfile, ".png", sep="")
+  outfile = paste(outfile, ".pdf", sep="")
   cat(" -> Outfile: ", outfile, "\n")
   ggsave(filename=outfile, p, width=10, height=5, units="in")
 }

@@ -6,7 +6,8 @@
 
 readSVs <- function() {
   cat("Reading human data...\n")
-  sv_all_hu = read.csv("../cnv-calls/brandler-cnvs.csv", header=T, comment.char="#")
+  sv_all_hu = read.csv(gzfile("../cnv-calls/brandler-cnvs.csv.gz", "rt"), header=T, comment.char="#")
+  #sv_all_hu = read.csv("../cnv-calls/brandler-cnvs.csv", header=T, comment.char="#")
   #sv_all_hu = read.csv(unz("../data/brandler-cnvs.zip", "brandler-cnvs.csv"), header = TRUE, sep = ",") 
   sv_all_hu$Species = "Human"
   sv_all_hu$Maternal.age = sv_all_hu$Maternal.age / 12

@@ -327,39 +327,4 @@ if(savelog){
 cat("Done!")
 
 
-# EXON DELETION TO DUPLICATION RATIOS
-# gene_ratios = matrix(c(1212,5483,226,1132), nrow=2, dimnames=list(c("macaque", "human"), c("del","dup")))
-# gene_ratio_chi = chisq.test(gene_ratios)
-# print(gene_ratio_chi)
-# 
-# up_ratios = matrix(c(469,3132,147,647), nrow=2, dimnames=list(c("macaque", "human"), c("del","dup")))
-# up_ratio_chi = chisq.test(up_ratios)
-# print(up_ratio_chi)
-# 
-# down_ratios = matrix(c(537,3174,149,693), nrow=2, dimnames=list(c("macaque", "human"), c("del","dup")))
-# down_ratio_chi = chisq.test(down_ratios)
-# print(down_ratio_chi)
-# 
-# transcript_ratios = matrix(c(2665,21746,476,4176), nrow=2, dimnames=list(c("macaque", "human"), c("del","dup")))
-# transcript_ratio_chi = chisq.test(transcript_ratios)
-# print(transcript_ratio_chi)
-# 
-# 
-# exon_ratios = matrix(c(936,7597,425,2587), nrow=2, dimnames=list(c("macaque", "human"), c("del","dup")))
-# exon_ratio_chi = chisq.test(exon_ratios)
-# print(exon_ratio_chi)
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# 
-# mq_exon_ratio = matrix(c(432,90,3214,291), nrow=2, dimnames=list(c("total", "exon"), c("dup","del")))
-# mq_exon_chi = chisq.test(mq_exon_ratio)
-# print(mq_exon_chi)
-# 
-# hu_exon_ratio = matrix(c(1784,443,13745,2267), nrow=2, dimnames=list(c("total", "exon"), c("dup","del")))
-# hu_exon_chi = chisq.test(hu_exon_ratio)
-# print(hu_exon_chi)
+

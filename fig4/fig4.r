@@ -18,6 +18,7 @@ library("ggtree")
 source("../lib/read_svs.r")
 source("../lib/filter_svs.r")
 source("../lib/subset_svs.r")
+source("../lib/design.r")
 
 cat("----------\n")
 
@@ -57,7 +58,7 @@ if(read_data){
 
 ######################
 cat("Reading CAFE data...\n")
-cafe_data = read.csv("../data/cafe-traits.csv", header=TRUE)
+cafe_data = read.csv("../cafe-data/cafe-traits.csv", header=TRUE)
 cafe_data = cafe_data[order(cafe_data$node),]
 #cafe_data = subset(cafe_data, Node.type=="Tip")
 cafe_data$genes.changed = cafe_data$Genes.gained + cafe_data$Genes.lost
@@ -67,7 +68,7 @@ cafe_data$perc.genes.lost = cafe_data$Genes.lost / cafe_data$genes.changed
 cafe_data$branch.str = paste(cafe_data$Genes.gained, "/", cafe_data$Genes.lost)
 
 cat("Plotting tree\n")
-tree = read.tree("../data/cafe-tree.tre")
+tree = read.tree("../cafe-data/cafe-tree.tre")
 
 fig4a = ggtree(tree, size=1, ladderize=F) +
   scale_color_manual(values=c("black","#db6d00")) +
@@ -80,30 +81,18 @@ print(fig4a)
 
 ######################
 cat("Reading macaque CAFE genes\n")
-mq_cafe = read.csv("../gene-counts/cafe/macaque-cafe-genes.csv")
+mq_cafe = read.csv("../cafe-data/macaque-cafe-genes.csv")
 mq_cafe_dels = sum(mq_cafe$Num.del)
 mq_cafe_dups = sum(mq_cafe$Num.dup)
-
-#mq_cafe_genes = subset(mq_cafe, SV.key %in% mq_svs$SV.key)
-#mq_cafe_genes = subset(mq_cafe_genes, SV.type=="<DEL>" | SV.type=="<DUP>")
-
-#mq_cafe_dels = length(mq_cafe_genes$SV.type[mq_cafe_genes$SV.type=="<DEL>"])
-#mq_cafe_dups = length(mq_cafe_genes$SV.type[mq_cafe_genes$SV.type=="<DUP>"])
 
 mq_cafe_total = mq_cafe_dels + mq_cafe_dups
 mq_cafe_del_p = mq_cafe_dels / mq_cafe_total
 mq_cafe_dup_p = mq_cafe_dups / mq_cafe_total
 
 cat("Reading human CAFE genes\n")
-hu_cafe = read.csv("../gene-counts/cafe/human-cafe-genes.csv")
+hu_cafe = read.csv("../cafe-data/human-cafe-genes.csv")
 hu_cafe_dels = sum(hu_cafe$Num.del)
 hu_cafe_dups = sum(hu_cafe$Num.dup)
-
-#hu_cafe_genes = subset(hu_cafe, SV.key %in% hu_svs$SV.key)
-#hu_cafe_genes = subset(hu_cafe_genes, SV.type=="<DEL>" | SV.type=="<DUP>")
-
-#hu_cafe_dels = length(hu_cafe_genes$SV.type[hu_cafe_genes$SV.type=="<DEL>"])
-#hu_cafe_dups = length(hu_cafe_genes$SV.type[hu_cafe_genes$SV.type=="<DUP>"])
 
 hu_cafe_total = hu_cafe_dels + hu_cafe_dups
 hu_cafe_del_p = hu_cafe_dels / hu_cafe_total
@@ -196,7 +185,7 @@ print(sv_comp_chi)
 
 cat(" -> Chi-squared test for macaque SV vs CAFE genes...\n")
 mq_comp_counts = subset(cafe_genes, select=c("Label","num.del","num.dup"))
-mq_comp_counts = subset(mq_comp_counts, !Label %in% c("Macaque gene deletions/duplications", "Macaque gene gains/losses"))
+mq_comp_counts = subset(mq_comp_counts, !Label %in% c("Human gene deletions/duplications", "Human gene gains/losses"))
 mq_comp_counts_t = t(mq_comp_counts[,2:ncol(mq_comp_counts)])
 colnames(mq_comp_counts_t) <- mq_comp_counts[,1]
 mq_comp_chi = chisq.test(mq_comp_counts_t)

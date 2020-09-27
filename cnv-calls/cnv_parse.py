@@ -6,7 +6,10 @@
 # more suitable for R
 ############################################################
 
-import sys, os, argparse, lib.mqcore as MQ, lib.cnvlib as cnvlib, numpy as np
+import sys, os, argparse, numpy as np
+sys.path.append("../lib/");
+import mqcore as MQ
+import cnvlib
 
 ############################################################
 if __name__ == '__main__':

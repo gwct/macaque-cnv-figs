@@ -37,9 +37,9 @@ cat("----------\n")
 
 ############################################################
 
-savefiles = T
+savefiles = F
 color_plots = F
-rm_alus = T
+rm_alus = F
 # Run options
 
 minlen = F
@@ -50,7 +50,7 @@ baseout = "fig2"
 human_full = F
 macaque_filter = T
 figs4_opt = F
-figs5_opt = T
+figs5_opt = F
 if(figs4_opt){
   human_full = T
   baseout = paste(baseout, "_S4", sep="")
@@ -106,7 +106,7 @@ fig2a = ggplot(sv_alleles, aes(x=Length, fill=Species, color=Species)) +
   geom_histogram(alpha=0.8, position="identity", bins=50) +
   #geom_density(alpha=0.3) +
   scale_y_continuous(expand = c(0, 0)) +
-  labs(x="CNV length", y="Count") +
+  labs(x="CNV length", y="# CNVs") +
   bartheme()
 if(color_plots){
   fig2a = fig2a + scale_fill_manual(name="", values=c("Macaque"='#490092',"Human"='#920000'))
@@ -154,7 +154,7 @@ sv_dels = rbind(hu_dels, mq_dels)
 fig2b = ggplot(sv_dels, aes(x=Length, fill=Species, color=Species)) + 
   geom_histogram(alpha=0.8, position="identity", bins=50) +
   scale_y_continuous(expand = c(0, 0)) +
-  labs(x="Deletion length", y="Count") +
+  labs(x="Deletion length", y="# Deletions") +
   bartheme()
 if(color_plots){
   fig2b = fig2b + scale_fill_manual(name="", values=c("Macaque"='#490092',"Human"='#920000'))
@@ -202,7 +202,7 @@ fig2c = ggplot(sv_dups, aes(x=Length, fill=Species, color=Species)) +
   geom_histogram(alpha=0.8, position="identity", bins=50) +
   #scale_fill_manual(name="", labels=c("Macaque","Human"), values=c("#006ddb","#db6d00")) +
   scale_y_continuous(expand = c(0, 0)) +
-  labs(x="Duplication length", y="Count") +
+  labs(x="Duplication length", y="# Duplications") +
   bartheme()
 if(color_plots){
   fig2c = fig2c + scale_fill_manual(name="", values=c("Macaque"='#490092',"Human"='#920000'))
@@ -275,8 +275,8 @@ if(savefiles){
     outfile = paste(baseout, ".pdf", sep="")
     outfile_box = paste(baseout, "-box.pdf", sep="")
   }else{
-    outfile = paste(baseout, "-grey.png", sep="")
-    outfile_box = paste(baseout, "-box-grey.png", sep="")
+    outfile = paste(baseout, "-grey.pdf", sep="")
+    outfile_box = paste(baseout, "-box-grey.pdf", sep="")
   }
   cat(" -> ", outfile, "\n")
   ggsave(filename=outfile, p, width=10, height=10, units="in")

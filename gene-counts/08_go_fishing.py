@@ -4,8 +4,9 @@
 # Fisher's test for GO enrichment
 #######################################################################
 
-import sys, os, scipy.stats as stats, lib.mqcore as MQ
-import argparse
+import sys, os, argparse, scipy.stats as stats
+sys.path.append("../lib/");
+import mqcore as MQ
 
 #######################################################################
 
@@ -202,7 +203,7 @@ with open(outfilename, "w") as outfile:
 
 	elif correction == "fdr":
 		pvals = sorted(pvals);
-		with open("test2.txt", "w") as pfile:
+		with open("go-fishing-tmp-pvals.txt", "w") as pfile:
 			pfile.write(",".join([ str(p) for p in pvals ]));
 		qvals = [];
 		corrected_alpha = 0.0;
