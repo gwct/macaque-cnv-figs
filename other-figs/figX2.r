@@ -62,7 +62,7 @@ parseDF <- function(df, mode) {
 
 ############################################################
 
-mq_gene_counts = read.csv("../data/macaque-cnv-gene-counts.csv", header=T)
+mq_gene_counts = read.csv("../data/macaque-cnv-gene-counts-noalu.csv", header=T)
 
 mq_genes = parseDF(mq_gene_counts, "gene")
 genes_p = genHist(mq_genes, "gene", "all")

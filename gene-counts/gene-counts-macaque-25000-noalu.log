@@ -1,0 +1,168 @@
+# Macaque CNV gene counter
+# Species:   macaque
+# PYTHON VERSION: 3.7.4
+# Script call:    .\06_gene_count_bed.py macaque 25000
+# Runtime:        09/26/2020 12:08:46
+# ----------------
+# Log file:        gene-counts-macaque-25000-noalu.log
+# Max CNV length:  25000
+# CNVs file:       bed/macaque-cnvs-filtered-noalu.bed
+# Gene file:       bed/macaque-cnvs-to-genes.bed
+# 10kb up file:    bed/macaque-cnvs-to-genes-10kb-up.bed
+# 10kb down file:  bed/macaque-cnvs-to-genes-10kb-down.bed
+# Transcript file: bed/macaque-cnvs-to-transcripts.bed
+# Exon file:       bed/macaque-cnvs-to-exons.bed
+# ----------------
+# 09.26.2020 | 12:08:46 Reading CNVs...
+# CNVs read: 3518
+
+# 09.26.2020 | 12:08:46 Counting gene overlaps...
+
+GENES
+AT LEAST ONE GENIC REGION: 1511
+NUM REGIONS OVERLAPPED AT LEAST ONCE: 1192
+
+	Del	Dup
+Full	32	20
+Part	1057	159
+
+	Del	Dup
+Full	28	16
+Part	1303	180
+
+All CNVs avg. overlap
+	Del	Dup
+Full	0.01	0.007
+Part	0.379	0.053
+All	0.389	0.06
+
+Overlapping CNVs avg. overlap
+	Del	Dup
+Full	1.214	1.562
+Part	1.025	1.039
+All	1.037	1.11
+
+TOTAL AVG. OVERLAP CONDITIONAL: 0.9060225016545335
+ENSMMUG00000005777	4	2
+ENSMMUG00000000181	6	0
+ENSMMUG00000010544	6	2
+ENSMMUG00000008130	6	1
+ENSMMUG00000001110	4	2
+ENSMMUG00000007434	4	2
+ENSMMUG00000000485	5	1
+ENSMMUG00000020410	7	1
+ENSMMUG00000014474	6	1
+ENSMMUG00000041338	6	0
+ENSMMUG00000037612	2	4
+
+# 09.26.2020 | 12:08:46 Counting 10kb upstream gene overlaps...
+
+10KB UP
+AT LEAST ONE GENIC REGION: 398
+NUM REGIONS OVERLAPPED AT LEAST ONCE: 418
+
+	Del	Dup
+Full	7	8
+Part	350	91
+
+	Del	Dup
+Full	7	10
+Part	318	70
+
+All CNVs avg. overlap
+	Del	Dup
+Full	0.002	0.004
+Part	0.105	0.03
+All	0.107	0.034
+
+Overlapping CNVs avg. overlap
+	Del	Dup
+Full	1.0	1.3
+Part	1.164	1.514
+All	1.167	1.587
+
+TOTAL AVG. OVERLAP CONDITIONAL: 0.9472361809045227
+
+# 09.26.2020 | 12:08:46 Counting 10kb downstream gene overlaps...
+
+10KB DOWN
+AT LEAST ONE GENIC REGION: 446
+NUM REGIONS OVERLAPPED AT LEAST ONCE: 488
+
+	Del	Dup
+Full	4	6
+Part	420	95
+
+	Del	Dup
+Full	3	8
+Part	371	66
+
+All CNVs avg. overlap
+	Del	Dup
+Full	0.001	0.002
+Part	0.127	0.032
+All	0.128	0.034
+
+Overlapping CNVs avg. overlap
+	Del	Dup
+Full	1.333	1.0
+Part	1.202	1.712
+All	1.203	1.681
+
+TOTAL AVG. OVERLAP CONDITIONAL: 1.0089686098654709
+
+# 09.26.2020 | 12:08:46 Counting transcript overlaps...
+
+TRANSCRIPTS
+AT LEAST ONE GENIC REGION: 1511
+NUM REGIONS OVERLAPPED AT LEAST ONCE: 2643
+
+	Del	Dup
+Full	37	23
+Part	2399	352
+
+	Del	Dup
+Full	30	17
+Part	1303	180
+
+All CNVs avg. overlap
+	Del	Dup
+Full	0.011	0.009
+Part	0.855	0.117
+All	0.866	0.126
+
+Overlapping CNVs avg. overlap
+	Del	Dup
+Full	1.3	1.882
+Part	2.309	2.289
+All	2.309	2.325
+
+TOTAL AVG. OVERLAP CONDITIONAL: 2.017207147584381
+
+# 09.26.2020 | 12:08:46 Counting exon overlaps...
+
+EXONS
+AT LEAST ONE GENIC REGION: 242
+NUM REGIONS OVERLAPPED AT LEAST ONCE: 438
+
+	Del	Dup
+Full	244	81
+Part	115	31
+
+	Del	Dup
+Full	107	39
+Part	99	22
+
+All CNVs avg. overlap
+	Del	Dup
+Full	0.115	0.05
+Part	0.045	0.011
+All	0.16	0.061
+
+Overlapping CNVs avg. overlap
+	Del	Dup
+Full	3.766	4.513
+Part	1.616	1.727
+All	3.011	3.891
+
+TOTAL AVG. OVERLAP CONDITIONAL: 2.3264462809917354

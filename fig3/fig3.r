@@ -94,23 +94,6 @@ fig3a = ggplot(mq_denovo_counts, aes(Paternal.age, Num.dsv, color=Species)) +
   scale_y_continuous(limits=c(0, 5)) +
   labs(x="Paternal age (years)", y="# de novo CNVs") +
   bartheme()
-  # theme_classic() +
-  # theme(axis.text=element_text(size=12), 
-  #       axis.title=element_text(size=16), 
-  #       axis.title.y=element_text(margin=margin(t=0,r=10,b=0,l=0),color="black"), 
-  #       axis.title.x=element_text(margin=margin(t=0,r=0,b=0,l=0),color="black"),
-  #       axis.line=element_line(colour='#595959',size=0.75),
-  #       axis.ticks=element_line(colour="#595959",size = 1),
-  #       axis.ticks.length=unit(0.2,"cm"),
-  #       legend.position="right",
-  #       legend.key.width = unit(0.75,  unit = "cm"),
-  #       legend.spacing.x = unit(0.25, 'cm'),
-  #       legend.title = element_blank(),
-  #       legend.text=element_text(size=12),
-  #       plot.title = element_text(hjust=0.5, size=20),
-  #       plot.margin = unit(c(1,1,0,1), "cm")
-  # )
-
 if(color_plots){
   fig3a = fig3a + scale_color_manual(name="", values=c('#490092','#920000'), labels=c("Macaque","Human"), drop=FALSE)
 }else{
@@ -118,7 +101,6 @@ if(color_plots){
     ggtitle("Macaque") +
     theme(plot.margin = unit(c(1,1,1,1), "cm"))
 }
-
 print(fig3a)
 # Macaque de novo plot
 
@@ -186,23 +168,6 @@ fig3b = ggplot(brandler_counts, aes(Father_chrono_age, Num.dsv, color="Human")) 
   scale_y_continuous(limits=c(0, 5)) +
   labs(x="Paternal age (years)", y="") +
   bartheme()
-  # theme_classic() +
-  # theme(axis.text=element_text(size=12), 
-  #       axis.title=element_text(size=16), 
-  #       axis.title.y=element_text(margin=margin(t=0,r=10,b=0,l=0),color="black"), 
-  #       axis.title.x=element_text(margin=margin(t=0,r=0,b=0,l=0),color="black"),
-  #       axis.line=element_line(colour='#595959',size=0.75),
-  #       axis.ticks=element_line(colour="#595959",size = 1),
-  #       axis.ticks.length=unit(0.2,"cm"),
-  #       legend.position="right",
-  #       legend.key.width = unit(0.75,  unit = "cm"),
-  #       legend.spacing.x = unit(0.25, 'cm'),
-  #       legend.title = element_blank(),
-  #       legend.text=element_text(size=12),
-  #       plot.title = element_text(hjust=0.5, size=20),
-  #       plot.margin = unit(c(1,1,0,1), "cm")
-  # )
-
 if(color_plots){
   fig3b = fig3b + scale_color_manual(name="", breaks=c("Macaque","Human"), values=c("Macaque"='#490092',"Human"='#920000'), drop=FALSE)
 }else{
@@ -210,7 +175,6 @@ if(color_plots){
     ggtitle("Human") +
     theme(plot.margin = unit(c(1,1,1,1), "cm"))
 }
-
 print(fig3b)
 
 hu_rate = mean(brandler_counts$Num.dsv / 2)

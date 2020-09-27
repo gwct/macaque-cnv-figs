@@ -80,7 +80,7 @@ print(fig4a)
 
 ######################
 cat("Reading macaque CAFE genes\n")
-mq_cafe = read.csv("../data/macaque-cafe-genes.csv")
+mq_cafe = read.csv("../gene-counts/cafe/macaque-cafe-genes.csv")
 mq_cafe_dels = sum(mq_cafe$Num.del)
 mq_cafe_dups = sum(mq_cafe$Num.dup)
 
@@ -95,7 +95,7 @@ mq_cafe_del_p = mq_cafe_dels / mq_cafe_total
 mq_cafe_dup_p = mq_cafe_dups / mq_cafe_total
 
 cat("Reading human CAFE genes\n")
-hu_cafe = read.csv("../data/brandler-cafe-genes.csv")
+hu_cafe = read.csv("../gene-counts/cafe/human-cafe-genes.csv")
 hu_cafe_dels = sum(hu_cafe$Num.del)
 hu_cafe_dups = sum(hu_cafe$Num.dup)
 
@@ -161,27 +161,11 @@ fig4b = ggplot(mq_cafe_genes, aes(x=Label, y=prop, fill=Type, label=count)) +
   coord_flip() + 
   bartheme() +
   theme(legend.position="bottom")
-  # theme_classic() +
-  # theme(axis.text.x=element_text(size=10),
-  #       axis.text.y=element_text(size=16),
-  #       axis.title=element_text(size=12), 
-  #       axis.title.y=element_text(margin=margin(t=0,r=10,b=0,l=0),color="black"), 
-  #       axis.title.x=element_text(margin=margin(t=10,r=0,b=0,l=0),color="black"),
-  #       axis.line=element_line(colour='#595959',size=0.75),
-  #       axis.ticks=element_line(colour="#595959",size = 1),
-  #       axis.ticks.length=unit(0.2,"cm"),
-  #       axis.ticks.y=element_blank(),
-  #       legend.position="bottom",
-  #       plot.margin = unit(c(1,1,0,0), "cm"),
-  #       plot.title = element_text(size=16, hjust=0.5, color="#333333")
-  # )
-
 if(color_plots){
   fig4b = fig4b + scale_fill_manual(name="", labels=c("Deletions", "Duplications"), values=c("#009292","#b585e5"))
 }else{
   fig4b = fig4b + scale_fill_grey(name="", labels=c("Deletions","Duplications"))
 }
-
 print(fig4b)
 # Gene proportions plot (Macaque)
 ######################
@@ -197,20 +181,6 @@ fig4c = ggplot(hu_cafe_genes, aes(x=Label, y=prop, fill=Type, label=count)) +
   coord_flip() + 
   bartheme() +
   theme(legend.position="bottom")
-  # theme_classic() +
-  # theme(axis.text.x=element_text(size=10),
-  #       axis.text.y=element_text(size=12),
-  #       axis.title=element_text(size=12), 
-  #       axis.title.y=element_text(margin=margin(t=0,r=10,b=0,l=0),color="black"), 
-  #       axis.title.x=element_text(margin=margin(t=0,r=0,b=0,l=0),color="black"),
-  #       axis.line=element_line(colour='#595959',size=0.75),
-  #       axis.ticks=element_line(colour="#595959",size = 1),
-  #       axis.ticks.length=unit(0.2,"cm"),
-  #       axis.ticks.y=element_blank(),
-  #       legend.position="bottom",
-  #       plot.margin = unit(c(1,1,0,0), "cm"),
-  #       plot.title = element_text(size=16, hjust=0.5, color="#333333")
-  # )
 print(fig4c)
 # Gene proportions plot (Human)
 ######################
@@ -226,7 +196,7 @@ print(sv_comp_chi)
 
 cat(" -> Chi-squared test for macaque SV vs CAFE genes...\n")
 mq_comp_counts = subset(cafe_genes, select=c("Label","num.del","num.dup"))
-mq_comp_counts = subset(mq_comp_counts, !Label %in% c("Human gene deletions/duplications", "Human gene gains/losses"))
+mq_comp_counts = subset(mq_comp_counts, !Label %in% c("Macaque gene deletions/duplications", "Macaque gene gains/losses"))
 mq_comp_counts_t = t(mq_comp_counts[,2:ncol(mq_comp_counts)])
 colnames(mq_comp_counts_t) <- mq_comp_counts[,1]
 mq_comp_chi = chisq.test(mq_comp_counts_t)
@@ -248,21 +218,6 @@ print(hu_comp_chi)
 ######################
 # Combine plots for figure
 cat("Combining proportion plots...\n")
-
-#prow = plot_grid(fig4b + theme(legend.position="none"),
-#                 fig4c + theme(legend.position="none"),
-#                 align = 'vh',
-#                 labels = c("B", "C"),
-#                 label_size = 24,
-#                 hjust = -1,
-#                 nrow = 1)
-#legend_b = get_legend(fig4b + theme(legend.direction="horizontal", legend.justification="center", legend.box.just="bottom"))
-#ptop = plot_grid(nullGrob(), fig4a, nullGrob(), nrow=1, rel_widths=c(0.1,0.6,0.1))
-#
-#pcombo = plot_grid(ptop, prow, nrow=2, labels=c("A",""), label_size=24, rel_heights=c(1,0.8))
-#fig4 = plot_grid(pcombo, legend_b, ncol=1, rel_heights=c(1, 0.1))
-# For macaque and human proportion plots
-
 fig4 = plot_grid(fig4a, fig4b, nrow=2, labels=c("A","B"), label_size=24)
 # For macaque proportion plot only
 

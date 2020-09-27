@@ -14,12 +14,13 @@ library(cowplot)
 source("../lib/read_svs.r")
 source("../lib/filter_svs.r")
 source("../lib/subset_svs.r")
+source("../lib/design.r")
 
 cat("----------\n")
 
 ############################################################
 
-savefiles = T
+savefiles = F
 color_plots = F
 rm_alus = T
 # Run options
@@ -34,8 +35,8 @@ mq_events = sv_list[[1]]; hu_events = sv_list[[2]];
 # Read and filter data
 
 if(rm_alus){
-  hu_svs = subset(hu_svs, Length < 275 | Length > 325)
-  mq_svs = subset(mq_svs, Length < 275 | Length > 325)
+  hu_events = subset(hu_events, Length < 275 | Length > 325)
+  mq_events = subset(mq_events, Length < 275 | Length > 325)
 }
 # For Alu stuff
 
@@ -84,26 +85,12 @@ fig1b = ggplot(sv_types_prop_melt, aes(x=Species, y=value, fill=variable)) +
   scale_y_continuous(expand = c(0,0)) +
   labs(x="", y="Proportion of CNV types") +
   coord_flip() + 
-  theme_classic() +
-  theme(axis.text.x=element_text(size=10),
-        axis.text.y=element_text(size=20),
-        axis.title=element_text(size=12), 
-        axis.title.y=element_text(margin=margin(t=0,r=0,b=0,l=0),color="black"), 
-        axis.title.x=element_text(margin=margin(t=10,r=0,b=0,l=0),color="black"),
-        axis.line=element_line(colour='#595959',size=0.75),
-        axis.ticks=element_line(colour="#595959",size = 1),
-        axis.ticks.length=unit(0.2,"cm"),
-        axis.ticks.y=element_blank(),
-        legend.position="bottom",
-        plot.margin = unit(c(1,1,0,1), "cm")
-  )
-
+  bartheme()
 if(color_plots){
   fig1b = fig1b + scale_fill_manual(name="", labels=c("Deletions","Duplications"), values=c("#006ddb","#db6d00"))
 }else{
   fig1b = fig1b + scale_fill_grey(name="", labels=c("Deletions","Duplications"))
 }
-
 print(fig1b)
 
 #if(savefiles){
@@ -160,26 +147,12 @@ fig1c = ggplot(sv_bases_prop_melt, aes(x=Species, y=value, fill=variable)) +
   scale_y_continuous(expand = c(0,0)) +
   labs(x="", y="Proportion of bases affected by CNVs") +
   coord_flip() + 
-  theme_classic() +
-  theme(axis.text.x=element_text(size=10),
-        axis.text.y=element_text(size=20),
-        axis.title=element_text(size=12), 
-        axis.title.y=element_text(margin=margin(t=0,r=0,b=0,l=0),color="black"), 
-        axis.title.x=element_text(margin=margin(t=10,r=0,b=0,l=0),color="black"),
-        axis.line=element_line(colour='#595959',size=0.75),
-        axis.ticks=element_line(colour="#595959",size = 1),
-        axis.ticks.length=unit(0.2,"cm"),
-        axis.ticks.y=element_blank(),
-        legend.position="bottom",
-        plot.margin = unit(c(1,1,0,1), "cm")
-  )
-
+  bartheme()
 if(color_plots){
   fig1c = fig1c + scale_fill_manual(name="", labels=c("Deletions","Duplications"), values=c("#006ddb","#db6d00"))
 }else{
   fig1c = fig1c + scale_fill_grey(name="", labels=c("Deletions","Duplications"))
 }
-
 print(fig1c)
 
 #if(savefiles){

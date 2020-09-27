@@ -1,0 +1,24 @@
+# Macaque CNV and CAFE gene counter
+# Species:   human
+# PYTHON VERSION: 3.7.4
+# Script call:    .\09_get_cafe_genes.py human
+# Runtime:        09/26/2020 13:30:17
+# ----------------
+# Log file:    get-cafe-genes-human.log
+# GTF file:    gtf/human-chromes.gtf
+# Overlap file:bed/human-cnvs-to-transcripts.bed
+# Dump file:   cafe/dump.out.mlemur-blast.txt.I30
+# Output file: cafe/human-cafe-genes.csv
+# ----------------
+# 09.26.2020 | 13:30:17 Reading features from GTF...
+# Transcripts/proteins read:    93842
+# ----------------
+# 09.26.2020 | 13:30:47 Reading CAFE proteins...
+# Proteins read:    23235
+# ----------------
+# 09.26.2020 | 13:30:47 Getting overlaps...
+# Transcripts skipped (no associated protein): 11492
+# ----------------
+# 09.26.2020 | 13:30:47 Writing transcripts in CAFE dataset overlapped by CNVs...
+# Transcripts written: 19329
+# ----------------

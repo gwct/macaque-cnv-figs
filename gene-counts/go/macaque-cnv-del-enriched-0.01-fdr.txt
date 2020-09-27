@@ -1,0 +1,47 @@
+# Fisher's test for GO enrichment
+# PYTHON VERSION: 3.7.4
+# Script call:    .\08_go_fishing.py -q .\go\macaque-cnv-del-go-query.tab -b .\go\macaque-cnv-del-go-bg.tab -a 0.01 -c fdr -o .\go\macaque-cnv-del-enriched-0.01-fdr.txt
+# Runtime:        09/26/2020 12:38:57
+# ----------------
+# Query file:                      .\go\macaque-cnv-del-go-query.tab
+# Background file:                 .\go\macaque-cnv-del-go-bg.tab
+# Alpha (p-value threshold):       0.01
+# Multiple test correction method: False Discovery Rate
+# Output file:                     .\go\macaque-cnv-del-enriched-0.01-fdr.txt
+# ----------
+# 09.26.2020 | 12:38:57 Counting total query GO terms...
+# 09.26.2020 | 12:38:57 Counting total background GO terms...
+# 09.26.2020 | 12:42:08 Total query GO terms:        18027 in 2241 genes.
+# 09.26.2020 | 12:42:08 Total background GO terms:   262479 in 35581 genes.
+# 09.26.2020 | 12:42:08 Running Fisher's Tests...
+# 09.26.2020 | 14:12:07 Number of tests:             4096.0
+# 09.26.2020 | 14:12:07 FDR corrected alpha:         5.3579707311319686e-05
+# ----------
+# GO Accession	Family ID	# PS w/GO / # PS w/o GO	# background w/ GO / # background w/o GO		p-value	Odds ratio	GO term name	GO domain	GO definition
+GO:0005509	138/17889	1235/261244	2.027715461031793e-07	1.6318205180258014	calcium ion binding	Interacting selectively and non-covalently with calcium ions (Ca2+).	molecular_function
+GO:0007155	62/17965	504/261975	3.576738340069361e-05	1.7938816216717692	cell adhesion	The attachment of a cell, either to another cell or to an underlying substrate such as the extracellular matrix, via cell adhesion molecules.	biological_process
+GO:0002377	33/17994	97/262382	6.921197770422293e-12	4.960763553486901	immunoglobulin production	The appearance of immunoglobulin due to biosynthesis or secretion following a cellular stimulus, resulting in an increase in its intracellular or extracellular levels.	biological_process
+GO:0008081	29/17998	158/262321	1.0047914077847472e-05	2.6751597575539336	phosphoric diester hydrolase activity	Catalysis of the hydrolysis of a phosphodiester to give a phosphomonoester and a free hydroxyl group.	molecular_function
+GO:0005216	74/17953	435/262044	6.183328351106624e-11	2.4830167660001115	ion channel activity	Enables the facilitated diffusion of an ion (by an energy-independent process) by passage through a transmembrane aqueous pore or channel without evidence for a carrier-mediated mechanism. May be either selective (it enables passage of a specific ion only) or non-selective (it enables passage of two or more ions of same charge but different size).	molecular_function
+GO:0006811	112/17915	809/261670	1.1341580465064423e-10	2.022118595330856	ion transport	The directed movement of charged atoms or small charged molecules into, out of or within a cell, or between cells, by means of some agent such as a transporter or pore.	biological_process
+GO:0005248	13/18014	30/262449	1.8545232670395806e-06	6.31330631730876	voltage-gated sodium channel activity	Enables the transmembrane transfer of a sodium ion by a voltage-gated channel. A voltage-gated channel is a channel whose open state is dependent on the voltage across the membrane in which it is embedded.	molecular_function
+GO:0001518	12/18015	34/262445	2.4442067267684625e-05	5.141695645785375	voltage-gated sodium channel complex	A sodium channel in a cell membrane whose opening is governed by the membrane potential.	cellular_component
+GO:0006816	31/17996	179/262300	1.4021273191755429e-05	2.5242418861547136	calcium ion transport	The directed movement of calcium (Ca) ions into, out of or within a cell, or between cells, by means of some agent such as a transporter or pore.	biological_process
+GO:0070588	36/17991	235/262244	3.1995497766207146e-05	2.232980319947208	calcium ion transmembrane transport	A process in which a calcium ion is transported from one side of a membrane to the other by means of some agent such as a transporter or pore.	biological_process
+GO:0005245	28/17999	98/262381	6.624856903851967e-09	4.165009167175954	voltage-gated calcium channel activity	Enables the transmembrane transfer of a calcium ion by a voltage-gated channel. A voltage-gated channel is a channel whose open state is dependent on the voltage across the membrane in which it is embedded.	molecular_function
+GO:0008509	15/18012	52/262427	1.837466641821928e-05	4.2027590580638545	anion transmembrane transporter activity	Enables the transfer of a negatively charged ion from one side of a membrane to the other.	molecular_function
+GO:0006820	15/18012	58/262421	5.3579707311319686e-05	3.7679047301798803	anion transport	The directed movement of anions, atoms or small molecules with a net negative charge, into, out of or within a cell, or between cells, by means of some agent such as a transporter or pore.	biological_process
+GO:0005452	15/18012	43/262436	2.7428505380655806e-06	5.082580605177943	inorganic anion exchanger activity	Enables the transfer of a solute or solutes from one side of a membrane to the other according to the reaction: inorganic anion A(out) + inorganic anion B(in) = inorganic anion A(in) + inorganic anion B(out).	molecular_function
+GO:0006942	8/18019	8/262471	2.3392824721700437e-06	14.566346634108442	regulation of striated muscle contraction	Any process that modulates the frequency, rate or extent of striated muscle contraction.	biological_process
+GO:0008093	10/18017	17/262462	3.653390980921474e-06	8.569096506893816	cytoskeletal adaptor activity	The binding activity of a molecule that brings together a cytoskeletal protein and one or more other molecules, permitting them to function in a coordinated way.	molecular_function
+GO:0004114	20/18007	87/262392	1.4735324527238223e-05	3.349808407841395	3',5'-cyclic-nucleotide phosphodiesterase activity	Catalysis of the reaction: nucleoside 3',5'-cyclic phosphate + H2O = nucleoside 5'-phosphate.	molecular_function
+GO:0005891	26/18001	85/262394	7.017629270265083e-09	4.458735299019335	voltage-gated calcium channel complex	A protein complex that forms a transmembrane channel through which calcium ions may pass in response to changes in membrane potential.	cellular_component
+GO:0005244	37/17990	154/262325	1.6712715936472924e-09	3.5033983526201427	voltage-gated ion channel activity	Enables the transmembrane transfer of an ion by a voltage-gated channel. An ion is an atom or group of atoms carrying an electric charge by virtue of having gained or lost one or more electrons. A voltage-gated channel is a channel whose open state is dependent on the voltage across the membrane in which it is embedded.	molecular_function
+GO:0034765	37/17990	153/262326	1.436440907846399e-09	3.526309823540311	regulation of ion transmembrane transport	Any process that modulates the frequency, rate or extent of the directed movement of ions from one side of a membrane to the other.	biological_process
+GO:0005249	23/18004	100/262379	3.4764981136215603e-06	3.3518756942901575	voltage-gated potassium channel activity	Enables the transmembrane transfer of a potassium ion by a voltage-gated channel. A voltage-gated channel is a channel whose open state is dependent on the voltage across the membrane in which it is embedded.	molecular_function
+GO:0007156	36/17991	209/262270	3.355276427145166e-06	2.511016273687083	homophilic cell adhesion via plasma membrane adhesion molecules	The attachment of a plasma membrane adhesion molecule in one cell to an identical molecule in an adjacent cell.	biological_process
+GO:0019882	22/18005	81/262398	5.443046837447431e-07	3.958266736606087	antigen processing and presentation	The process in which an antigen-presenting cell expresses antigen (peptide or lipid) on its cell surface in association with an MHC protein complex.	biological_process
+GO:0042613	13/18014	27/262452	7.323085038640572e-07	7.014864981557554	MHC class II protein complex	A transmembrane protein complex composed of an MHC class II alpha and MHC class II beta chain, and with or without a bound peptide or polysaccharide antigen.	cellular_component
+GO:0002504	13/18014	26/262453	5.253493557063698e-07	7.28469523703786	antigen processing and presentation of peptide or polysaccharide antigen via MHC class II	The process in which an antigen-presenting cell expresses antigen (peptide or polysaccharide) on its cell surface in association with an MHC class II protein complex.	biological_process
+# ----------
+# 09.26.2020 | 14:12:07 Number enriched:             25

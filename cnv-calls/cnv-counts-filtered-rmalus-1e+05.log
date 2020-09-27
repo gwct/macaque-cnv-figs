@@ -1,0 +1,190 @@
+Reading human data...
+Reading macaque data...
+Filtering data:
+ -> Removing human SVs present at frequency > 0.95 
+ -> For human gtCNV male sex chromosome SVs, QUAL >= 8 
+ -> For human gtCNV non-duplication QUAL >= 12 
+ -> For human gtCNV duplications QUAL >= 8 
+ -> For human SVtyper QUAL >= 100 
+ -> Maximum SV length:  1e+05 
+ --> Human events over max len: 908 
+ --> Human alleles over max len: 0 
+ -> Removing human inversions...
+ -->  6774  human inversions removed
+ -> Maximum SV length:  1e+05 
+ --> 0 SVs removed at 0 sites.
+ -> Removing macaque SVs present at frequency > 0.95 
+ --> 0 SVs removed at 0 sites.
+ -> Minimum SV Qual >= 100 
+ --> 0 SVs removed at 0 sites.
+ -> For macaque DELS, DHFFC < 0.7 
+ --> 0 SVs removed at 0 sites.
+ -> For macaque Dups, DHBFC > 1.3 
+ --> 0 SVs removed at 0 sites.
+----------
+Subsetting macaque data...
+----------
+Subsetting human data...
+
+ALL MACAQUE EVENTS:
+Average CNVs per individual:                           1384.0625 ( 1292 - 1503 ) 
+Average bases deleted per individual:                  3121308.28125 
+Average bases duplicated per individual:               481767.5 
+Number of CNVs present in all individuals:             1755 
+Total:                                                 44290 
+Deletions:                                             40863 (0.9226) 
+Deletion sensitivity:                                  0.88 
+Deletions missed:                                      5572 
+Deletions corrected:                                   46435 
+Duplications:                                          3427 (0.07738) 
+Duplication sensitivity:                               0.65 
+Duplication missed:                                    1845 
+Duplication corrected:                                 5272 
+Bases:                                                 115298425 
+Deleted bases:                                         99881865 (0.8663) 
+Duplicated bases:                                      15416560 (0.1337) 
+Avg. length:                                           2603.26089410702 
+Min. length:                                           40 
+Max. length:                                           98035 
+Avg. deletion length:                                  2444.31062330225 
+Min. deletion length:                                  40 
+Max. deletion length:                                  98035 
+Avg. duplication length:                               4498.55850598191 
+Min. duplication length:                               138 
+Max. duplication length:                               97301 
+
+ALL MACAQUE ALLELES:
+Total:                                                 3646 
+Deletions:                                             3214 (0.8815) 
+Deletion sensitivity:                                  0.88 
+Deletions missed:                                      438 
+Deletions corrected:                                   3652 
+Duplications:                                          432 (0.1185) 
+Duplication sensitivity:                               0.65 
+Duplication missed:                                    233 
+Duplication corrected:                                 665 
+Bases:                                                 13180366 
+Deleted bases:                                         10160506 (0.7709) 
+Duplicated bases:                                      3019860 (0.2291) 
+Avg. length:                                           3615.02084476138 
+Min. length:                                           40 
+Max. length:                                           98035 
+Avg. deletion length:                                  3161.32731798382 
+Min. deletion length:                                  40 
+Max. deletion length:                                  98035 
+Avg. duplication length:                               6990.41666666667 
+Min. duplication length:                               138 
+Max. duplication length:                               97301 
+
+DE NOVO MACAQUE ALLELES:
+Total:                                                 8 
+Deletions:                                             7 (0.875) 
+Deletion sensitivity:                                  0.88 
+Deletions missed:                                      1 
+Deletions corrected:                                   8 
+Duplications:                                          1 (0.125) 
+Duplication sensitivity:                               0.65 
+Duplication missed:                                    1 
+Duplication corrected:                                 2 
+Bases:                                                 64422 
+Deleted bases:                                         35156 (0.5457) 
+Duplicated bases:                                      29266 (0.4543) 
+Avg. length:                                           8052.75 
+Min. length:                                           493 
+Max. length:                                           29266 
+Avg. deletion length:                                  5022.28571428571 
+Min. deletion length:                                  493 
+Max. deletion length:                                  27189 
+Avg. duplication length:                               29266 
+Min. duplication length:                               29266 
+Max. duplication length:                               29266 
+
+----------
+
+ALL HUMAN EVENTS:
+Total:                                                 428712 
+Deletions:                                             391428 (0.913) 
+Deletion sensitivity:                                  0.88 
+Deletions missed:                                      53377 
+Deletions corrected:                                   444805 
+Duplications:                                          37284 (0.08697) 
+Duplication sensitivity:                               0.65 
+Duplication missed:                                    20076 
+Duplication corrected:                                 57360 
+Bases:                                                 631683999 
+Deleted bases:                                         541840490 (0.8578) 
+Duplicated bases:                                      89843509 (0.1422) 
+Avg. length:                                           1473.44604069865 
+Min. length:                                           0 
+Max. length:                                           97415 
+Avg. deletion length:                                  1384.26604637379 
+Min. deletion length:                                  3 
+Max. deletion length:                                  97415 
+Avg. duplication length:                               2409.70681793799 
+Min. duplication length:                               0 
+Max. duplication length:                               97228 
+
+ALL HUMAN ALLELES:
+Total:                                                 15529 
+Deletions:                                             13745 (0.8851) 
+Deletion sensitivity:                                  0.88 
+Deletions missed:                                      1874 
+Deletions corrected:                                   15619 
+Duplications:                                          1784 (0.1149) 
+Duplication sensitivity:                               0.65 
+Duplication missed:                                    961 
+Duplication corrected:                                 2745 
+Bases:                                                 38167319 
+Deleted bases:                                         28188993 (0.7386) 
+Duplicated bases:                                      9978326 (0.2614) 
+Avg. length:                                           2457.80919569837 
+Min. length:                                           0 
+Max. length:                                           97415 
+Avg. deletion length:                                  2050.85434703529 
+Min. deletion length:                                  3 
+Max. deletion length:                                  97415 
+Avg. duplication length:                               5593.23206278027 
+Min. duplication length:                               0 
+Max. duplication length:                               97228 
+
+----------
+Counting Brandler de novos...
+
+DE NOVO BRANDLER ALLELES:
+Total:                                                 19 
+Deletions:                                             15 (0.7895) 
+Deletion sensitivity:                                  0.88 
+Deletions missed:                                      2 
+Deletions corrected:                                   17 
+Duplications:                                          4 (0.2105) 
+Duplication sensitivity:                               0.65 
+Duplication missed:                                    2 
+Duplication corrected:                                 6 
+Bases:                                                 1428508819 
+Deleted bases:                                         1298528069 (0.909) 
+Duplicated bases:                                      129980750 (0.09099) 
+Avg. length:                                           75184674.6842105 
+Min. length:                                           19293891 
+Max. length:                                           206751301 
+Avg. deletion length:                                  86568537.9333333 
+Min. deletion length:                                  19293891 
+Max. deletion length:                                  206751301 
+Avg. duplication length:                               32495187.5 
+Min. duplication length:                               28574000 
+Max. duplication length:                               36198550 
+
+----------
+CAFE DATA
+
+MACAQUE CAFE GENES:Total changes:                                         1972 
+Losses:                                                1063 (0.539046653144016) 
+Gains:                                                 909 (0.460953346855984) 
+
+----------
+
+HUMAN CAFE GENES:
+Total changes:                                         4034 
+Losses:                                                877 (0.217402082300446) 
+Gains:                                                 3157 (0.782597917699554) 
+
+----------

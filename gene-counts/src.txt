@@ -1,0 +1,2 @@
+macaque:    ftp://ftp.ensembl.org/pub/release-97/
+human:      ftp://ftp.ensembl.org/pub/release-84/
