@@ -37,9 +37,9 @@ cat("----------\n")
 
 ############################################################
 
-savefiles = F
+savefiles = T
 color_plots = F
-rm_alus = F
+rm_alus = T
 # Run options
 
 minlen = F
@@ -103,7 +103,7 @@ sv_alleles = rbind(hu_svs, mq_svs)
 cat("SV length distribution...\n")
 
 fig2a = ggplot(sv_alleles, aes(x=Length, fill=Species, color=Species)) + 
-  geom_histogram(alpha=0.8, position="identity", bins=50) +
+  geom_histogram(alpha=0.8, position="identity", bins=50, size=0.5) +
   #geom_density(alpha=0.3) +
   scale_y_continuous(expand = c(0, 0)) +
   labs(x="CNV length", y="# CNVs") +
@@ -152,7 +152,7 @@ hu_dels = subset(hu_svs, Type=="<DEL>")
 sv_dels = rbind(hu_dels, mq_dels)
 
 fig2b = ggplot(sv_dels, aes(x=Length, fill=Species, color=Species)) + 
-  geom_histogram(alpha=0.8, position="identity", bins=50) +
+  geom_histogram(alpha=0.8, position="identity", bins=50, size=0.5) +
   scale_y_continuous(expand = c(0, 0)) +
   labs(x="Deletion length", y="# Deletions") +
   bartheme()
@@ -199,7 +199,7 @@ hu_dups = subset(hu_svs, Type=="<DUP>")
 sv_dups = rbind(hu_dups, mq_dups)
 
 fig2c = ggplot(sv_dups, aes(x=Length, fill=Species, color=Species)) + 
-  geom_histogram(alpha=0.8, position="identity", bins=50) +
+  geom_histogram(alpha=0.8, position="identity", bins=50, size=0.5) +
   #scale_fill_manual(name="", labels=c("Macaque","Human"), values=c("#006ddb","#db6d00")) +
   scale_y_continuous(expand = c(0, 0)) +
   labs(x="Duplication length", y="# Duplications") +
