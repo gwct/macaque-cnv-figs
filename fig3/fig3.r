@@ -23,7 +23,7 @@ cat("----------\n")
 ############################################################
 
 savefiles = T
-color_plots = F
+color_plots = T
 supp = F
 rm_alus = T
 # Run options
@@ -222,7 +222,7 @@ if(savefiles){
   if(!color_plots){
     outfile = paste(outfile, "-grey", sep="")
   }
-  outfile = paste(outfile, ".pdf", sep="")
+  outfile = paste(outfile, ".png", sep="")
   cat(" -> Outfile: ", outfile, "\n")
   ggsave(filename=outfile, p, width=10, height=5, units="in")
 }
